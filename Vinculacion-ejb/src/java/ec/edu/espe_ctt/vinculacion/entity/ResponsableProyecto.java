@@ -266,7 +266,12 @@ public class ResponsableProyecto implements Serializable, Comparable<Responsable
         }
         return temp;
     }
-    //Obtener la fecha inicio de las horas dedicadas por cada Docente
+    /**
+     * Obtener la fecha inicio de las horas dedicadas por cada Docente.
+     *
+     * @autor Jhonny Jami.
+     * @return Fecha
+     */ 
     public Date getHorasDedicadasFechaDesde() {
         Date temp = null;
         if (horasDedicadasList != null) {
@@ -276,7 +281,12 @@ public class ResponsableProyecto implements Serializable, Comparable<Responsable
         }
         return temp;
     }
-     //Obtener la fecha final de las horas dedicadas por cada Docente
+    /**
+     * Obtener la fecha final de las horas dedicadas por cada Docente.
+     *
+     * @autor Jhonny Jami.
+     * @return Fecha
+     */  
      public Date getHorasDedicadasFechaHasta() {
         Date temp = null;
         if (horasDedicadasList != null) {

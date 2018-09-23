@@ -1918,7 +1918,11 @@ public class Reportes2Controller implements Serializable {
                 }
             }
 
-            //Docentes participantes
+            /**
+             * Refactorizacion de metodo, obtener los docentes participantes.
+             *
+             * @autor Jhonny Jami.
+             */
             for (Proyecto p : proyectoList) {
                 List<ResponsableProyecto> lista = p.getParticipanteDocenteTodosList();
                 if (lista == null || lista.isEmpty() || !visualizarDocenteParticipante) {
