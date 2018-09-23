@@ -5319,6 +5319,7 @@ public class ProyectoController implements Serializable {
 
     private void imprimirActaDesignacionEstudiante(String tipoReporte, ActaDesignacionResponsable acta) {
         try {
+            
             acta.llenarDatosDirectorCarrera(directorCarreraList);
             Map<String, Object> parametros = new HashMap<String, Object>();
             parametros.put("SUBREPORT_DIR", JasperReportUtil.PATH);

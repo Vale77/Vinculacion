@@ -266,6 +266,26 @@ public class ResponsableProyecto implements Serializable, Comparable<Responsable
         }
         return temp;
     }
+    //Obtener la fecha inicio de las horas dedicadas por cada Docente
+    public Date getHorasDedicadasFechaDesde() {
+        Date temp = null;
+        if (horasDedicadasList != null) {
+            for (HorasResponsableProyecto hor : horasDedicadasList) {
+                temp = hor.getFechaDesde();
+            }
+        }
+        return temp;
+    }
+     //Obtener la fecha final de las horas dedicadas por cada Docente
+     public Date getHorasDedicadasFechaHasta() {
+        Date temp = null;
+        if (horasDedicadasList != null) {
+            for (HorasResponsableProyecto hor : horasDedicadasList) {
+                temp = hor.getFechaHasta();
+            }
+        }
+        return temp;
+    }
 
     public Stvmajr getCarrera() {
         return carrera;
