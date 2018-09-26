@@ -61,7 +61,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Proyecto.findById", query = "SELECT s FROM Proyecto s WHERE s.id = :id")
 })
 public class Proyecto implements Serializable {
-
+  
     private static final long serialVersionUID = 1L;
     @SequenceGenerator(name = "SEQ_SZDTAVPROYEC", sequenceName = "SEQ_SZDTAVPROYEC", allocationSize = 1)
     @Id
@@ -218,6 +218,9 @@ public class Proyecto implements Serializable {
     @Size(max = 3000)
     @Column(name = "SZTVPROYEC_BIEN_SERVICIO")
     private String bienesServicios;
+    @Size(max = 3000)
+    @Column(name = "SZTVPROYEC_EFECTO_ESPERADO")
+    private String efectoEsperado;
     @Column(name = "SZTVPROYEC_TIPO_PROY")
     private String tipo;
     public static final String TIPO_GASTO_NO_PERMANENTE = "I";
@@ -383,7 +386,9 @@ public class Proyecto implements Serializable {
     private List<AnexoProyecto> anexoProyectoList;
     @OneToMany(mappedBy = "proyecto", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CompromisoParticipacionProyecto> compromisoParticipacionList;
-
+    @OneToMany(mappedBy = "proyecto", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ImpactoEsperado> impactoEsperadoList;
+    
     @Transient
     private List<SeaLineainves> lineaInvestigacionList;
     @Transient
@@ -1301,6 +1306,7 @@ public class Proyecto implements Serializable {
         return departamentoProyectoList;
     }
 
+    //Devuelve departamentos del proyecto pero sin repetir los que ya existe.
     public List<DepartamentoProyecto> getDepartamentoProyectoDistinctDepList() {
         List<DepartamentoProyecto> result = new ArrayList<>();
         if (departamentoProyectoList != null && !departamentoProyectoList.isEmpty()) {
@@ -2967,6 +2973,23 @@ public class Proyecto implements Serializable {
 
     public void setEstadoAprobVicerrectorado(String estadoAprobVicerrectorado) {
         this.estadoAprobVicerrectorado = estadoAprobVicerrectorado;
+    }
+
+    public String getEfectoEsperado() {
+        return efectoEsperado;
+    }
+
+    public void setEfectoEsperado(String efectoEsperado) {
+        this.efectoEsperado = efectoEsperado;
+    }
+
+    @XmlTransient
+    public List<ImpactoEsperado> getImpactoEsperadoList() {
+        return impactoEsperadoList;
+    }
+
+    public void setImpactoEsperadoList(List<ImpactoEsperado> impactoEsperadoList) {
+        this.impactoEsperadoList = impactoEsperadoList;
     }
     
 }

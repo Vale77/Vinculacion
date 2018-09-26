@@ -77,6 +77,10 @@ public class PresupuestoProyecto implements Serializable {
     public static final String TIPO_GASTO_CORRIENTE = "C";   //Gasto Permanente
     public static final String TIPO_GASTO_INVERSION = "I";   //Gasto No Permanente
 
+    @Size(max = 100)
+    @Column(name = "SZTVPRESUP_VALORANUAL")
+    private String valorAnual;
+    
     public PresupuestoProyecto() {
     }
 
@@ -246,6 +250,15 @@ public class PresupuestoProyecto implements Serializable {
                 return "APORTE COMUNIDAD BENEFICIARIA";
         }
         return "";
+    }   
+
+    public String getValorAnual() {
+        return valorAnual;
     }
 
+    public void setValorAnual(String valorAnual) {
+        this.valorAnual = valorAnual;
+    }
+
+   
 }
