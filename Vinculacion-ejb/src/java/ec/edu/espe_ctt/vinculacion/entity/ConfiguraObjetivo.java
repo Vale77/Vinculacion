@@ -32,10 +32,8 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Jhonny
  */
 @Entity
-@Table(name = "SZDTAVCONFOBJ")
+@Table(name = "SZDTAVCONFOBJ", schema="SIEVAL")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "ConfigurarObjetivo.findAll", query = "SELECT c FROM ConfigurarObjetivo c")})
 public class ConfiguraObjetivo implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation

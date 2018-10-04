@@ -28,10 +28,8 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Jhonny
  */
 @Entity
-@Table(name = "SZDTAVIMPACTOTIPO")
+@Table(name = "SZDTAVIMPACTOTIPO", schema="SIEVAL")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "ImpactoEsperadoTipo.findAll", query = "SELECT i FROM ImpactoEsperadoTipo i")})
 public class ImpactoEsperadoTipo implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation

@@ -11,11 +11,14 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -26,14 +29,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Jhonny
  */
 @Entity
-@Table(name = "SZDTAVIMPACTO")
+@Table(name = "SZDTAVIMPACTO", schema = "SIEVAL")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "ImpactoEsperado.findAll", query = "SELECT i FROM ImpactoEsperado i")})
 public class ImpactoEsperado implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @SequenceGenerator(name = "SEQ_SZDTAVIMPACTO", sequenceName = "SEQ_SZDTAVIMPACTO", allocationSize = 1)
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_SZDTAVIMPACTO")
     @Basic(optional = false)
     @NotNull
     @Column(name = "SZTVAIMPACTO_CODE")
@@ -50,6 +53,11 @@ public class ImpactoEsperado implements Serializable {
 
     public ImpactoEsperado() {
     }
+    
+    public ImpactoEsperado(Proyecto proyecto){
+        this.proyecto = proyecto;
+    }
+    
 
     public Integer getId() {
         return id;
