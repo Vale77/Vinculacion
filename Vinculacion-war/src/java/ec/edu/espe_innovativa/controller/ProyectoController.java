@@ -1147,7 +1147,7 @@ public class ProyectoController implements Serializable {
         datosCompletos = false;
         carreraProyectoList = carreraProyectoFacade.findByProyecto(proyectoSelected.getId());
     }
-
+    
     public boolean validarVaciosP6() {
         datosCompletos = true;
         if (carreraProyectoSelected.getCarrera() == null || carreraProyectoSelected.getCarrera().getStvmajrCode() == null
@@ -1279,6 +1279,7 @@ public class ProyectoController implements Serializable {
         carreraProyectoSelected = new CarreraProyecto(proyectoSelected);
         nomCarreraSeleccionada = "";
         controlGrabar = true;
+        datosCompletos = false;
 
     }
 
@@ -2088,7 +2089,7 @@ public class ProyectoController implements Serializable {
             } else {
                 impactoEsperadoFacade.edit(impactoEsperadoSelected);
             }
-            cancelarP6();
+            cancelarImpactoEsperado();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "La información se guardó exitosamente"));
             RequestContext.getCurrentInstance().update("formPrincipal:panelImpactoEsperado");
         } catch (Exception e) {
@@ -2118,6 +2119,15 @@ public class ProyectoController implements Serializable {
         return "";
     }
     
+    public void eliminarImpacto() {
+        try {
+            impactoEsperadoFacade.remove(impactoEsperadoSelected);
+            cancelarImpactoEsperado();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "El registro ha sido eliminado exitosamente"));
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No fue posible eliminar el registro seleccionado"));
+        }
+    }
   
 //</editor-fold>
     
@@ -3993,6 +4003,7 @@ public class ProyectoController implements Serializable {
     public void nuevoPresupuestoProyecto(ActionEvent event) {
         presupuestoProyectoSelected = new PresupuestoProyecto(proyectoSelected);
         presupuestoProyectoSelected.setPartidaPresupuestaria(null);
+        
     }
 
     @EJB
@@ -4027,6 +4038,7 @@ public class ProyectoController implements Serializable {
     public void cancelarPresupuestoProyecto() {
         proyectoSelected = proyectoFacade.find(proyectoSelected.getId());
         proyectoSelected.inicializarListadoPresupuestos();
+       
         presupuestoProyectoSelected = null;
     }
 

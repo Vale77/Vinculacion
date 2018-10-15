@@ -37,7 +37,7 @@ public class ConfiguraObjetivoTipo implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "SZTVCONFOBJTIPO_CODE")
-    private BigDecimal id;
+    private Integer id;
     @Size(max = 100)
     @Column(name = "SZTVCONFOBJTIPO_DESCRIPCION")
     private String descripcion;
@@ -47,13 +47,15 @@ public class ConfiguraObjetivoTipo implements Serializable {
     public ConfiguraObjetivoTipo() {
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         this.id = id;
     }
+
+    
 
     public String getDescripcion() {
         return descripcion;
