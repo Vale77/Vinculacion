@@ -17,7 +17,7 @@
 	<columnHeader>
 		<band height="33">
 			<staticText>
-				<reportElement x="119" y="0" width="157" height="33" uuid="1e2daa20-2f56-47f4-a7f4-609cff72d913"/>
+				<reportElement x="119" y="0" width="135" height="33" uuid="1e2daa20-2f56-47f4-a7f4-609cff72d913"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -31,7 +31,7 @@
 				<text><![CDATA[NOMBRES COMPLETOS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="276" y="0" width="55" height="33" uuid="1b737ba1-fb82-43c0-9726-8bfce580dcf6"/>
+				<reportElement x="254" y="0" width="77" height="33" uuid="1b737ba1-fb82-43c0-9726-8bfce580dcf6"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -91,7 +91,7 @@
 	<detail>
 		<band height="14" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="119" y="0" width="157" height="14" uuid="2b5231bc-ef02-4f21-b6e4-b758728736d4"/>
+				<reportElement stretchType="RelativeToTallestObject" x="119" y="0" width="135" height="14" uuid="2b5231bc-ef02-4f21-b6e4-b758728736d4"/>
 				<box leftPadding="5">
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -105,7 +105,7 @@
 				<textFieldExpression><![CDATA[$F{usuario.nombresCompletos}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToTallestObject" x="276" y="0" width="55" height="14" uuid="9701e1fe-61cc-44de-951f-0bc5aa68314d"/>
+				<reportElement stretchType="RelativeToTallestObject" x="254" y="0" width="77" height="14" uuid="9701e1fe-61cc-44de-951f-0bc5aa68314d"/>
 				<box leftPadding="5">
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>

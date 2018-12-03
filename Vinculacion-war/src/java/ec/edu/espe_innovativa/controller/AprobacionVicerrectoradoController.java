@@ -21,6 +21,7 @@ import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -210,6 +211,38 @@ public class AprobacionVicerrectoradoController implements Serializable {
         }
     }
 
+     /**
+     * Permitira mostrar al Vicerrectorado el perfil de cada proyecto.
+     *
+     * @autor Jhonny Jami.
+     * @parametro Proyecto
+     */ 
+    public void generarReportePerfilPDF(Proyecto proyectoSelected) {
+        generarReportePerfil(JasperReportUtil.TIPO_PDF, proyectoSelected);
+    }
+    
+    private void generarReportePerfil(String tipoReporte, Proyecto proyectoSelected) {
+        try {
+            Map<String, Object> parametros = new HashMap<String, Object>();
+            parametros.put("SUBREPORT_DIR", JasperReportUtil.PATH);
+            parametros.put("pathAplicacion", JasperReportUtil.PATH_APLICACION);
+            parametros.put("idProyecto", proyectoSelected.getId());
+           
+            
+            JasperReportUtil jasperBean = (JasperReportUtil) FacesUtils.getManagedBean(JasperReportUtil.NOMBRE_BEAN);
+            SimpleDateFormat sdf = new  SimpleDateFormat("dd-MM-yyyy");
+            Date fechaVersion2Perfil = sdf.parse("05-11-2018");
+            if(proyectoSelected.getFechaInicio().after(fechaVersion2Perfil)){
+                jasperBean.generarReporte(JasperReportUtil.PATH_REPORTE_PERFIL_PROYECTO, tipoReporte, parametros);
+            }else{
+                jasperBean.generarReporte(JasperReportUtil.PATH_REPORTE_PERFIL_PROYECTO_X, tipoReporte, parametros);
+
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }    
+    
     public void grabarActa() {
         try {
             actaAprobacionVicerrectoradoFacade.edit(actaAprobacionVicerrectoradoSelected);

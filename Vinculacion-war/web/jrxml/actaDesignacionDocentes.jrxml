@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="actaDesignacionDocentes" language="groovy" pageWidth="595" pageHeight="842" columnWidth="455" leftMargin="70" rightMargin="70" topMargin="40" bottomMargin="0" uuid="7802725a-c9b2-4bd5-b72d-0aa65d1a1f4f">
 	<property name="ireport.zoom" value="1.6105100000000074"/>
-	<property name="ireport.x" value="99"/>
-	<property name="ireport.y" value="164"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["E:\\CTT2015\\APP\\Vinculacion\\Vinculacion-war\\web\\jrxml\\"]]></defaultValueExpression>
 	</parameter>
@@ -36,7 +36,7 @@
 	<detail>
 		<band height="280" splitType="Stretch">
 			<staticText>
-				<reportElement positionType="Float" x="0" y="26" width="455" height="24" uuid="9d920aa2-02b0-4b62-bf4e-de599cb19c19"/>
+				<reportElement positionType="Float" x="0" y="26" width="454" height="24" uuid="9d920aa2-02b0-4b62-bf4e-de599cb19c19"/>
 				<box>
 					<pen lineWidth="0.0"/>
 					<topPen lineWidth="0.0"/>

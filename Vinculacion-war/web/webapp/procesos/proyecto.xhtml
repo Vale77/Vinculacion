@@ -6345,7 +6345,7 @@
                                                              actionListener="#{proyectoController.nuevoConsolidacionCalificacion}" 
                                                              >
                                             </p:commandButton>
-                                            <p:commandButton value="Finalizar" title="Finalizar proceso de consolidación" icon="ui-icon-check" 
+                                            <p:commandButton id="btnFinalizarConsolidacion" value="Finalizar" title="Finalizar proceso de consolidación" icon="ui-icon-check" 
                                                              update=":formPrincipal:panelMenu, :formPrincipal:panelCentral, :formPrincipal:panelTitulo,  :formPrincipal:message1"
                                                              disabled="#{!proyectoController.permitirFinalizarConsolidacionCalificacion}"
                                                              onstart="PF('blockUIWidget').block()" oncomplete="PF('blockUIWidget').unblock()"
