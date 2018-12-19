@@ -39,7 +39,7 @@ order by OBJ_PADRE.SVOBVI_ORDEN]]>
 				<textElement verticalAlignment="Middle">
 					<font size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Objetivos del Plan Nacional del Buen Vivir:]]></text>
+				<text><![CDATA[Objetivos del Plan de Desarrollo:]]></text>
 			</staticText>
 		</band>
 	</title>

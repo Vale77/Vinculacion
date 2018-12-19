@@ -1450,9 +1450,19 @@ public class ProyectoController implements Serializable {
 
     public void registraActividadProyecto() {
         TimelineUpdater timelineUpdater = TimelineUpdater.getCurrentInstance(":formPrincipal:timelineActividades");
-        ((ObjetivoPrograma) event.getData()).setFechaInicio(event.getStartDate());
-        ((ObjetivoPrograma) event.getData()).setFechaFin(event.getEndDate());
-        modelActividades.update(event, timelineUpdater);
+        boolean aceptarFecha = false;
+        if(event.getEndDate().after(event.getStartDate())){
+            ((ObjetivoPrograma) event.getData()).setFechaInicio(event.getStartDate());
+            ((ObjetivoPrograma) event.getData()).setFechaFin(event.getEndDate());
+             modelActividades.update(event, timelineUpdater);
+             aceptarFecha = true;
+        }else
+        {
+            aceptarFecha = false;
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Fecha Inicio debe ser < Fecha Final"));
+        }
+        
+        RequestContext.getCurrentInstance().addCallbackParam("aceptarFecha", aceptarFecha);
     }
 
     BigDecimal codComponenteSelected;
@@ -3617,7 +3627,7 @@ public class ProyectoController implements Serializable {
                 proyectoSelected.setEstado(new SeaParametrosDet(SeaParametrosDet.ESTADO_RECHAZADO_COMISION_VINCULACION));
             } else {
                 proyectoSelected.setEstado(new SeaParametrosDet(SeaParametrosDet.ESTADO_APROBADO_COMISION_VINCULACION));
-                if(proyectoSelected.getUrlDocAprobacionConcejoDep()!=null){
+                if(proyectoSelected.getUrlDocAprobacionConcejoDep()==null){
                     FacesContext.getCurrentInstance().addMessage("formPrincipal:btnFinalizarConsolidacion", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Debe ingresar el acta (punto 8)"));
                     return;
                 };
