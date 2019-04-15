@@ -33,11 +33,13 @@ import ec.edu.espe_ctt.vinculacion.entity.AspectoEvaluacionFinal;
 import ec.edu.espe_ctt.vinculacion.entity.Configuracion;
 import ec.edu.espe_ctt.vinculacion.entity.CoordinadorVinculacion;
 import ec.edu.espe_ctt.vinculacion.entity.Institucion;
+import ec.edu.espe_ctt.vinculacion.entity.ObjetivoBVivir;
 import ec.edu.espe_ctt.vinculacion.entity.VDirectorDepartamento;
 import ec.edu.espe_ctt.vinculacion.entity.VDocenteVinculacion2;
 import ec.edu.espe_ctt.vinculacion.session.ConfiguracionFacade;
 import ec.edu.espe_ctt.vinculacion.session.CoordinadorVinculacionFacade;
 import ec.edu.espe_ctt.vinculacion.session.InstitucionFacade;
+import ec.edu.espe_ctt.vinculacion.session.ObjetivoBVivirFacade;
 import ec.edu.espe_ctt.vinculacion.session.VDirectorDepartamentoFacade;
 import ec.edu.espe_ctt.vinculacion.session.VDocenteVinculacion2Facade;
 import ec.edu.espe_ctt_investigacion.entity.SeaCanton;
@@ -184,6 +186,7 @@ public class ConfiguracionesController implements Serializable {
             case "12":
                 initCatalogosGenerales();
                 break;
+            
 
         }
 
@@ -257,7 +260,12 @@ public class ConfiguracionesController implements Serializable {
             }
         }
     }
-
+    
+    
+    //Autor: Jhonny Jami, Descripcion: Funciones de Configuracion PlanNacional
+    
+    ////----Fin Funciones de Configuracion PlanNacional
+    
     public String cambiarOrdenValoracionParametroEvaluacion(ValoracionParametroEvaluacion valoracionParametroEvaluacion, Integer cambio) {
         try {
             valoracionParametroEvaluacion.cambiarOrden(cambio);
@@ -313,6 +321,7 @@ public class ConfiguracionesController implements Serializable {
             TreeNode node10 = new DefaultTreeNode(new OpcionMenu("10", "- Nro. horas mínimo para entrega de certificado docente"), opcionesMenu);
             TreeNode node11 = new DefaultTreeNode(new OpcionMenu("11", "- Catálogo Partidas Presupuestarias"), opcionesMenu);
             TreeNode node12 = new DefaultTreeNode(new OpcionMenu("12", "- Catálogos Generales"), opcionesMenu);
+            
         }
     }
 
@@ -394,7 +403,7 @@ public class ConfiguracionesController implements Serializable {
     private Map<Integer, Boolean> expandedParametroEvaluacion = new HashMap<Integer, Boolean>();
     private Map<Integer, Boolean> expandedParametroEvaluacionFinalCabecera = new HashMap<Integer, Boolean>();
     private Map<Integer, Boolean> expandedConfigParametroEvaluacion = new HashMap<Integer, Boolean>();
-
+      
     public Map<Integer, Boolean> getExpandedParametroEvaluacionFinalCabecera() {
         return expandedParametroEvaluacionFinalCabecera;
     }
@@ -428,7 +437,7 @@ public class ConfiguracionesController implements Serializable {
         ConfiguracionParametrosEvaluacion configuracionParametrosEvaluacion = (ConfiguracionParametrosEvaluacion) event.getData();
         expandedConfigParametroEvaluacion.put(configuracionParametrosEvaluacion.getId(), event.getVisibility() == Visibility.VISIBLE);
     }
-
+    
     private void setExpandedConfigParametroEvaluacion() {
         for (ConfiguracionParametrosEvaluacion conf : configuracionParametrosEvaluacionList) {
             Boolean expandedConf = (expandedConfigParametroEvaluacion.get(conf.getId()) != null) ? expandedConfigParametroEvaluacion.get(conf.getId()) : false;
@@ -569,7 +578,7 @@ public class ConfiguracionesController implements Serializable {
     }
 
     private ConfiguracionParametrosEvaluacion configuracionParametrosEvaluacionSelected;
-
+   
     public ConfiguracionParametrosEvaluacion getConfiguracionParametrosEvaluacionSelected() {
         return configuracionParametrosEvaluacionSelected;
     }
@@ -679,7 +688,7 @@ public class ConfiguracionesController implements Serializable {
     private boolean verificarEdicionConfiguracionParametrosEvaluacion(Integer idConfiguracionParametrosEvaluacion) {
         return (proyectoFacade.verificarPermitirEdicionConfParamEvaluacion(idConfiguracionParametrosEvaluacion));
     }
-
+   
     private boolean verificarEdicionConfiguracionParametrosEvaluacionFinal(Integer idConfiguracionParametrosEvaluacion) {
         return (proyectoFacade.verificarPermitirEdicionConfParamEvaluacionFinal(idConfiguracionParametrosEvaluacion));
     }
@@ -698,6 +707,8 @@ public class ConfiguracionesController implements Serializable {
             cancelarEdicionConfiguracionParametrosEvaluacion(true);
         }
     }
+    
+    
 
     public void seleccionarEditarValoracionParametroEvaluacion() {
         try {
@@ -776,14 +787,21 @@ public class ConfiguracionesController implements Serializable {
         opcionesMenuParametroList.add(new OpcionMenu("1.2", "1.2. Cobertura y Localización"));
         //opcionesMenuParametroList.add(new OpcionMenu("1.3", "1.3. Origen de los fondos"));
         opcionesMenuParametroList.add(new OpcionMenu("1.4", "1.3. Detalle de entregables del proyecto"));
+        opcionesMenuParametroList.add(new OpcionMenu("1.5", "1.4. Impactos Esperados"));
         opcionesMenuParametroList.add(new OpcionMenu("2.1", "2.1. Diagnóstico y Problema"));
         opcionesMenuParametroList.add(new OpcionMenu("2.2", "2.3. Identificación de Población"));
         opcionesMenuParametroList.add(new OpcionMenu("2.3", "2.4. Docentes Participantes"));
         opcionesMenuParametroList.add(new OpcionMenu("2.4", "2.5. Estudiantes Participantes"));
-        opcionesMenuParametroList.add(new OpcionMenu("3.1", "3.1. Objetivos PLNBV"));
-        opcionesMenuParametroList.add(new OpcionMenu("3.2", "3.2. Objetivos Provinciales, Cantonales o Parroquiales"));
-        opcionesMenuParametroList.add(new OpcionMenu("3.3", "3.3. Objetivos Estratégicos Institucionales"));
+//        opcionesMenuParametroList.add(new OpcionMenu("3.1", "3.1. Objetivos PLNBV"));
+//        opcionesMenuParametroList.add(new OpcionMenu("3.2", "3.2. Objetivos Provinciales, Cantonales o Parroquiales"));
+//        opcionesMenuParametroList.add(new OpcionMenu("3.3", "3.3. Objetivos Estratégicos Institucionales"));
         opcionesMenuParametroList.add(new OpcionMenu("3.4", "4. Matriz del Marco Lógico"));
+        //opcionesMenuParametroList.add(new OpcionMenu("3.0.1", "3.1. Objetivos de Desarrollo Sostenible del Milenio"));
+        opcionesMenuParametroList.add(new OpcionMenu("3.0.2", "3.2. Objetivos Plan Nacional de Desarrollo"));
+        opcionesMenuParametroList.add(new OpcionMenu("3.0.3", "3.3. Objetivos Provinciales, Cantonales o Parroquiales"));
+        opcionesMenuParametroList.add(new OpcionMenu("3.0.4", "3.4. Objetivos Estratégicos Institucionales"));
+        //opcionesMenuParametroList.add(new OpcionMenu("3.0.6", "3.6.  Campo de Conocimiento UNESCO"));
+        
         opcionesMenuParametroList.add(new OpcionMenu("4", "5. Viabilidad y Plan de Sostenibilidad"));
         opcionesMenuParametroList.add(new OpcionMenu("5", "6. Presupuesto Detallado y Fuentes de Financiamiento"));
         opcionesMenuParametroList.add(new OpcionMenu("6", "7. Estrategia de Ejecución-Cronograma"));
