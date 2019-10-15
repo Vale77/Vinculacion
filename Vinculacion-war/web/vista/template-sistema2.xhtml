@@ -67,6 +67,10 @@
                 <h:panelGrid columns="2">  
                     <p:graphicImage value="/resources/images/ajax-loader1.gif" style="margin-right: 12px; vertical-align: middle;" />  
                     <h:outputText value="Procesando... Por favor espere..." style="white-space: nowrap;"/>  
+                    
+                           
+                    
+                    
                 </h:panelGrid>   
             </pe:blockUI>              
             <p:dialog id="dlgForm01" modal="true" widgetVar="statusDialog" header="msg.procesando"   minimizable="false" showHeader="false"
@@ -111,16 +115,35 @@
                             <h:commandButton image="/resources/images/close-session.png" immediate="true" action="#{navegacionController.cerrar_session}"
                                              style="width: 35px; float:right; text-align:right; margin-left:10px; " alt="Cerrar Sesión"/>
                             <p:commandLink id="ajax" style="float: left" onclick="PF('dialogCambioPassword').show();">
-                                <h:outputText value="Cambiar contraseña" />
+                                <h:outputText value="Cambiar Contraseña" />
                             </p:commandLink>
 
                             <h:graphicImage value="/resources/images/banner_SVS.png" width="90%"
-                                            style=" margin-left:10px;"/>
+                                            style=" margin-left:5px;"/>
+                            
+                           <h:panelGroup style="margin-top: 5px">  
+                                <img  src="/Vinculacion-war/resources/images/ayuda.png" class="button" data-type="zoomin"></img>Ayuda
+                                <div class="overlay-container">
+                                    <div class="window-container zoomin">
+                                        
+                                        <br/>
+                                        <a target="_blank" href="http://localhost:8080/Vinculacion-war/manuales/Manual_usuario_Director_proyecto_1.0.pdf" >Manual</a><br></br>
+                                        <!--  <a target="_blank" href="manuales/Manual_Seguimiento_Academico_Docente.pdf" >Manual Seguimiento Académico Docente</a><br></br>
+                                          <a target="_blank" href="manuales/Manual_Seguimiento_Academico_Estudiante.pdf" >Manual Seguimiento Académico Estudiante</a><br></br> -->
+                                        <!-- <a target="_blank" href="https://youtu.be/a1SnmUoU7lo" >Video Tutorial Seguimiento Académico Coordinador</a><br></br>
+                                         <a target="_blank" href="https://youtu.be/-ucpMgFFhpc" >Video Tutorial Seguimiento Académico Docente</a><br></br>
+                                         <a target="_blank" href="https://youtu.be/uHSGxnGaHoY" >Video Tutorial Seguimiento Académico Estudiante</a><br></br> -->
+                                        <br/>
+                                    </div>
 
-                            <h:commandButton rendered="false" image="/resources/images/close-session.png" immediate="true" action="#{navegacionController.cerrar_session}"
+                                </div>
+                            </h:panelGroup>
+
+
+                            
+                            
+  <h:commandButton rendered="false" image="/resources/images/close-session.png" immediate="true" action="#{navegacionController.cerrar_session}"
                                              style="width: 35px; float:right; text-align:right; margin-left:5px; " alt="Cerrar Sesión"/>
-
-
 
                         </h:panelGrid>
                         <h:panelGrid columns="4" cellpadding="0" cellspacing="0" >

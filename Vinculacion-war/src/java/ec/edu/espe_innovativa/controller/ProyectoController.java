@@ -103,8 +103,8 @@ import ec.edu.espe_innovativa.recursos.DataTableColumn;
 import ec.edu.espe_innovativa.util.FacesUtils;
 import ec.edu.espe_innovativa.util.JasperReportUtil;
 import ec.edu.espe_innovativa.util.NumeroALetras;
-import ec.edu.espe_matriz.wsClient.WSEnvioMail;
-import ec.edu.espe_matriz.wsClient.WSEnvioMail_Service;
+//import ec.edu.espe_matriz.wsClient.WSEnvioMail;
+//import ec.edu.espe_matriz.wsClient.WSEnvioMail_Service;
 import java.io.ByteArrayInputStream;
 import static java.io.File.separatorChar;
 import java.io.Serializable;
@@ -125,6 +125,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -3575,8 +3577,8 @@ public class ProyectoController implements Serializable {
                             .append("<br><font size=\"1\">Este correo ha sido generado automáticamente, por favor no responder al mismo. Cualquier inquietud comunicarse a los teléfono detallados.</font>")
                             .append("</body>")
                             .append("</html>");
-                    WSEnvioMail wSEnvioMail = new WSEnvioMail_Service().getWSEnvioMailPort();
-                    wSEnvioMail.enviarMail("aa@gmail.com", con.getDireccionCorreo(), con.getAsuntoCorreo(), mensaje.toString(), true, null, null, null, null);      
+//                    WSEnvioMail wSEnvioMail = new WSEnvioMail_Service().getWSEnvioMailPort();
+  //                  wSEnvioMail.enviarMail("aa@gmail.com", con.getDireccionCorreo(), con.getAsuntoCorreo(), mensaje.toString(), true, null, null, null, null);      
                 } catch (Exception e) {
                 }
             }
@@ -3653,8 +3655,8 @@ public class ProyectoController implements Serializable {
                             .append("</html>");
 
                     //Descomentar lo siguiente si se quiere enviar mail automatico al director, cuando el proyecto es aprobado por la comision
-                    WSEnvioMail wSEnvioMail = new WSEnvioMail_Service().getWSEnvioMailPort();
-                    wSEnvioMail.enviarMail("aa@gmail.com", con.getDireccionCorreo(), con.getAsuntoCorreo(), mensaje.toString(), true, null, null, null, null);
+//                    WSEnvioMail wSEnvioMail = new WSEnvioMail_Service().getWSEnvioMailPort();
+  //                  wSEnvioMail.enviarMail("aa@gmail.com", con.getDireccionCorreo(), con.getAsuntoCorreo(), mensaje.toString(), true, null, null, null, null);
                 } catch (Exception e) {
                 }
             }
@@ -4025,8 +4027,8 @@ public class ProyectoController implements Serializable {
                             } catch (Exception e) {
                             }
                         }
-                        WSEnvioMail wSEnvioMail = new WSEnvioMail_Service().getWSEnvioMailPort();
-                        wSEnvioMail.enviarMail("aa@gmail.com", proyectoSelected.getDireccionCorreo(), proyectoSelected.getAsuntoCorreo(), mensaje.toString(), true, adjunto1, nombreAdunto1, adjunto2, nombreAdunto2);
+//                        WSEnvioMail wSEnvioMail = new WSEnvioMail_Service().getWSEnvioMailPort();
+  //                      wSEnvioMail.enviarMail("aa@gmail.com", proyectoSelected.getDireccionCorreo(), proyectoSelected.getAsuntoCorreo(), mensaje.toString(), true, adjunto1, nombreAdunto1, adjunto2, nombreAdunto2);
                          
                         
                     } catch (Exception e) {
@@ -6195,6 +6197,31 @@ public class ProyectoController implements Serializable {
             NumeroALetras numeroALetras = new NumeroALetras();
             String nroHorasTexto = numeroALetras.convertir(responsableProyecto.getTotalHorasDedicadas().toString(), false);
             String fechaActual = "Sangolquí, " + formatter.format(new Date());
+            List<ResponsableProyecto> indexList = new ArrayList<>();
+            //indexList.addAll(proyectoSelected.getParticipanteEstudianteList());    
+            for (ResponsableProyecto responsableProyecto1 : proyectoSelected.getParticipanteEstudianteList()) {
+                ResponsableProyecto temp = new ResponsableProyecto(responsableProyecto1.getId(),responsableProyecto1.getUsuario());
+                indexList.add(temp);
+            }
+            int index = indexList.size();           
+            StringBuilder nroCertificado = new StringBuilder();
+            for(ResponsableProyecto r : indexList){
+                r.setId(index--);                                  
+            }
+            for (ResponsableProyecto responsableProyecto1 : indexList) {
+                if(responsableProyecto1.getUsuario().equals(responsableProyecto.getUsuario())){
+                    index = responsableProyecto1.getId();
+                    break;
+                }
+               
+            }
+            if(index>=10){
+                nroCertificado.append("0").append(index);
+            }else{
+                nroCertificado.append("00").append(index);
+            }
+   
+            parametros.put("nroCertificado", nroCertificado);
             parametros.put("idParticipante", responsableProyecto.getId());
             parametros.put("fechaDesde", fechaDesdeStr);
             parametros.put("fechaHasta", fechaHastaStr);
