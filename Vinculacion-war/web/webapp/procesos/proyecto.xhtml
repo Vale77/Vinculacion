@@ -4469,22 +4469,31 @@
                                     <p:column headerText="Nro." width="20">
                                         <h:outputText value="#{index + 1}"/>
                                     </p:column>
-                                    <p:column headerText="Cédula" width="60">
+                                    <p:column headerText="Cédula" filterBy="#{estudiantePar2.usuario.usuCc}" 
+                                              filterStyle= "width:50px;" filterMatchMode="contains">
                                         <h:outputText value="#{estudiantePar2.usuario.usuCc}" style="white-space: pre-line"/>
                                     </p:column>
-                                    <p:column headerText="Apellidos">
+                                    
+                                    <p:column headerText="Apellidos" filterBy="#{estudiantePar2.usuario.usuApellidos}" 
+                                              filterStyle= "width:70px;" filterMatchMode="contains">
                                         <h:outputText value="#{estudiantePar2.usuario.usuApellidos}" style="white-space: pre-line"/>
                                     </p:column>
-                                    <p:column headerText="Nombres" width="80">
+                                    <p:column headerText="Nombres" filterBy="#{estudiantePar2.usuario.usuNombres}" 
+                                              filterStyle= "width:70px;" filterMatchMode="contains">
+                                 
                                         <h:outputText value="#{estudiantePar2.usuario.usuNombres}" style="white-space: pre-line"/>
                                     </p:column>
-                                    <p:column headerText="Correo Electrónico" width="90">
+                                    
+                                    
+                                    <p:column headerText="Correo Electrónico" filterBy="#{estudiantePar2.usuario.usuEmail}" 
+                                              filterStyle= "width:70px;" filterMatchMode="contains">
                                         <h:outputText value="#{estudiantePar2.usuario.usuEmail}" style="white-space: pre-line"/>
                                     </p:column>
-                                    <p:column headerText="Carrera">
+                                    <p:column headerText="Carrera" filterBy="#{estudiantePar2.carrera.stvmajrDesc}" 
+                                              filterStyle= "width:70px;" filterMatchMode="contains">
                                         <h:outputText value="#{estudiantePar2.carrera.stvmajrDesc}" style="white-space: pre-line"/>
                                     </p:column>
-                                    <p:column headerText="Departamento" width="100">
+                                    <p:column headerText="Departamento" width="90" >
                                         <h:outputText value="#{estudiantePar2.departamento.stvsubjDesc}" style="white-space: pre-line"/>
                                     </p:column>
                                     <p:column headerText="Nro. Horas de participación planificadas" width="55" style="white-space: pre-line; text-align: center">
@@ -4498,11 +4507,11 @@
                                         </h:outputText>
                                     </p:column>
                                     
-                                     <p:column headerText="Verificar" width="50" style ="text-align: center">
-                                     <p:commandButton title="Verificar el registro" value="#{(estudiantePar2.verificar == 'S')?'VALIDADO':'SIN VALIDAR' }"                                                   
+                                     <p:column headerText="Verificar" width="80" style ="text-align: center">
+                                     <p:commandButton title="Verificar el registro" value="#{(estudiantePar2.verificar == 'S')?'Validado':'Sin Validar' }"                                                   
                                                                  update=":formPrincipal:dtEstudianteProyecto2"
                                                                  action="#{proyectoController.aprobar(estudiantePar2)}" >
-                                     <f:setPropertyActionListener value="#{estudiantePar2}" target="#{proyectoController.responsableProyectoSelected}"/>
+                                      <f:setPropertyActionListener value="#{estudiantePar2}" target="#{proyectoController.responsableProyectoSelected}"/>
                                      <p:confirm header="Confirmacion" message="Confirma se a verificado la informacion seleccionada?" icon="ui-icon-alert"  />
                                       
                                       </p:commandButton>
