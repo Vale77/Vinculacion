@@ -45,7 +45,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="10" isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ACTA DE DESIGNACIÓN DE ESTUDIANTES A PROYECTOS DE VINCULACIÓN CON LA SOCIEDAD]]></text>
 			</staticText>
@@ -59,7 +59,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="html">
-					<font fontName="SansSerif" size="10" isItalic="false"/>
+					<font fontName="SansSerif" isItalic="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Designar a los siguientes estudiantes, como colaboradores en el Proyecto \"" + $P{proyecto} + "\", para cumplir con sus horas de servicio a la comunidad:"]]></textFieldExpression>
 			</textField>
@@ -73,7 +73,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle" markup="html">
-					<font fontName="SansSerif" size="10" isItalic="true"/>
+					<font fontName="SansSerif" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{fechaActual}]]></textFieldExpression>
 			</textField>
@@ -92,7 +92,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="html">
-					<font fontName="SansSerif" size="10" isItalic="false"/>
+					<font fontName="SansSerif" isItalic="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[($F{directorCarreraListSize}==1?"El Director de la Carrera: ":"Los Directores de las Carreras: ") + $P{carreras} + ", en uso de sus deberes y atribuciones  conferidas en el Art. 65 literal a. k., del Estatuto de la Universidad de las Fuerzas Armadas – ESPE, vigente desde el 26 de junio de 2013."]]></textFieldExpression>
 			</textField>
@@ -111,7 +111,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
-					<font fontName="SansSerif" size="10" isBold="true" isItalic="false"/>
+					<font fontName="SansSerif" isBold="true" isItalic="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{directorCarreraListSize}==1?"RESUELVE":"RESUELVEN"]]></textFieldExpression>
 			</textField>
@@ -129,7 +129,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font fontName="SansSerif" size="6" isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CÓDIGO: SGC.DI.471]]></text>
 			</staticText>
@@ -143,7 +143,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="6" isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Unidad de Vinculación con la Sociedad]]></text>
 			</staticText>
@@ -157,7 +157,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="6" isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[UVS-V2-14]]></text>
 			</staticText>
@@ -171,7 +171,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font fontName="SansSerif" size="6" isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[VERSIÓN: 1.0]]></text>
 			</staticText>
@@ -185,7 +185,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font fontName="SansSerif" size="6" isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[FECHA ÚLTIMA REVISIÓN: 18/08/15]]></text>
 			</staticText>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="certificadoEstudiante" language="groovy" pageWidth="595" pageHeight="842" columnWidth="435" leftMargin="80" rightMargin="80" topMargin="0" bottomMargin="0" uuid="7802725a-c9b2-4bd5-b72d-0aa65d1a1f4f">
 	<property name="ireport.zoom" value="1.2100000000000033"/>
-	<property name="ireport.x" value="32"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="277"/>
 	<parameter name="idParticipante" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[26]]></defaultValueExpression>
 	</parameter>
@@ -211,7 +211,7 @@ AND RES.SZTVPROYEC_CODE = PROY.SZTVPROYEC_CODE]]>
 				<textFieldExpression><![CDATA[($F{SPBPERS_SEX}==null?"Señor/Señorita":($F{SPBPERS_SEX}=="M"?"Señor":"Señorita")) +" <b>" + $F{USU_APELLIDOS} + " " + $F{USU_NOMBRES}+ "</b>, con cédula de ciudadanía, " + $F{USU_CC} + ", Estudiante de la Carrera de " + $F{STVMAJR_DESC} + "."]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="0" y="364" width="435" height="16" uuid="8b1a6bef-3360-4539-a681-e18d20cf1c6e"/>
+				<reportElement positionType="Float" x="0" y="364" width="433" height="155" uuid="8b1a6bef-3360-4539-a681-e18d20cf1c6e"/>
 				<box leftPadding="5">
 					<pen lineWidth="0.0"/>
 					<topPen lineWidth="0.0"/>
@@ -225,7 +225,7 @@ AND RES.SZTVPROYEC_CODE = PROY.SZTVPROYEC_CODE]]>
 				<textFieldExpression><![CDATA["Quien participó en el Proyecto de Vinculación con la Sociedad, <b>" + $F{SZTVPROYEC_NOMBRE} + "</b>, cumpliendo con un total de " + $P{nroHorasTexto} + " (" + $P{nroHoras} + ") horas de servicio a la comunidad, a partir del " + $P{fechaDesde} + " hasta el " + $P{fechaHasta} + (($F{DIRECTOR_SEXO}==null || $F{DIRECTOR_TITULO}==null)?", bajo la dirección de ":(($F{DIRECTOR_SEXO}=="M" && $F{DIRECTOR_TITULO}!=null)?", bajo la dirección del ":(($F{DIRECTOR_SEXO}=="F" && $F{DIRECTOR_TITULO}!=null)?", bajo la dirección de la ":", bajo la dirección de "  ))) + ($F{DIRECTOR_TITULO}!=null?($F{DIRECTOR_TITULO}+" "):"") + $F{DIRECTOR} + (($F{DIRECTOR_SEXO}==null || $F{DIRECTOR_SEXO}== "M")?", Director del Proyecto.":", Directora del Proyecto.")]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="0" y="405" width="435" height="16" uuid="60c49cd6-3779-4cca-bb56-da5e3ad6ac9f"/>
+				<reportElement positionType="Float" x="162" y="548" width="435" height="16" uuid="60c49cd6-3779-4cca-bb56-da5e3ad6ac9f"/>
 				<box leftPadding="5">
 					<pen lineWidth="0.0"/>
 					<topPen lineWidth="0.0"/>

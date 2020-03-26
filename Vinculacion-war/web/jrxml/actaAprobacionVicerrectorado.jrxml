@@ -32,7 +32,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="11" isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[VICERRECTORADO DE INVESTIGACIÓN INNOVACIÓN Y TRANSFERENCIA DE TECNOLOGÍA]]></text>
 			</staticText>
@@ -46,7 +46,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="html">
-					<font size="10" isItalic="false"/>
+					<font isItalic="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA["El <b>Vicerrectorado de Investigación, Innovación y Transferencia de Tecnología</b>, resuelve aprobar <b>" +  $F{nroProyectosAprobados} + " proyecto" + ($F{nroProyectosAprobados}>1?"s":"") + " de Vinculación con la Sociedad</b>, presentados por los Departamentos de la Universidad de las Fuerzas Armadas ESPE, que obtuvieron el puntaje requerido para continuar el proceso de aprobación, en la evaluación realizada por: "]]></textFieldExpression>
 			</textField>
@@ -60,7 +60,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="10" isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ACTA DE APROBACIÓN PROYECTOS DE VINCULACIÓN CON LA SOCIEDAD]]></text>
 			</staticText>
@@ -74,7 +74,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="html">
-					<font size="10" isItalic="false"/>
+					<font isItalic="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA["<b>Acta No. </b>" + $F{secuencialStr}]]></textFieldExpression>
 			</textField>
@@ -88,7 +88,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="html">
-					<font size="10" isItalic="false"/>
+					<font isItalic="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA["<b>Fecha: </b>" + $P{fechaActual}]]></textFieldExpression>
 			</textField>

@@ -95,7 +95,20 @@ public class ResponsableProyecto implements Serializable, Comparable<Responsable
     private String estado;
     public final static String ESTADO_ACTIVO = "A";
     public final static String ESTADO_INACTIVO = "I";
+    
+    @Size(max = 1)
+    @Column(name = "SRESPROG_VERIFICAR")
+    private String verificar;
+       
+    public String getVerificar() {
+        return verificar;
+    }
 
+    public void setVerificar(String verificar) {
+        this.verificar = verificar;
+    }
+    
+   
     @JoinColumn(name = "SZDTAVACTARESPONSA_CODE", referencedColumnName = "SZDTAVACTARESPONSA_CODE")
     @ManyToOne(fetch = FetchType.LAZY)
     private ActaDesignacionResponsable actaDesignacionResponsable;
@@ -204,6 +217,8 @@ public class ResponsableProyecto implements Serializable, Comparable<Responsable
         this.selected = selected;
     }
 
+   
+    
     public Integer getHorasPlanificadas() {
         return horasPlanificadas;
     }
@@ -361,5 +376,9 @@ public class ResponsableProyecto implements Serializable, Comparable<Responsable
             return (proyecto.isEstadoEjecucion() && actaDesignacionResponsable==null);
         }
     }
+
+ 
+
+   
 
 }

@@ -4326,6 +4326,7 @@
                                             <f:convertNumber locale="es_ES"  pattern="#,##0" />
                                         </h:outputText>
                                     </p:column>
+                                    
                                     <p:column headerText="Imprimir certificado" width="50" style="white-space: pre-line; text-align: center">
                                         <h:commandLink  target="_blank" actionListener="#{proyectoController.imprimirCertificadoParticipacionPDF(docentePar2)}"
                                                         title="Exportar a PDF" 
@@ -4496,6 +4497,18 @@
                                             <f:convertNumber locale="es_ES"  pattern="#,##0" />
                                         </h:outputText>
                                     </p:column>
+                                    
+                                     <p:column headerText="Verificar" width="50" style ="text-align: center">
+                                     <p:commandButton title="Verificar el registro" value="#{(estudiantePar2.verificar == 'S')?'VALIDADO':'SIN VALIDAR' }"                                                   
+                                                                 update=":formPrincipal:dtEstudianteProyecto2"
+                                                                 action="#{proyectoController.aprobar(estudiantePar2)}" >
+                                     <f:setPropertyActionListener value="#{estudiantePar2}" target="#{proyectoController.responsableProyectoSelected}"/>
+                                     <p:confirm header="Confirmacion" message="Confirma se a verificado la informacion seleccionada?" icon="ui-icon-alert"  />
+                                      
+                                      </p:commandButton>
+                                 
+           
+                                       </p:column> 
                                     <p:column headerText="Imprimir certificado" width="50" style="white-space: pre-line; text-align: center">
                                         <h:commandLink  target="_blank" actionListener="#{proyectoController.imprimirCertificadoParticipacionPDF(estudiantePar2)}"
                                                         disabled="#{!proyectoController.permitirImprimirCertificados}"

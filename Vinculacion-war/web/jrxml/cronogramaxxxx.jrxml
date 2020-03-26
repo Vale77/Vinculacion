@@ -77,7 +77,7 @@ order by OBJ.SVOP_ORDEN]]>
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="10" isBold="true"/>
+					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[CRONOGRAMA DE ACTIVIDADES]]></text>
 			</staticText>
@@ -91,7 +91,7 @@ order by OBJ.SVOP_ORDEN]]>
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="10" isBold="true"/>
+					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[PROYECTO DE VINCULACIÓN CON LA SOCIEDAD]]></text>
 			</staticText>
@@ -105,15 +105,13 @@ order by OBJ.SVOP_ORDEN]]>
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="9" isBold="true"/>
+					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Título Proyecto:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="79" y="60" width="456" height="17" uuid="c3a30227-9209-46fa-8197-fed5d63f6f17"/>
-				<textElement verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
+				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$P{nomProyecto}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -126,7 +124,7 @@ order by OBJ.SVOP_ORDEN]]>
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="9" isBold="true"/>
+					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Componentes:]]></text>
 			</staticText>
