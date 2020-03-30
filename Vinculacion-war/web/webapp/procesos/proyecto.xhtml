@@ -4462,7 +4462,19 @@
 
                                 <p:dataTable id="dtEstudianteProyecto2" value="#{proyectoController.proyectoSelected.participanteEstudianteList}" var="estudiantePar2" paginator="true"
                                              rows="10" rowIndexVar="index" resizableColumns="true" style="width: 99%" expandedRow="true"
-                                             emptyMessage="No se encontraron Resultados"> 
+                                             emptyMessage="No se encontraron Resultados"
+                                             widgetVar="taEstudiates"
+                                             > 
+                                    
+                                    <f:facet name="header">
+                                      <p:outputPanel>
+                                        <h:outputText value="Busqueda General:"/>
+                                        <p:inputText id="globalFilter" onkeyup="PF('taEstudiates').filter()"
+                                                     style="width: 150px;"/> 
+                                          
+                                        </p:outputPanel> 
+                                    </f:facet>
+                                    
                                     <p:column width="20">
                                         <p:rowToggler/>
                                     </p:column>
@@ -4508,9 +4520,12 @@
                                     </p:column>
                                     
                                      <p:column headerText="Verificar" width="80" style ="text-align: center">
-                                     <p:commandButton title="Verificar el registro" value="#{(estudiantePar2.verificar == 'S')?'Validado':'Sin Validar' }"                                                   
-                                                                 update=":formPrincipal:dtEstudianteProyecto2"
-                                                                 action="#{proyectoController.aprobar(estudiantePar2)}" >
+                                     <p:commandButton title="Verificar el registro"  value="#{(estudiantePar2.verificar == 'S')?'Validado':'Sin Validar' }"                                                   
+                                                                
+                                                      update=":formPrincipal:dtEstudianteProyecto2"
+                                                      disabled="#{proyectoController.permitirEjecucion}"
+                                                                 action="#{proyectoController.aprobar(estudiantePar2)}">
+                                                                
                                       <f:setPropertyActionListener value="#{estudiantePar2}" target="#{proyectoController.responsableProyectoSelected}"/>
                                      <p:confirm header="Confirmacion" message="Confirma se a verificado la informacion seleccionada?" icon="ui-icon-alert"  />
                                       
