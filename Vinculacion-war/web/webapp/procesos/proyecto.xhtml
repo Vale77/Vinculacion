@@ -4478,6 +4478,7 @@
                                     <p:column width="20">
                                         <p:rowToggler/>
                                     </p:column>
+                                    
                                     <p:column headerText="Nro." width="20">
                                         <h:outputText value="#{index + 1}"/>
                                     </p:column>
@@ -4490,9 +4491,9 @@
                                               filterStyle= "width:70px;" filterMatchMode="contains">
                                         <h:outputText value="#{estudiantePar2.usuario.usuApellidos}" style="white-space: pre-line"/>
                                     </p:column>
+                                 
                                     <p:column headerText="Nombres" filterBy="#{estudiantePar2.usuario.usuNombres}" 
                                               filterStyle= "width:70px;" filterMatchMode="contains">
-                                 
                                         <h:outputText value="#{estudiantePar2.usuario.usuNombres}" style="white-space: pre-line"/>
                                     </p:column>
                                     
@@ -4521,8 +4522,7 @@
                                     
                                      <p:column headerText="Verificar" width="80" style ="text-align: center">
                                      <p:commandButton title="Verificar el registro"  value="#{(estudiantePar2.verificar == 'S')?'Validado':'Sin Validar' }"                                                   
-                                                                
-                                                      update=":formPrincipal:dtEstudianteProyecto2"
+                                                       update=":formPrincipal:dtEstudianteProyecto2"
                                                       disabled="#{proyectoController.permitirEjecucion}"
                                                                  action="#{proyectoController.aprobar(estudiantePar2)}">
                                                                 
