@@ -85,10 +85,10 @@ public class PresupuestoProyecto implements Serializable {
     private String tipoGasto;
     public static final String TIPO_GASTO_CORRIENTE = "C";   //Gasto Permanente
     public static final String TIPO_GASTO_INVERSION = "I";   //Gasto No Permanente
-
-    @Size(max = 100)
-    @Column(name = "SZTVPRESUP_VALORANUAL")
-    private String valorAnual;
+    //@Size(max = 100)
+    //@Column(name = "SZTVPRESUP_VALORANUAL")
+    //private String valorAnual;
+   
     
     @OneToMany(mappedBy = "presupuestoProyecto", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CantidadAnualProyecto> cantidadAnualProyectoList;
@@ -469,9 +469,9 @@ public class PresupuestoProyecto implements Serializable {
        
     }
     
-    public void setValorAnual(String valorAnual) {
-        this.valorAnual = valorAnual;
-    }
+   // public void setValorAnual(String valorAnual) {
+   //     this.valorAnual = valorAnual;
+   // }
 
 
     @XmlTransient

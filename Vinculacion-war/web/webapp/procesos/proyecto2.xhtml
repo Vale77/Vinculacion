@@ -4292,35 +4292,21 @@
                                              rows="10" rowIndexVar="index" resizableColumns="true" style="width: 99%" expandedRow="true"
                                              emptyMessage="No se encontraron Resultados"> 
                                                                         
-                                    <f:facet name="header">
-                                      <p:outputPanel>
-                                        <h:outputText value="Busqueda General:"/>
-                                        <p:inputText id="globalFilter" onkeyup="PF('taEstudiates').filter()"
-                                                     style="width: 150px;"/> 
-                                          
-                                        </p:outputPanel> 
-                                         
-                                    </f:facet>
-                                     <p:column width="20">
+                                   <p:column width="20">
                                         <p:rowToggler/>
                                     </p:column>
                                     
-                                    <p:column headerText="Nro." width="20">
+                                         <p:column headerText="Nro." width="20">
                                         <h:outputText value="#{index + 1}"/>
                                     </p:column>
-                                    <p:column headerText="Cédula" filterBy="#{estudiantePar2.usuario.usuCc}" 
-                                              filterStyle= "width:50px;" filterMatchMode="contains">
-                                        <h:outputText value="#{estudiantePar2.usuario.usuCc}" style="white-space: pre-line"/>
+                                    <p:column headerText="Cédula" width="50">
+                                        <h:outputText value="#{docentePar2.usuario.usuCc}" style="white-space: pre-line"/>
                                     </p:column>
-                                    
-                                    <p:column headerText="Apellidos" filterBy="#{estudiantePar2.usuario.usuApellidos}" 
-                                              filterStyle= "width:70px;" filterMatchMode="contains">
-                                        <h:outputText value="#{estudiantePar2.usuario.usuApellidos}" style="white-space: pre-line"/>
+                                    <p:column headerText="Apellidos">
+                                        <h:outputText value="#{docentePar2.usuario.usuApellidos}" style="white-space: pre-line"/>
                                     </p:column>
-                                    
-                                    <p:column headerText="Nombres" filterBy="#{estudiantePar2.usuario.usuNombres}" 
-                                              filterStyle= "width:70px;" filterMatchMode="contains">
-                                        <h:outputText value="#{estudiantePar2.usuario.usuNombres}" style="white-space: pre-line"/>
+                                    <p:column headerText="Nombres" width="100">
+                                        <h:outputText value="#{docentePar2.usuario.usuNombres}" style="white-space: pre-line"/>
                                     </p:column>
                                     
                                     <p:column headerText="Función" width="60">
@@ -4342,17 +4328,7 @@
                                             <f:convertNumber locale="es_ES"  pattern="#,##0" />
                                         </h:outputText>
                                     </p:column>
-                                    <p:column headerText="Verificar" width="80" style ="text-align: center">
-                                     <p:commandButton title="Verificar el registro"  value="#{(estudiantePar2.verificar == 'S')?'Validado':'Sin Validar' }"                                                   
-                                                       update=":formPrincipal:dtEstudianteProyecto2"
-                                                      disabled="#{proyectoController.permitirEjecucion}"
-                                                                 action="#{proyectoController.aprobar(estudiantePar2)}">
-                                                                
-                                      <f:setPropertyActionListener value="#{estudiantePar2}" target="#{proyectoController.responsableProyectoSelected}"/>
-                                     <p:confirm header="Confirmacion" message="Confirma se a verificado la informacion seleccionada?" icon="ui-icon-alert"  />
-                                      
-                                      </p:commandButton>
-                                 
+                                   
                                     <p:column headerText="Imprimir certificado" width="50" style="white-space: pre-line; text-align: center">
                                         <h:commandLink  target="_blank" actionListener="#{proyectoController.imprimirCertificadoParticipacionPDF(docentePar2)}"
                                                         title="Exportar a PDF" 
@@ -4488,26 +4464,46 @@
 
                                 <p:dataTable id="dtEstudianteProyecto2" value="#{proyectoController.proyectoSelected.participanteEstudianteList}" var="estudiantePar2" paginator="true"
                                              rows="10" rowIndexVar="index" resizableColumns="true" style="width: 99%" expandedRow="true"
-                                             emptyMessage="No se encontraron Resultados"> 
+                                             emptyMessage="No se encontraron Resultados" widgetVar="taEstudiates"> 
+                                    
+                                     <f:facet name="header">
+                                      <p:outputPanel>
+                                        <h:outputText value="Busqueda General:"/>
+                                        <p:inputText id="globalFilter" onkeyup="PF('taEstudiates').filter()"
+                                                     style="width: 150px;"/> 
+                                          
+                                        </p:outputPanel> 
+                                         
+                                    </f:facet>
+                                    
                                     <p:column width="20">
                                         <p:rowToggler/>
                                     </p:column>
                                     <p:column headerText="Nro." width="20">
                                         <h:outputText value="#{index + 1}"/>
                                     </p:column>
-                                    <p:column headerText="Cédula" width="60">
+                                    <p:column headerText="Cédula" filterBy="#{estudiantePar2.usuario.usuCc}" 
+                                              filterStyle= "width:50px;" filterMatchMode="contains">
                                         <h:outputText value="#{estudiantePar2.usuario.usuCc}" style="white-space: pre-line"/>
                                     </p:column>
-                                    <p:column headerText="Apellidos">
+                                    
+                                    <p:column headerText="Apellidos" filterBy="#{estudiantePar2.usuario.usuApellidos}" 
+                                              filterStyle= "width:70px;" filterMatchMode="contains">
                                         <h:outputText value="#{estudiantePar2.usuario.usuApellidos}" style="white-space: pre-line"/>
                                     </p:column>
-                                    <p:column headerText="Nombres" width="80">
+                                 
+                                    <p:column headerText="Nombres" filterBy="#{estudiantePar2.usuario.usuNombres}" 
+                                              filterStyle= "width:70px;" filterMatchMode="contains">
                                         <h:outputText value="#{estudiantePar2.usuario.usuNombres}" style="white-space: pre-line"/>
                                     </p:column>
-                                    <p:column headerText="Correo Electrónico" width="90">
+                                    
+                                    
+                                    <p:column headerText="Correo Electrónico" filterBy="#{estudiantePar2.usuario.usuEmail}" 
+                                              filterStyle= "width:70px;" filterMatchMode="contains">
                                         <h:outputText value="#{estudiantePar2.usuario.usuEmail}" style="white-space: pre-line"/>
                                     </p:column>
-                                    <p:column headerText="Carrera">
+                                    <p:column headerText="Carrera" filterBy="#{estudiantePar2.carrera.stvmajrDesc}" 
+                                              filterStyle= "width:70px;" filterMatchMode="contains">
                                         <h:outputText value="#{estudiantePar2.carrera.stvmajrDesc}" style="white-space: pre-line"/>
                                     </p:column>
                                     <p:column headerText="Departamento" width="100">
@@ -4522,6 +4518,18 @@
                                         <h:outputText value="#{estudiantePar2.totalHorasDedicadas}" style="white-space: pre-line">
                                             <f:convertNumber locale="es_ES"  pattern="#,##0" />
                                         </h:outputText>
+                                    </p:column>
+                                    
+                                     <p:column headerText="Verificar" width="80" style ="text-align: center">
+                                     <p:commandButton title="Verificar el registro"  value="#{(estudiantePar2.verificar == 'S')?'Validado':'Sin Validar' }"                                                   
+                                                       update=":formPrincipal:dtEstudianteProyecto2"
+                                                      disabled="#{proyectoController.permitirEjecucion}"
+                                                                 action="#{proyectoController.aprobar(estudiantePar2)}">
+                                                                
+                                      <f:setPropertyActionListener value="#{estudiantePar2}" target="#{proyectoController.responsableProyectoSelected}"/>
+                                     <p:confirm header="Confirmacion" message="Confirma se a verificado la informacion seleccionada?" icon="ui-icon-alert"  />
+                                      
+                                      </p:commandButton>
                                     </p:column>
                                     <p:column headerText="Imprimir certificado" width="50" style="white-space: pre-line; text-align: center">
                                         <h:commandLink  target="_blank" actionListener="#{proyectoController.imprimirCertificadoParticipacionPDF(estudiantePar2)}"

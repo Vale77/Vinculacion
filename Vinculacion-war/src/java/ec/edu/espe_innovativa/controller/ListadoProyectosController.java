@@ -148,7 +148,7 @@ public class ListadoProyectosController implements Serializable {
 
     public List<Proyecto> getProyectoList() {
         return proyectoList;
-    }
+                 }
 
     public void setProyectoList(List<Proyecto> proyectoList) {
         this.proyectoList = proyectoList;
@@ -195,12 +195,14 @@ public class ListadoProyectosController implements Serializable {
                         }
                     }
                 }
-                if (verificarPerfil(SegPerfil.PERFIL_VINCULACION_DIRECTOR_PROYECTO)) {
-                    if (proy.getDirector().getUsuario().equals(usuarioActual)) {
+                //se genera cambio !
+                   if (!verificarPerfil(SegPerfil.PERFIL_VINCULACION_DIRECTOR_PROYECTO)) {
+                       if (proy.getDirector() != null){
+                       if (proy.getDirector().getUsuario().equals(usuarioActual)) {
                         proyectoList.add(proy);
                         continue;
-                    }
-                }
+                  }  
+                } }
                 if (verificarPerfil(SegPerfil.PERFIL_VINCULACION_EVALUADOR_FINAL_PROYECTO)) {
                     if (proy.getEvaluadorFinal() != null) {
                         if (proy.getEvaluadorFinal().getUsuario().equals(usuarioActual)) {
