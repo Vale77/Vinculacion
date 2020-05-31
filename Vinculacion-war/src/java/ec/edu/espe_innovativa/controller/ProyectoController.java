@@ -103,8 +103,8 @@ import ec.edu.espe_innovativa.recursos.DataTableColumn;
 import ec.edu.espe_innovativa.util.FacesUtils;
 import ec.edu.espe_innovativa.util.JasperReportUtil;
 import ec.edu.espe_innovativa.util.NumeroALetras;
-//import ec.edu.espe_matriz.wsClient.WSEnvioMail;
-//import ec.edu.espe_matriz.wsClient.WSEnvioMail_Service;
+import ec.edu.espe_matriz.wsClient.WSEnvioMail;
+import ec.edu.espe_matriz.wsClient.WSEnvioMail_Service;
 import java.io.ByteArrayInputStream;
 import static java.io.File.separatorChar;
 import java.io.Serializable;
@@ -220,7 +220,7 @@ public class ProyectoController implements Serializable {
     private List<ObjetivoBVivir> objBVivirHijoList;
     private List<ObjetivoEstrategico> perspectivasList;
     private List<ObjetivoEstrategico> milenioList;
-     private List<ObjetivoEstrategico> unescoList;
+    private List<ObjetivoEstrategico> unescoList;
     private List<ImpactoEsperadoTipo> impactoEsperadoTipoList;
     private List<ImpactoEsperado> impactoEsperadoList;
     private List<ComisionCalificacion> comisionCalificacionList;
@@ -362,7 +362,6 @@ public class ProyectoController implements Serializable {
             controlGrabar = true;
 
         }
-        System.out.print("---XXXXXXX-----");
         crearArbolMenu(SeaParametrosDet.ESTADO_CREADO);
     }
 
@@ -458,6 +457,7 @@ public class ProyectoController implements Serializable {
     public void setUnescoList(List<ObjetivoEstrategico> unescoList) {
         this.unescoList = unescoList;
     }
+   
 
     public ObjetivoEstrategico getObjetivoEstrategicoSelected() {
         return objetivoEstrategicoSelected;
@@ -2104,7 +2104,9 @@ public class ProyectoController implements Serializable {
     }  
     
     
-//</editor-fold>    
+//</editor-fold>   
+    
+    
     
 //<editor-fold defaultstate="collapsed" desc="tab20: Impactos Esperados">
     
@@ -2425,13 +2427,6 @@ public class ProyectoController implements Serializable {
         abrirBusquedaDocente(TipoResponsable.TIPO_PARTICIPANTE_DOCENTE);
     }
 
-    public void aprobar(ResponsableProyecto responsableProyecto) {
-       responsableProyecto.setVerificar("S");
-       proyectoFacade.edit(proyectoSelected);
-       System.out.println("APROBAR--");
-    }
-    
-    
     private void abrirBusquedaDocente(Integer tipoResponsable) {
         Map<String, Object> options = new HashMap<>();
         options.put("resizable", true);
@@ -2516,7 +2511,7 @@ public class ProyectoController implements Serializable {
         }
         return "";
     }
-
+      
     private List<TipoResponsable> tipoResponsableList;
 
     public List<TipoResponsable> getTipoResponsableList() {
@@ -2798,8 +2793,7 @@ public class ProyectoController implements Serializable {
         if (proyectoSelected.getId() != null) {
             TreeNode node112 = new DefaultTreeNode(new OpcionMenu("1.1.2", "1.2. Cobertura y Localización"), node11);
             //TreeNode node113 = new DefaultTreeNode(new OpcionMenu("1.1.3", "1.3. Origen de los fondos"), node11);
-            TreeNode node114 = new DefaultTreeNode(new OpcionMenu("1.1.4", "1.3. Entregables del proyecto"), node11);
-            TreeNode node115 = new DefaultTreeNode(new OpcionMenu("1.1.5", "1.4. Impactos Esperados"), node11);
+            TreeNode node114 = new DefaultTreeNode(new OpcionMenu("1.1.4", "1.3. Detalle de entregables del proyecto"), node11);
             TreeNode node12 = new DefaultTreeNode(new OpcionMenu("1.2", "2. Diagnóstico y Problema"), nodePerfil);
             TreeNode node121 = new DefaultTreeNode(new OpcionMenu("1.2.1", "2.1. Diagnóstico y Problema"), node12);
             TreeNode node1211 = new DefaultTreeNode(new OpcionMenu("1.2.5", "2.2. Anexos imágenes"), node12);
@@ -2807,12 +2801,10 @@ public class ProyectoController implements Serializable {
             TreeNode node123 = new DefaultTreeNode(new OpcionMenu("1.2.3", "2.4. Docentes Participantes"), node12);
             TreeNode node124 = new DefaultTreeNode(new OpcionMenu("1.2.4", "2.5. Estudiantes Participantes"), node12);
             TreeNode node13 = new DefaultTreeNode(new OpcionMenu("1.3", "3. Alineamiento del Proyecto"), nodePerfil);
-            TreeNode node136 = new DefaultTreeNode(new OpcionMenu("1.3.5", "3.1. Objetivos de Desarrollo Sostenible del Milenio"), node13);
-            TreeNode node131 = new DefaultTreeNode(new OpcionMenu("1.3.1", "3.2. Objetivos Plan Nacional de Desarrollo"), node13);
-            TreeNode node133 = new DefaultTreeNode(new OpcionMenu("1.3.3", "3.3. Objetivos Provinciales, Cantonales o Parroquiales"), node13);
-            TreeNode node132 = new DefaultTreeNode(new OpcionMenu("1.3.2", "3.4. Objetivos Estratégicos Institucionales"), node13);
-            TreeNode node135 = new DefaultTreeNode(new OpcionMenu("1.3.4", "3.5. Líneas de Investigación"), node13);
-            TreeNode node137 = new DefaultTreeNode(new OpcionMenu("1.3.6", "3.6. Campo de Conocimiento UNESCO"), node13);           
+            TreeNode node131 = new DefaultTreeNode(new OpcionMenu("1.3.1", "3.1. Objetivos PLNBV"), node13);
+            TreeNode node133 = new DefaultTreeNode(new OpcionMenu("1.3.3", "3.2. Objetivos Provinciales, Cantonales o Parroquiales"), node13);
+            TreeNode node132 = new DefaultTreeNode(new OpcionMenu("1.3.2", "3.3. Objetivos Estratégicos Institucionales"), node13);
+            TreeNode node135 = new DefaultTreeNode(new OpcionMenu("1.3.4", "3.4. Líneas de Investigación"), node13);
             TreeNode node134 = new DefaultTreeNode(new OpcionMenu("1.4", "4. Matriz del Marco Lógico"), nodePerfil);
             TreeNode node15 = new DefaultTreeNode(new OpcionMenu("1.5", "5. Viabilidad y Plan de Sostenibilidad"), nodePerfil);
             TreeNode node16 = new DefaultTreeNode(new OpcionMenu("1.6", "6. Presupuesto Detallado y Fuentes de Financiamiento"), nodePerfil);
@@ -3584,8 +3576,8 @@ public class ProyectoController implements Serializable {
                             .append("<br><font size=\"1\">Este correo ha sido generado automáticamente, por favor no responder al mismo. Cualquier inquietud comunicarse a los teléfono detallados.</font>")
                             .append("</body>")
                             .append("</html>");
-//                    WSEnvioMail wSEnvioMail = new WSEnvioMail_Service().getWSEnvioMailPort();
-  //                  wSEnvioMail.enviarMail("aa@gmail.com", con.getDireccionCorreo(), con.getAsuntoCorreo(), mensaje.toString(), true, null, null, null, null);      
+                    WSEnvioMail wSEnvioMail = new WSEnvioMail_Service().getWSEnvioMailPort();
+                    wSEnvioMail.enviarMail("aa@gmail.com", con.getDireccionCorreo(), con.getAsuntoCorreo(), mensaje.toString(), true, null, null, null, null);      
                 } catch (Exception e) {
                 }
             }
@@ -3662,8 +3654,8 @@ public class ProyectoController implements Serializable {
                             .append("</html>");
 
                     //Descomentar lo siguiente si se quiere enviar mail automatico al director, cuando el proyecto es aprobado por la comision
-//                    WSEnvioMail wSEnvioMail = new WSEnvioMail_Service().getWSEnvioMailPort();
-  //                  wSEnvioMail.enviarMail("aa@gmail.com", con.getDireccionCorreo(), con.getAsuntoCorreo(), mensaje.toString(), true, null, null, null, null);
+                    WSEnvioMail wSEnvioMail = new WSEnvioMail_Service().getWSEnvioMailPort();
+                    wSEnvioMail.enviarMail("aa@gmail.com", con.getDireccionCorreo(), con.getAsuntoCorreo(), mensaje.toString(), true, null, null, null, null);
                 } catch (Exception e) {
                 }
             }
@@ -3876,7 +3868,7 @@ public class ProyectoController implements Serializable {
         options.put("resizable", true);
         options.put("draggable", true);
         options.put("modal", true);
-
+    
         /*if (opcionMenu.equals("1.1") || opcionMenu.equals("1.2") || opcionMenu.equals("3.3") || opcionMenu.equals("3.2") || opcionMenu.equals("3.4") || opcionMenu.equals("5") || opcionMenu.equals("6")) {
             options.put("contentWidth", "800");
         }
@@ -4034,8 +4026,8 @@ public class ProyectoController implements Serializable {
                             } catch (Exception e) {
                             }
                         }
-//                        WSEnvioMail wSEnvioMail = new WSEnvioMail_Service().getWSEnvioMailPort();
-  //                      wSEnvioMail.enviarMail("aa@gmail.com", proyectoSelected.getDireccionCorreo(), proyectoSelected.getAsuntoCorreo(), mensaje.toString(), true, adjunto1, nombreAdunto1, adjunto2, nombreAdunto2);
+                        WSEnvioMail wSEnvioMail = new WSEnvioMail_Service().getWSEnvioMailPort();
+                        wSEnvioMail.enviarMail("aa@gmail.com", proyectoSelected.getDireccionCorreo(), proyectoSelected.getAsuntoCorreo(), mensaje.toString(), true, adjunto1, nombreAdunto1, adjunto2, nombreAdunto2);
                          
                         
                     } catch (Exception e) {
@@ -4080,8 +4072,7 @@ public class ProyectoController implements Serializable {
     }
 
     public void nuevoPresupuestoProyecto(ActionEvent event) {
-        presupuestoProyectoSelected = new PresupuestoProyecto(proyectoSelected);
-        presupuestoProyectoSelected.setearCantidadAnual();
+        presupuestoProyectoSelected = new PresupuestoProyecto(proyectoSelected);        
         presupuestoProyectoSelected.setPartidaPresupuestaria(null);
         
     }
@@ -4115,32 +4106,9 @@ public class ProyectoController implements Serializable {
         return "";
     }
 
-    public void cancelarPresupuestoProyecto() {
-        List<PresupuestoProyecto> pre;
-        tablaPresUniversidad = new ArrayList<>();
-         
+     public void cancelarPresupuestoProyecto() {               
         proyectoSelected = proyectoFacade.find(proyectoSelected.getId());
         proyectoSelected.inicializarListadoPresupuestos();
-        if(proyectoSelected.getPresupuestoProyectoList().isEmpty()){
-            visualizarDataOld = false;
-        }else{
-            visualizarDataOld = proyectoSelected.getPresupuestoProyectoList().get(0).getCantidadAnualProyectoList().isEmpty();
-        }
-        
-            
-        
-//        pre = proyectoSelected.getDetallePresupuestoUniversidad();
-//        for(PresupuestoProyecto obj : pre){
-//            for(CantidadAnualProyecto anio : obj.getCantidadAnualProyectoList()){
-//                tablaPresUniversidad.add(new DataTableColumn(anio.getDescripcion(),"cantidadAnual"));
-//            }   
-//        
-//        }
-//       tablaPresUniversidad.add(new DataTableColumn("ANIO","id"));      
-//       tablaPresUniversidad.add(new DataTableColumn("ANIO","descripcion"));
-//       tablaPresUniversidad.add(new DataTableColumn("ANIO","cantidadAnual"));
-//       tablaPresUniversidad.add(new DataTableColumn("ANIO","presupuestoProyecto"));
-       
         presupuestoProyectoSelected = null;
     }
 
@@ -4708,6 +4676,7 @@ public class ProyectoController implements Serializable {
     public void setMsgObjetivosMilenios(boolean msgObjetivosMilenios) {
         this.msgObjetivosMilenios = msgObjetivosMilenios;
     }
+   
 
     public boolean isMsgImpactosEsperados() {
         return msgImpactosEsperados;
@@ -4926,6 +4895,7 @@ public class ProyectoController implements Serializable {
             if (proyectoSelected.getPlanMilenioList() == null || proyectoSelected.getPlanMilenioList().isEmpty()) {
                 msgObjetivosMilenios = true;
             }
+         
             if (proyectoSelected.getPlanEspeList() == null || proyectoSelected.getPlanEspeList().isEmpty()) {
                 msgObjetivosEstrategicos = true;
             }
@@ -6080,7 +6050,7 @@ public class ProyectoController implements Serializable {
         return false;
     }
 
-    private boolean verificarPerfil(String perfil) {
+    protected boolean verificarPerfil(String perfil) {
         for (SegPerfil per : perfilUsuarioActual) {
             if (per.getPerNombre().toUpperCase().equals(perfil)) {
                 return true;
