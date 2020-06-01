@@ -13,8 +13,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import org.primefaces.context.RequestContext;
 import org.primefaces.model.DefaultTreeNode;
@@ -28,10 +30,10 @@ import org.primefaces.model.TreeNode;
 @ViewScoped
 public class ProyectoController2 extends ProyectoController implements Serializable {
     
-     public ProyectoController2() {
+    public ProyectoController2() {
     }
      
-      private TreeNode rootMenu2;
+    private TreeNode rootMenu2;
 
     public TreeNode getRootMenu2() {
         return rootMenu2;
@@ -214,6 +216,30 @@ public class ProyectoController2 extends ProyectoController implements Serializa
         
     }
     
+    @Override
+    public void grabarPresupuestoEjecutado() {
+        try {
+            for (PresupuestoProyecto pres : super.getProyectoSelected().getPresupuestoProyectoList()) {
+                if (pres.getTotalEjecutado().compareTo(pres.getTotalCantidadAnual()) > 0) {
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "El valor ejecutado no debe ser mayor al valor planificado"));
+                    return;
+                }
+            }
+            super.getProyectoFacade().edit(super.getProyectoSelected());
+            cancelarPresupuestoEjecutado();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "La información se guardó exitosamente"));
+        } catch (Exception e) {
+            try {
+                Throwable t = (Throwable) e;
+                while (t.getCause() != null) {
+                    t = t.getCause();
+                }
+                String msgError = "No fue posible grabar la información ingresada";
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", msgError));
+            } catch (Exception e2) {
+            }
+        }
+    }
     
     
 }

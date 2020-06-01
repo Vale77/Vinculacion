@@ -1105,12 +1105,22 @@ public class Proyecto implements Serializable {
         if (presupuestoProyectoList != null) {
             for (PresupuestoProyecto presupuestoProyecto : presupuestoProyectoList) {
                 try {
-                    total = total.add(presupuestoProyecto.getTotal());
+                    if(presupuestoProyecto.getCantidadAnualProyectoList().isEmpty()){
+                         total = total.add(presupuestoProyecto.getTotal());
+                    }else{
+                          for(CantidadAnualProyecto cant : presupuestoProyecto.getCantidadAnualProyectoList()){
+                                
+                                total = total.add(cant.getCantidadAnual());
+                            }
+                    }
+                   
                 } catch (Exception e) {
                 }
             }
-        }
+        }      
+        
         return total;
+    
     }
 
     public String getTotalPresupuestoEjecutadoStr() {

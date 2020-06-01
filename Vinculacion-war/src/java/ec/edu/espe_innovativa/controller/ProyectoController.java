@@ -651,6 +651,15 @@ public class ProyectoController implements Serializable {
         }
     }
 
+    public ProyectoFacade getProyectoFacade() {
+        return proyectoFacade;
+    }
+
+    public void setProyectoFacade(ProyectoFacade proyectoFacade) {
+        this.proyectoFacade = proyectoFacade;
+    }
+
+    
     public Proyecto getProyectoSelected() {
         return proyectoSelected;
     }

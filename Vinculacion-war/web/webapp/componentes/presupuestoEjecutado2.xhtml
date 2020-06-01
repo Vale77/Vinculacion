@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+                 xmlns:h="http://java.sun.com/jsf/html"
+                 xmlns:f="http://java.sun.com/jsf/core" 
+                 xmlns:ui="http://java.sun.com/jsf/facelets" 
+                 xmlns:p="http://primefaces.org/ui"
+                 xmlns:pe="http://primefaces.org/ui/extensions">
+
+    <!--panelPresupuestoEjecutado-->
+    <p:panel id="panelPresupuestoEjecutado" rendered="#{proyectoController2.selectedNodeCode=='7.3'}" 
+             style="border: hidden; padding-left: 20px;">
+
+        <h:panelGrid columns="1" id="panelEdicionPresupuestoEjecutado">
+            <p:focus context="panelEdicionPresupuestoEjecutado"/>
+            <p:outputLabel value="#{proyectoController2.proyectoSelected.mensajePermitirCierre}" style="color:red"></p:outputLabel>
+
+
+            <h:panelGrid columns="2" rendered="#{!proyectoController2.modoEdicion}">
+                <p:commandButton value="Editar" title="Editar presupuesto ejecutado" icon="ui-icon-plus" 
+                                 update=":formPrincipal:panelPresupuestoEjecutado"
+                                 disabled="#{!proyectoController2.permitirCierre}"
+                                 action="#{proyectoController2.seleccionarEdicion}" 
+                                 >
+                </p:commandButton>
+            </h:panelGrid>
+
+            <h:panelGrid columns="2" cellpadding="0" cellspacing="5" style="margin-top: 10px; margin-bottom: 10px"
+                         rendered="#{proyectoController2.modoEdicion}">
+                <p:commandButton id="btnGrabarPresupuestoEjecutado" value="Grabar" title="Grabar Información" icon="ui-icon-locked" 
+                                 update=":formPrincipal:panelPresupuestoEjecutado, :formPrincipal:message1" 
+                                 action ="#{proyectoController2.grabarPresupuestoEjecutado()}"
+                                 onstart="PF('blockUIWidget').block()" oncomplete="PF('blockUIWidget').unblock()">
+                </p:commandButton>
+                <p:commandButton value="Cancelar" title="Cancela Información" icon="ui-icon-arrowreturnthick-1-w" 
+                                 update=":formPrincipal:panelPresupuestoEjecutado" 
+                                 action="#{proyectoController2.cancelarPresupuestoEjecutado()}">
+                </p:commandButton>
+            </h:panelGrid> 
+            <h:outputLabel value="Aporte de la Universidad (asignación presupuestaria – Gasto No Permanente):" style="font-weight: bold"/>
+            <p:dataTable id="dtPresupuestoEjecutado1" value="#{proyectoController2.proyectoSelected.detallePresupuestoUniversidadGastoNoPermanente}" var="presupuestoUnivNoPerEje" 
+                         rowIndexVar="index" resizableColumns="true"
+                         style="width: 99%"
+                         emptyMessage="No se encontraron Resultados"> 
+                <p:column headerText="Nro." width="20">
+                    <h:outputText value="#{index + 1}"/>
+                </p:column>
+                <p:column headerText="Partida Presupuestaria" sortBy="#{presupuestoUnivNoPerEje.nombreCompleto}">
+                    <h:outputText value="#{presupuestoUnivNoPerEje.nombreCompleto}" style="white-space: pre-line"/>                                    
+                </p:column>
+                <p:column headerText="Valor Planificado (USD)" width="130" sortBy="#{presupuestoUnivNoPerEje.totalCantidadAnual}">
+                    <h:outputText value="#{presupuestoUnivNoPerEje.totalCantidadAnual}" style="white-space: pre-line; float:right">  
+                        <f:convertNumber locale="es_ES"  pattern="#,###,##0.00" />
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Valor Ejecutado (USD)" width="130" sortBy="#{presupuestoUnivNoPerEje.totalEjecutado}"
+                          rendered="#{!proyectoController2.modoEdicion}">
+                    <h:outputText value="#{presupuestoUnivNoPerEje.totalEjecutado}" style="white-space: pre-line; float:right">  
+                        <f:convertNumber locale="es_ES"  pattern="#,###,##0.00" />
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Valor Ejecutado (USD)" width="130" sortBy="#{presupuestoUnivNoPerEje.totalEjecutado}"
+                          rendered="#{proyectoController2.modoEdicion}">
+                    <pe:inputNumber value="#{presupuestoUnivNoPerEje.totalEjecutado}" decimalPlaces="2" minValue="0" maxValue="100000000" styleClass="inputNumber">  
+                        <p:ajax event="change" update=":formPrincipal:dtPresupuestoEjecutado1, :formPrincipal:panelTotalPresupuesto"/>
+                    </pe:inputNumber>
+                </p:column>
+                <p:columnGroup type="footer">
+                    <p:row>
+                        <p:column colspan="2" style="text-align:right" footerText="Total:" />
+                        <p:column footerText="#{proyectoController2.proyectoSelected.totalPresupuestoUniversidadGastoNoPermanenteStr}" style="text-align: right" ></p:column>
+                        <p:column footerText="#{proyectoController2.proyectoSelected.totalPresupuestoEjecutadoUniversidadGastoNoPermanenteStr}" style="text-align: right" ></p:column>
+                    </p:row>
+                </p:columnGroup>    
+
+            </p:dataTable>
+
+            <h:outputLabel value="Aporte de la Universidad (sin asignación presupuestaria – Gasto Permanente):" style="font-weight: bold"/>
+            <p:dataTable id="dtPresupuestoEjecutado2" value="#{proyectoController2.proyectoSelected.detallePresupuestoUniversidadGastoPermanente}" var="presupuestoUnivPerEje" 
+                         rowIndexVar="index" resizableColumns="true"
+                         style="width: 99%"
+                         emptyMessage="No se encontraron Resultados"> 
+                <p:column headerText="Nro." width="20">
+                    <h:outputText value="#{index + 1}"/>
+                </p:column>
+                <p:column headerText="Partida Presupuestaria" sortBy="#{presupuestoUnivPerEje.nombreCompleto}">
+                    <h:outputText value="#{presupuestoUnivPerEje.nombreCompleto}" style="white-space: pre-line"/>                                    
+                </p:column>
+                <p:column headerText="Valor Planificado (USD)" width="130" sortBy="#{presupuestoUnivPerEje.totalCantidadAnual}">
+                    <h:outputText value="#{presupuestoUnivPerEje.totalCantidadAnual}" style="white-space: pre-line; float:right">  
+                        <f:convertNumber locale="es_ES"  pattern="#,###,##0.00" />
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Valor Ejecutado (USD)" width="130" sortBy="#{presupuestoUnivPerEje.totalEjecutado}"
+                          rendered="#{!proyectoController2.modoEdicion}">
+                    <h:outputText value="#{presupuestoUnivPerEje.totalEjecutado}" style="white-space: pre-line; float:right">  
+                        <f:convertNumber locale="es_ES"  pattern="#,###,##0.00" />
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Valor Ejecutado (USD)" width="130" sortBy="#{presupuestoUnivPerEje.totalEjecutado}"
+                          rendered="#{proyectoController2.modoEdicion}">
+                    <pe:inputNumber value="#{presupuestoUnivPerEje.totalEjecutado}" decimalPlaces="2" minValue="0" maxValue="100000000" styleClass="inputNumber">  
+                        <p:ajax event="change" update=":formPrincipal:dtPresupuestoEjecutado2, :formPrincipal:panelTotalPresupuesto"/>
+                    </pe:inputNumber>
+                </p:column>
+                <p:columnGroup type="footer">
+                    <p:row>
+                        <p:column colspan="2" style="text-align:right" footerText="Total:" />
+                        <p:column footerText="#{proyectoController2.proyectoSelected.totalPresupuestoUniversidadGastoPermanente}" style="text-align: right" ></p:column>
+                        <p:column footerText="#{proyectoController2.proyectoSelected.totalPresupuestoEjecutadoUniversidadGastoPermanenteStr}" style="text-align: right" ></p:column>
+                    </p:row>
+                </p:columnGroup>    
+            </p:dataTable>
+
+
+            <h:outputLabel value="Aporte de la Entidad Auspiciante:" style="font-weight: bold"/>
+            <p:dataTable id="dtPresupuestoEjecutado3" value="#{proyectoController2.proyectoSelected.detallePresupuestoEntidadAuspiciante}" var="presupuestoEntEje"
+                         rowIndexVar="index"  
+                         style="width: 99%"
+                         resizableColumns="true"
+                         emptyMessage="No se encontraron Resultados"> 
+                <p:column headerText="Nro." width="20" >
+                    <h:outputText value="#{index + 1}"/>
+                </p:column>
+                <p:column headerText="Bien y/o Servicio" sortBy="#{presupuestoEntEje.bienServicio}">
+                    <h:outputText value="#{presupuestoEntEje.bienServicio}" style="white-space: pre-line"></h:outputText>
+                </p:column>
+                <p:column headerText="Valor Planificado (USD)" width="130" sortBy="#{presupuestoEntEje.totalCantidadAnual}">
+                    <h:outputText value="#{presupuestoEntEje.totalCantidadAnual}" style="white-space: pre-line; float:right">  
+                        <f:convertNumber locale="es_ES"  pattern="#,###,##0.00" />
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Valor Ejecutado (USD)" width="130" sortBy="#{presupuestoEntEje.totalEjecutado}"
+                          rendered="#{!proyectoController2.modoEdicion}">
+                    <h:outputText value="#{presupuestoEntEje.totalEjecutado}" style="white-space: pre-line; float:right">  
+                        <f:convertNumber locale="es_ES"  pattern="#,###,##0.00" />
+                    </h:outputText>
+                </p:column>                                        
+                <p:column headerText="Valor Ejecutado (USD)" width="130" sortBy="#{presupuestoEntEje.totalEjecutado}"
+                          rendered="#{proyectoController2.modoEdicion}">
+                    <pe:inputNumber value="#{presupuestoEntEje.totalEjecutado}" decimalPlaces="2" minValue="0" maxValue="100000000" styleClass="inputNumber">  
+                        <p:ajax event="change" update=":formPrincipal:dtPresupuestoEjecutado3, :formPrincipal:panelTotalPresupuesto"/>
+                    </pe:inputNumber>
+                </p:column>
+                <p:columnGroup type="footer">
+                    <p:row>
+                        <p:column colspan="2" style="text-align:right" footerText="Total:" />
+                        <p:column footerText="#{proyectoController2.proyectoSelected.totalPresupuestoEntidadAuspicianteStr}" style="text-align: right" ></p:column>
+                        <p:column footerText="#{proyectoController2.proyectoSelected.totalPresupuestoEjecutadoEntidadAuspicianteStr}" style="text-align: right" ></p:column>
+                    </p:row>
+                </p:columnGroup>    
+            </p:dataTable>                                  
+
+
+            <h:outputLabel value="Aporte de la Comunidad Beneficiaria:" style="font-weight: bold"/>
+            <p:dataTable id="dtPresupuestoEjecutado4" value="#{proyectoController2.proyectoSelected.detallePresupuestoComunidadBeneficiaria}" var="presupuestoComEje"
+                         rowIndexVar="index"  
+                         style="width: 99%"
+                         resizableColumns="true"
+                         emptyMessage="No se encontraron Resultados"> 
+                <p:column headerText="Nro." width="20" >
+                    <h:outputText value="#{index + 1}"/>
+                </p:column>
+                <p:column headerText="Bien y/o Servicio" sortBy="#{presupuestoComEje.bienServicio}">
+                    <h:outputText value="#{presupuestoComEje.bienServicio}" style="white-space: pre-line"></h:outputText>
+                </p:column>
+                <p:column headerText="Valor Planificado (USD)" width="130" sortBy="#{presupuestoComEje.totalCantidadAnual}">
+                    <h:outputText value="#{presupuestoComEje.totalCantidadAnual}" style="white-space: pre-line; float:right">  
+                        <f:convertNumber locale="es_ES"  pattern="#,###,##0.00" />
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Valor Ejecutado (USD)" width="130" sortBy="#{presupuestoComEje.totalEjecutado}"
+                          rendered="#{!proyectoController2.modoEdicion}">
+                    <h:outputText value="#{presupuestoComEje.totalEjecutado}" style="white-space: pre-line; float:right">  
+                        <f:convertNumber locale="es_ES"  pattern="#,###,##0.00" />
+                    </h:outputText>
+                </p:column>                                        
+
+                <p:column headerText="Valor Ejecutado (USD)" width="130" sortBy="#{presupuestoComEje.totalEjecutado}"
+                          rendered="#{proyectoController2.modoEdicion}">
+                    <pe:inputNumber value="#{presupuestoComEje.totalEjecutado}" decimalPlaces="2" minValue="0" maxValue="100000000" styleClass="inputNumber" >  
+                        <p:ajax event="change" update=":formPrincipal:dtPresupuestoEjecutado4, :formPrincipal:panelTotalPresupuesto"/>
+                    </pe:inputNumber>
+                </p:column>
+                <p:columnGroup type="footer">
+                    <p:row>
+                        <p:column colspan="2" style="text-align:right" footerText="Total:" />
+                        <p:column footerText="#{proyectoController2.proyectoSelected.totalPresupuestoComunidadBeneficiariaStr}" style="text-align: right" ></p:column>
+                        <p:column footerText="#{proyectoController2.proyectoSelected.totalPresupuestoEjecutadoComunidadBeneficiariaStr}" style="text-align: right" ></p:column>
+                    </p:row>
+                </p:columnGroup>    
+
+            </p:dataTable>    
+
+            <h:panelGrid id="panelTotalPresupuesto" columns="3">
+                <p:outputLabel value="TOTAL PLANIFICADO PROYECTO (USD):" style="font-weight: bold"/>
+                <p:spacer width="20" height="1"/>
+                <p:outputLabel value="#{proyectoController2.proyectoSelected.totalPresupuestoStr}" style="font-weight: bold"/>
+                <p:outputLabel value="TOTAL EJECUTADO PROYECTO (USD):" style="font-weight: bold"/>
+                <p:spacer width="20" height="1"/>
+                <p:outputLabel value="#{proyectoController2.proyectoSelected.totalPresupuestoEjecutadoStr}" style="font-weight: bold"/>
+                <p:outputLabel value="PORCENTAJE EJECUTADO (%):" style="font-weight: bold"/>
+                <p:spacer width="20" height="1"/>
+                <h:outputText value="#{proyectoController2.proyectoSelected.totalPresupuestoEjecutado*100/proyectoController2.proyectoSelected.totalPresupuesto}" style="font-weight: bold">
+                </h:outputText>
+            </h:panelGrid>
+
+        </h:panelGrid>                              
+
+    </p:panel>
+</ui:composition>
+
+
+
+
+
+
