@@ -1252,6 +1252,7 @@ public class Proyecto implements Serializable {
         if (!temp.isEmpty()) {
             for (ResponsableProyecto resp : temp) {
                 if (resp.getEstado().equals(ResponsableProyecto.ESTADO_ACTIVO)){
+                    System.out.println(resp.getCedula());
                     return resp;
                 }
             }

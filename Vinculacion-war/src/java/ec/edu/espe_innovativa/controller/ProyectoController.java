@@ -2435,7 +2435,13 @@ public class ProyectoController implements Serializable {
     public void abrirBusquedaDocenteParticipante(ActionEvent event) {
         abrirBusquedaDocente(TipoResponsable.TIPO_PARTICIPANTE_DOCENTE);
     }
-
+    
+    public void aprobar(ResponsableProyecto responsableProyecto){
+    responsableProyecto.setVerificar("S");
+    proyectoFacade.edit(proyectoSelected);
+    System.out.println("APROBAR");
+    }
+    
     private void abrirBusquedaDocente(Integer tipoResponsable) {
         Map<String, Object> options = new HashMap<>();
         options.put("resizable", true);

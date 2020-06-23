@@ -164,6 +164,7 @@ public class ListadoProyectosController implements Serializable {
     }
     */
     public void listarProyectos() {
+        int cont = 0;
         List<Proyecto> temp = proyectoFacade.findByProgramaEstado(null, null);
         proyectoList = new ArrayList<>();
         if (!verificarPerfil(SegPerfil.PERFIL_VINCULACION_REPORTES)
@@ -171,8 +172,12 @@ public class ListadoProyectosController implements Serializable {
                 && !verificarPerfil(SegPerfil.PERFIL_VINCULACION_ADMINISTRADOR_VINCULACION_LECTURA)
                 && !verificarPerfil(SegPerfil.PERFIL_VINCULACION_IMPRESION_CERTIFICADOS)
                 && !verificarPerfil(SegPerfil.PERFIL_VINCULACION_EVALUADOR_VICERRECTORADO)
+              //  && !verificarPerfil(SegPerfil.PERFIL_VINCULACION_DIRECTOR_PROYECTO)
                 && !verificarPerfil(SegPerfil.PERFIL_VINCULACION_DIRECTOR_DEPARTAMENTO)) {
             for (Proyecto proy : temp) {
+                cont++;
+                System.out.println(cont);
+                System.out.println(proy.getCodigo());
                 if (verificarPerfil(SegPerfil.PERFIL_VINCULACION_COORDINADOR_VINCULACION)) {
                     if (coordinadorVinculacion!=null && coordinadorVinculacion.getCampus()!=null && proy.getCampus()!=null && coordinadorVinculacion.getCampus().equals(proy.getCampus())){
                         if (coordinadorVinculacion.getDepartamento()!=null && proy.getDepartamento()!=null){
@@ -196,7 +201,7 @@ public class ListadoProyectosController implements Serializable {
                     }
                 }
                 //se genera cambio !
-                   if (!verificarPerfil(SegPerfil.PERFIL_VINCULACION_DIRECTOR_PROYECTO)) {
+                   if (verificarPerfil(SegPerfil.PERFIL_VINCULACION_DIRECTOR_PROYECTO)) {
                        if (proy.getDirector() != null){
                        if (proy.getDirector().getUsuario().equals(usuarioActual)) {
                         proyectoList.add(proy);

@@ -64,7 +64,17 @@ public class AnexoProyecto implements Serializable{
     private String archivoUrl;
     @Column(name = "SZVTANEXOSPR_TIPO")
     private Integer tipo;
-    
+    @Column(name = "SZVTANEXOSPR_DESCRIPCION")
+    private String descripcion;
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+     @Size(max = 500)
     
     public final static Integer TIPO_IMG_DIAGNOSTICO_PROBLEMA=0;
     public final static Integer TIPO_ACTA_REUNION=1;
