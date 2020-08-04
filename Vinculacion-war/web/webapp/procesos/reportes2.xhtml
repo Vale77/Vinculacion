@@ -21,7 +21,7 @@
 
                 <p:panel header="Reportes Proyectos" style="border: hidden; margin-bottom: 35px">
                     <p:panel id="panelCentral" style="width: 98%; border: hidden ">
-                        
+
                         <h:panelGrid columns="2">
                             <p:outputLabel value="Tipo de reporte:"></p:outputLabel>
                             <p:selectOneMenu id="selTipoReporte" 
@@ -31,6 +31,7 @@
                                              >
                                 <f:selectItem itemLabel="Reporte general" itemValue="0"/> 
                                 <f:selectItem itemLabel="Proyectos por aprobar consejo académico" itemValue="1"/> 
+                                <f:selectItem itemLabel="Proyectos validados" itemValue="2"/> 
                                 <p:ajax event="change" onstart="PF('blockUIWidget').block()" oncomplete="PF('blockUIWidget').unblock()" 
                                         update=":formPrincipal:panelReportesProyectos" listener="#{reportes2Controller.cambiarTipoReporte}"/>
                             </p:selectOneMenu>                        
@@ -45,7 +46,7 @@
 
                                 <p:accordionPanel rendered="#{reportes2Controller.filtroReporte==null}">
 
-<!--                                    Seccion de opciones de filtro-->
+                                    <!--                                    Seccion de opciones de filtro-->
                                     <p:tab title="Filtros del reporte">
                                         <p:fieldset id="fsParametrosRepProy">
                                             <h:panelGrid columns="3">
@@ -65,9 +66,9 @@
                                                 </h:panelGrid>
                                             </h:panelGrid>
 
-                                            
-<!--   Permite seleccionar o eliminar el filtro seleccionado; en setFiltroReporte guardo el num. del filtro seleccionado y despues en la tabla 
-donde donde parece la lista, este valor lo compruevo el cual me devolvera en el rendered un True o False y si es True me show la tabla correspondiente -->
+
+                                            <!--   Permite seleccionar o eliminar el filtro seleccionado; en setFiltroReporte guardo el num. del filtro seleccionado y despues en la tabla 
+                                            donde donde parece la lista, este valor lo compruevo el cual me devolvera en el rendered un True o False y si es True me show la tabla correspondiente -->
                                             <h:panelGrid columns="100">
                                                 <p:commandLink onstart="PF('blockUIWidget').block()" oncomplete="PF('blockUIWidget').unblock()"
                                                                action="#{reportes2Controller.setFiltroReporte(1)}" 
@@ -111,7 +112,7 @@ donde donde parece la lista, este valor lo compruevo el cual me devolvera en el 
                                                                  action ="#{reportes2Controller.cancelarFiltro(3)}"
                                                                  onstart="PF('blockUIWidget').block()" oncomplete="PF('blockUIWidget').unblock()">
                                                 </p:commandButton>                                            
-                                                                        
+
                                                 <p:spacer width="20"/>
                                                 <p:commandLink onstart="PF('blockUIWidget').block()" oncomplete="PF('blockUIWidget').unblock()"
                                                                action="#{reportes2Controller.setFiltroReporte(11)}" 
@@ -126,7 +127,7 @@ donde donde parece la lista, este valor lo compruevo el cual me devolvera en el 
                                                                  onstart="PF('blockUIWidget').block()" oncomplete="PF('blockUIWidget').unblock()">
                                                 </p:commandButton>     
 
-<!--                                                Filtro Carrera-->
+                                                <!--                                                Filtro Carrera-->
                                                 <p:spacer width="20"/>
                                                 <p:commandLink onstart="PF('blockUIWidget').block()" oncomplete="PF('blockUIWidget').unblock()"
                                                                action="#{reportes2Controller.setFiltroReporte(4)}" 
@@ -141,8 +142,8 @@ donde donde parece la lista, este valor lo compruevo el cual me devolvera en el 
                                                                  onstart="PF('blockUIWidget').block()" oncomplete="PF('blockUIWidget').unblock()">
                                                 </p:commandButton>      
 
-                                                
-                                                
+
+
                                                 <p:spacer width="20"/>
                                                 <p:commandLink onstart="PF('blockUIWidget').block()" oncomplete="PF('blockUIWidget').unblock()"
                                                                action="#{reportes2Controller.setFiltroReporte(5)}" 
@@ -203,7 +204,7 @@ donde donde parece la lista, este valor lo compruevo el cual me devolvera en el 
                                                 </p:commandButton>                                               
 
 
-                                                
+
                                                 <p:spacer width="20"/>
                                                 <p:commandLink onstart="PF('blockUIWidget').block()" oncomplete="PF('blockUIWidget').unblock()"
                                                                action="#{reportes2Controller.setFiltroReporte(9)}" 
@@ -218,7 +219,7 @@ donde donde parece la lista, este valor lo compruevo el cual me devolvera en el 
                                                                  onstart="PF('blockUIWidget').block()" oncomplete="PF('blockUIWidget').unblock()">
                                                 </p:commandButton>                                               
 
-<!--                                                 Estudiante Participante-->
+                                                <!--                                                 Estudiante Participante-->
 
                                                 <p:spacer width="20"/>
                                                 <p:commandLink onstart="PF('blockUIWidget').block()" oncomplete="PF('blockUIWidget').unblock()"
@@ -255,8 +256,8 @@ donde donde parece la lista, este valor lo compruevo el cual me devolvera en el 
 
                                         </p:fieldset>
                                     </p:tab>
-                                    
-<!--                                    Seccion de campos a visualizar-->
+
+                                    <!--                                    Seccion de campos a visualizar-->
                                     <p:tab title="Campos a visualizar">
                                         <p:selectBooleanCheckbox value="#{reportes2Controller.visualizarTodos}">
                                             <p:ajax update="fsCamposVisualizar" listener="#{reportes2Controller.seleccionarDeseleccionarTodos}" onstart="PF('blockUIWidget').block()" oncomplete="PF('blockUIWidget').unblock()" />
@@ -382,13 +383,13 @@ donde donde parece la lista, este valor lo compruevo el cual me devolvera en el 
 
                                         </p:fieldset>    
                                     </p:tab>
-                                    
+
                                 </p:accordionPanel>
 
-<!--                                All Tablas con los datos para selecionar y filtrar-->
+                                <!--                                All Tablas con los datos para selecionar y filtrar-->
                                 <p:fieldset legend="Selección de Filtro: #{reportes2Controller.filtroReporteStr}"
                                             rendered="#{reportes2Controller.filtroReporte!=null}">
-                                    
+
                                     <h:panelGrid columns="2">
                                         <p:commandButton value="Aceptar" title="Aceptar selección de filtro" icon="ui-icon-locked" 
                                                          update=":formPrincipal:panelReportesProyectos" 
@@ -397,7 +398,7 @@ donde donde parece la lista, este valor lo compruevo el cual me devolvera en el 
                                         </p:commandButton>
                                     </h:panelGrid>
 
-<!--                                   If property rendered is True, The view can be seen -->
+                                    <!--                                   If property rendered is True, The view can be seen -->
                                     <p:dataTable id="dtProgramaVinculacion" widgetVar="dtProgramaVinculacion" value="#{reportes2Controller.programas}" var="progr" paginator="true" rows="10" rowIndexVar="index" resizableColumns="true"
                                                  emptyMessage="No se encontraron resultados"
                                                  rendered="#{reportes2Controller.filtroReporte==1}"
@@ -428,16 +429,16 @@ donde donde parece la lista, este valor lo compruevo el cual me devolvera en el 
                                         <p:column headerText="Código" width="100" style="white-space: pre-line" sortBy="#{d.codigo}" filterBy="#{d.codigo}" filterMatchMode="contains">
                                             <h:outputText  value ="#{d.codigo}"/> 
                                         </p:column>
-                                        
+
                                         <p:column headerText="Nombre" style="white-space: pre-line" sortBy="#{d.nombre}" filterBy="#{d.nombre}" filterMatchMode="contains">
                                             <h:outputText  value ="#{d.nombre}"/> 
                                         </p:column>
-                                        
+
 <!--                                        <p:column headerText="Nombre" style="white-space: pre-line" sortBy="#{d.nombre}" filterBy="#{d.nombre}" filterMatchMode="contains">
-                                            <h:outputText  value ="#{d.convocatoria.nombre}"/> 
-                                        </p:column>
+    <h:outputText  value ="#{d.convocatoria.nombre}"/> 
+</p:column>
                                         -->                                           
-                                        
+
                                         <p:column rendered="false" headerText="Director" style="white-space: pre-line" width="120"
                                                   sortBy="#{d.director.usuario.usuNombres.concat(' ').concat(d.director.usuario.usuApellidos)}" 
                                                   filterBy="#{d.director.usuario.usuCc.concat('-').concat(d.director.usuario.usuNombres).concat(' ').concat(d.director.usuario.usuApellidos)}" filterMatchMode="contains">
@@ -659,13 +660,14 @@ donde donde parece la lista, este valor lo compruevo el cual me devolvera en el 
                                         <p:column headerText="Apellidos" style="white-space: pre-line" sortBy="#{estudiante.usuApellidos}" filterBy="#{estudiante.usuApellidos}" filterMatchMode="contains">
                                             <h:outputText  value ="#{estudiante.usuApellidos}" style="white-space: pre-line"/> 
                                         </p:column>
+
                                         <p:column headerText="Seleccione" width="70" style="text-align: center">
                                             <p:selectBooleanCheckbox value="#{estudiante.selected}"></p:selectBooleanCheckbox>
                                         </p:column>
                                     </p:dataTable> 
-                                    
-                                    
-<!--                                     Situacion Prioritaria-->
+
+
+                                    <!--                                     Situacion Prioritaria-->
                                     <p:dataTable id="dtSituacionPrioritaria" widgetVar="dtSituacionPrioritaria" value="#{reportes2Controller.tipoPoblacionBeneficiariaList}" var="tipoPoblacion" 
                                                  paginator="true" rows="5" rowIndexVar="index" resizableColumns="true"
                                                  rendered="#{reportes2Controller.filtroReporte==12}"
@@ -687,21 +689,24 @@ donde donde parece la lista, este valor lo compruevo el cual me devolvera en el 
                                 </p:fieldset>
 
                                 <h:panelGrid id="panelGenerarReporte" columns="2" rendered="#{reportes2Controller.filtroReporte==null}" style="width: 100%;">
-                                    <p:commandButton value="Generar Reporte" title="Generar Reporte"
+                                    <p:commandButton value="Generar Reportee" title="Generar Reportee"                         
+
                                                      update=":formPrincipal:panelReportesProyectos"
                                                      action ="#{reportes2Controller.generarReporteProyectos}"
                                                      onstart="PF('blockUIWidget').block()" oncomplete="PF('blockUIWidget').unblock()">
                                     </p:commandButton>
-                                    <h:commandLink target="_blank" title="Exportar a Excel" style="float: right">
+                                    <h:commandLink target="_blank" title="Exportar a Excelok" style="float: right">
                                         <p:graphicImage url="../../resources/images/excel2.png" width="33"/>
                                         <p:dataExporter type="xls" target="dtProyectosReporte" fileName="cars" pageOnly="false" />
                                     </h:commandLink>
                                 </h:panelGrid>
 
 
+
+
                                 <p:dataTable id="dtProyectosReporte" widgetVar="dtProyectosReporte" value="#{reportes2Controller.proyectosReporteList}" var="proy" 
                                              filteredValue="#{reportes2Controller.proyectoReporteFilter}"
-                                             
+
                                              paginator="true" rows="5" rowIndexVar="index" resizableColumns="true"
                                              scrollable="true" scrollHeight="400" scrollWidth="1300"
                                              rendered="#{reportes2Controller.filtroReporte==null}"
@@ -716,14 +721,14 @@ donde donde parece la lista, este valor lo compruevo el cual me devolvera en el 
                                     <p:column id="colPrograma" rendered="#{reportes2Controller.visualizarPrograma}"  headerText="Programa" width="200" style="white-space: pre-line" sortBy="#{proy.programa}" >
                                         <h:outputText  value ="#{proy.programa}" /> 
                                     </p:column>                                
-                                    
+
                                     <p:column id="colProyecto" headerText="Proyecto" width="300" style="white-space: pre-line" sortBy="#{proy.nombre}" >
                                         <h:outputText  value ="#{proy.nombre}"/> 
                                     </p:column>
                                     <p:column id="colCodigoProyecto" rendered="#{reportes2Controller.visualizarCodigoProyecto}"  headerText="Cód. Proyecto" width="92" style="white-space: pre-line" sortBy="#{proy.codigo}" >
                                         <h:outputText  value ="#{proy.codigo}"/> 
                                     </p:column>
-                                   <p:column id="colConvocatoria"  headerText="Convocatoria" width="92" style="white-space: pre-line" sortBy="#{proy.convocatoria.nombre}" >
+                                    <p:column id="colConvocatoria"  headerText="Convocatoria" width="92" style="white-space: pre-line" sortBy="#{proy.convocatoria.nombre}" >
                                         <h:outputText  value ="#{proy.convocatoria.nombre}"/> 
                                     </p:column>
                                     <p:column id="colEstado" rendered="#{reportes2Controller.visualizarEstado}"  headerText="Estado" width="100" style="white-space: pre-line" sortBy="#{proy.estado.descripcion}" >
@@ -751,7 +756,7 @@ donde donde parece la lista, este valor lo compruevo el cual me devolvera en el 
                                     <p:column id="colDirectorTelf" rendered="#{reportes2Controller.visualizarDirector}"  headerText="Director (Telefono)" style="white-space: pre-line" width="120" sortBy="#{proy.director.usuario.usuTelefonoFijo}" >
                                         <h:outputText  value ="#{proy.director.usuario.usuTelefonoFijo}"/> 
                                     </p:column>
-                                    
+
                                     <p:column id="colCampus" filterBy="#{proy.director.campus.stvcampDesc}" rendered="#{reportes2Controller.visualizarCampus}"   headerText="Campus" style="white-space: pre-line" width="120" sortBy="#{proy.director.campus.stvcampDesc}" >
                                         <h:outputText  value ="#{proy.director.campus.stvcampDesc}"/> 
                                     </p:column>
@@ -767,11 +772,11 @@ donde donde parece la lista, este valor lo compruevo el cual me devolvera en el 
                                     <p:column id="colDepartamentoParticipante" rendered="#{reportes2Controller.visualizarDepartamentoParticipante}" headerText="Departamento Participante" width="200" style="white-space: pre-line" sortBy="#{proy.departamentoParticipante.stvsubjDesc}" >
                                         <h:outputText  value ="#{proy.departamentoParticipante.stvsubjDesc}"/> 
                                     </p:column>
-                                    
+
                                     <p:column id="colCarrera" filterBy="#{proy.carrera.stvmajrDesc}" rendered="#{reportes2Controller.visualizarCarrera}" headerText="Carrera" width="200" style="white-space: pre-line" sortBy="#{proy.carrera.stvmajrDesc}" >                                       
                                         <h:outputText  value ="#{proy.carrera.stvmajrDesc}"/>
                                     </p:column>
-                                    
+
                                     <p:column id="colLineaInvestigacion" filterBy="#{proy.lineaInvestigacion.descripcionCompleta}"  rendered="#{reportes2Controller.visualizarLineaInvestigacion}" headerText="Línea de Investigación" width="200" style="white-space: pre-line" sortBy="#{proy.lineaInvestigacion.descripcionCompleta}" >
                                         <h:outputText  value ="#{proy.lineaInvestigacion.descripcionCompleta}"/> 
                                     </p:column>
@@ -792,11 +797,11 @@ donde donde parece la lista, este valor lo compruevo el cual me devolvera en el 
                                         <h:outputText  value ="#{proy.docenteParticipante.usuario.nombresCompletos} (#{proy.docenteParticipante.tipoResponsable.descripcion})"
                                                        rendered="#{proy.docenteParticipante.id!=-1}"/> 
                                     </p:column>
-                                     <p:column id="colDocenteHorasPlanificada" rendered="#{reportes2Controller.visualizarDocenteParticipante}" headerText="Horas planificación docente" width="50" style="white-space: pre-line; text-align: center" >
+                                    <p:column id="colDocenteHorasPlanificada" rendered="#{reportes2Controller.visualizarDocenteParticipante}" headerText="Horas planificación docente" width="50" style="white-space: pre-line; text-align: center" >
                                         <h:outputText  value ="#{proy.docenteParticipante.horasPlanificadas}"
                                                        rendered="#{proy.docenteParticipante.id!=-1}"/>                                        
                                     </p:column>
-                                    
+
                                     <p:column id="colDocenteNroHoras" rendered="#{reportes2Controller.visualizarDocenteParticipante}" headerText="Horas dedicación docente" width="50" style="white-space: pre-line; text-align: center" >
                                         <h:outputText  value ="#{proy.docenteParticipante.totalHorasDedicadas}"
                                                        rendered="#{proy.docenteParticipante.id!=-1}"/> 
@@ -1108,8 +1113,111 @@ donde donde parece la lista, este valor lo compruevo el cual me devolvera en el 
                                         </h:outputText>
                                     </p:column>
                                 </p:dataTable>                                
-
+<!--CREACION DE REPORTE DE CERTIFICADOS VALIDADOS MV-->
                             </h:panelGrid>
+                            <h:outputLabel value="Certificados en Linea:" style="font-weight: bold"/>
+                            <h:commandLink>
+                                <p:graphicImage url="../../resources/images/excel2.png" width="24"/>
+                                <p:dataExporter type="xls" target="tbl" fileName="cars" />
+
+                            </h:commandLink> 
+                            
+                            <h:commandLink>
+                                <p:graphicImage url="../../resources/images/pdf.png" width="24"/>
+                                <p:dataExporter type="pdf" target="tbl" fileName="cars" pageOnly="true" />
+                            </h:commandLink>
+
+                            <p:commandButton value=" Estudiantes" actionListener="#{reportes2Controller.listarProyectosVerificados()}" update=":formPrincipal:tbl"/>
+
+
+                            <p:dataTable id="tbl" var="repo" value="#{reportes2Controller.reporteValidado}"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                                         paginator="true" rows="10" style="margin-bottom:20px">
+
+                                <f:facet name="{Exporters}">
+                                    <div style="float:right;padding-top: 5px;">
+                                    </div>
+
+                                </f:facet>
+                                
+                                <p:column  headerText="Id." filterBy="#{repo.estudianteParticipante.usuario.spridenId}" filterStyle= "width:45px;" filterMatchMode="contains">
+                                     <h:outputText value="#{repo.estudianteParticipante.usuario.spridenId}" style="white-space: pre-line"/>
+                                </p:column> 
+                                
+                                <p:column headerText="Cedula" filterBy="#{repo.estudianteParticipante.usuario.usuCc}" filterStyle= "width:45px;" filterMatchMode="contains" >
+                                        <h:outputText value="#{repo.estudianteParticipante.usuario.usuCc}" style="white-space: pre-line"/>
+                                    </p:column>
+                                <p:column headerText="Apellidos" filterBy="#{repo.estudianteParticipante.usuario.usuApellidos}" filterStyle= "width:45px;" filterMatchMode="contains">
+                                    <h:outputText value="#{repo.estudianteParticipante.usuario.usuApellidos}" style="white-space: pre-line"/>
+                                </p:column>
+
+                                <p:column headerText="Nombres" filterBy="#{repo.estudianteParticipante.usuario.usuNombres}" filterStyle= "width:45px;" filterMatchMode="contains">
+                                        <h:outputText value="#{repo.estudianteParticipante.usuario.usuNombres}" style="white-space: pre-line"/>
+                                    </p:column>
+                                
+                                <p:column headerText="Email" sortBy="#{repo.estudianteParticipante.usuario.usuEmail}">
+                                        <h:outputText value="#{repo.estudianteParticipante.usuario.usuEmail}" style="white-space: pre-line"/>
+                                        
+                                </p:column>
+                               
+                                <p:column headerText="Carrera" sortBy="#{repo.estudianteParticipante.carrera.stvmajrDesc}">
+                                    <h:outputText value="#{repo.estudianteParticipante.carrera.stvmajrDesc}">  
+                                    </h:outputText>
+                                </p:column>
+                                <p:column headerText="Departamento" sortBy="#{repo.estudianteParticipante.departamento.stvsubjDesc}">
+                                    <h:outputText value="#{repo.estudianteParticipante.departamento.stvsubjDesc}">  
+                                    </h:outputText>
+                                </p:column>
+                                
+                               
+                                <p:column headerText="Total Horas Planificadas" sortBy="#{repo.estudianteParticipante.horasPlanificadas}" >
+                                        <h:outputText value="#{repo.estudianteParticipante.totalHorasDedicadas}" style="white-space: pre-line"/>
+                                    </p:column>
+                                
+                                <p:column headerText="Total Horas Dedicadas" sortBy="#{repo.estudianteParticipante.totalHorasDedicadas}" filterStyle= "width:70px;" filterMatchMode="contains">
+                                        <h:outputText value="#{repo.estudianteParticipante.totalHorasDedicadas}" style="white-space: pre-line"/>
+                                    </p:column>
+                                
+                                <p:column headerText="Fecha Desde (Inicia Actividad)" sortBy="#{repo.estudianteParticipante.horasDedicadasFechaDesde}">
+                                    <h:outputText value="#{repo.estudianteParticipante.horasDedicadasFechaDesde}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/> 
+                                         </h:outputText>
+                                </p:column>
+
+                                <p:column headerText="Fecha Hasta (Fin Actividad)" sortBy="#{repo.estudianteParticipante.horasDedicadasFechaHasta}">
+                                        <h:outputText value="#{repo.estudianteParticipante.horasDedicadasFechaHasta}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/> 
+                                        </h:outputText>
+                                </p:column>
+                                 <p:column headerText="Codigo" sortBy="#{repo.codigo}">
+                                    <h:outputText value="#{repo.codigo}">  
+                                    </h:outputText>
+                                </p:column>
+                                
+                                <p:column headerText="Nombre Proyecto" sortBy="#{repo.nombre}">
+                                    <h:outputText value="#{repo.nombre}">  
+                                    </h:outputText>
+                                </p:column>
+                                
+                                <p:column headerText="Director" sortBy="#{repo.docenteParticipante.usuario.nombresCompletos}">
+                                    <h:outputText value="#{repo.docenteParticipante.usuario.nombresCompletos}">  
+                                    </h:outputText>
+                                </p:column>
+                                
+                                 <p:column headerText="Verificado" sortBy="#{repo.estudianteParticipante.verificar}">
+                                    <h:outputText value="#{(repo.estudianteParticipante.verificar == 'S')?'Validado':'Sin Validar' }">  
+                                    </h:outputText>
+                                </p:column>
+                                
+                                <p:column headerText="Fecha Verificada" sortBy="#{repo.estudianteParticipante.fechaVerificar}">
+                                    <h:outputText value="#{repo.estudianteParticipante.fechaVerificar}">  
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/> 
+                                    </h:outputText>
+                                </p:column>
+                                                                                          
+                                                               
+                            </p:dataTable>
+
                         </p:panel>
 
                     </p:panel>

@@ -49,4 +49,8 @@ public class ResponsableProyectoFacade extends AbstractFacade<ResponsableProyect
         Query query = em.createQuery("SELECT DISTINCT(o.usuario) FROM ResponsableProyecto o WHERE o.proyecto != null and ( o.tipoResponsable.id = 1 OR o.tipoResponsable.id = 2) ");
         return query.getResultList();
     }
+
+    public List<ResponsableProyecto> findParticipante() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

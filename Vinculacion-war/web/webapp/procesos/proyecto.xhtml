@@ -146,7 +146,7 @@
 
 
                                 </h:panelGrid>
-                                <p:fieldset legend="DATOS GENERALES" style="width:100%">
+                                <p:fieldset legend="DATOS GENERALESok" style="width:100%">
                                     <h:panelGrid columns="3" cellpadding="7" id="h1">
                                         <p:commandButton id="btnGrabarP1" value="Grabar" icon="ui-icon-locked" 
                                                          rendered="#{proyectoController.modoEdicion}"
@@ -3690,14 +3690,18 @@
                                     </h:panelGrid>
 
                                 </h:panelGrid>
-                                <h:outputLabel value="Horas dedicadas por estudiante:" style="font-weight: bold"/>
-                                
+                                <h:outputLabel value="Horas dedicadas por estudianteok:" style="font-weight: bold"/>
+                               <h:commandLink>
+                                <p:graphicImage url="../../resources/images/pdf.png" width="24"/>
+                                 <p:dataExporter type="csv" target="tbl" fileName="cars" />
+                </h:commandLink>
+                                  
                                 <p:dataTable id="dtEstudianteProyecto2" value="#{proyectoController.proyectoSelected.participanteEstudianteList}" var="estudiantePar2" paginator="true"
                                              rows="10" rowIndexVar="index" resizableColumns="true" style="width: 99%" expandedRow="true"
                                              emptyMessage="No se encontraron Resultados"
                                              widgetVar="taEstudiantes"
                                              > 
-                                             
+                                    
                                     
                                     <!--buscador general-->
                                     <f:facet name="header">
@@ -3719,19 +3723,19 @@
                                      <p:column headerText="Cédula" filterBy="#{estudiantePar2.usuario.usuCc}" filterStyle= "width:50px;" filterMatchMode="contains">
                                         <h:outputText value="#{estudiantePar2.usuario.usuCc}" style="white-space: pre-line"/>
                                     </p:column>
-                                    <p:column headerText="Apellidos" filterBy="#{estudiantePar2.usuario.usuApellidos}" filterStyle= "width:70px;" filterMatchMode="contains">
+                                    <p:column headerText="Apellidos" filterBy="#{estudiantePar2.usuario.usuApellidos}" filterStyle= "width:55px;" filterMatchMode="contains">
                                         <h:outputText value="#{estudiantePar2.usuario.usuApellidos}" style="white-space: pre-line"/>
                                     </p:column>
-                                    <p:column headerText="Nombres" filterBy="#{estudiantePar2.usuario.usuNombres}" filterStyle= "width:70px;" filterMatchMode="contains">
+                                    <p:column headerText="Nombres" filterBy="#{estudiantePar2.usuario.usuNombres}" filterStyle= "width:55px;" filterMatchMode="contains">
                                         <h:outputText value="#{estudiantePar2.usuario.usuNombres}" style="white-space: pre-line"/>
                                     </p:column>
-                                    <p:column headerText="Correo Electrónico" filterBy="#{estudiantePar2.usuario.usuEmail}" filterStyle= "width:70px;" filterMatchMode="contains">
+                                    <p:column headerText="Correo Electrónico" filterBy="#{estudiantePar2.usuario.usuEmail}" filterStyle= "width:55px;" filterMatchMode="contains">
                                         <h:outputText value="#{estudiantePar2.usuario.usuEmail}" style="white-space: pre-line"/>
                                     </p:column>
-                                    <p:column headerText="Carrera" filterBy="#{estudiantePar2.carrera.stvmajrDesc}" filterStyle= "width:70px;" filterMatchMode="contains">
+                                    <p:column headerText="Carrera" filterBy="#{estudiantePar2.carrera.stvmajrDesc}" filterStyle= "width:55px;" filterMatchMode="contains">
                                         <h:outputText value="#{estudiantePar2.carrera.stvmajrDesc}" style="white-space: pre-line"/>
                                     </p:column>
-                                    <p:column headerText="Departamento" filterBy="#{estudiantePar2.departamento.stvsubjDesc}" filterStyle= "width:70px;" filterMatchMode="contains">
+                                    <p:column headerText="Departamento" filterBy="#{estudiantePar2.departamento.stvsubjDesc}" filterStyle= "width:55px;" filterMatchMode="contains">
                                         <h:outputText value="#{estudiantePar2.departamento.stvsubjDesc}" style="white-space: pre-line"/>
                                     </p:column>
                                     <p:column headerText="Nro. Horas de participación planificadas" width="55" style="white-space: pre-line; text-align: center">
@@ -3754,7 +3758,7 @@
                                       
                                       </p:commandButton>
                                          </p:column>
-                                    <p:column headerText="Imprimir certificado" width="50" style="white-space: pre-line; text-align: center">
+                               <!--     <p:column headerText="Imprimir certificado" width="50" style="white-space: pre-line; text-align: center">
                                         <h:commandLink  target="_blank" actionListener="#{proyectoController.imprimirCertificadoParticipacionPDF(estudiantePar2)}"
                                                         disabled="#{!proyectoController.permitirImprimirCertificados}"
                                                         rendered="#{proyectoController.configuracionSelected.nroHorasMinimoCertificadoEstudiante !=null and estudiantePar2.totalHorasDedicadas ge proyectoController.configuracionSelected.nroHorasMinimoCertificadoEstudiante}"
@@ -3762,6 +3766,17 @@
                                             <p:graphicImage url="../../resources/images/pdf.png"/>
                                         </h:commandLink>  
 
+                                    </p:column>-->
+                                    <!--FECHA VERIFICACION 04/08/2020 MV-->
+                                    <p:column headerText="Fecha Verificación" width="60" style="white-space: pre-line; text-align: center">
+                                     <p:outputLabel value="* Fecha (dd/mm/aaaa):" for="txtFechaVerificar" style="font-weight: bold"/>
+                                        <h:panelGrid columns="1">
+                                            <p:calendar id="txtFechaVerificar" navigator="true" value="#{estudiantePar2.fechaVerificar}" yearRange="2015:2030" size="10" locale="es" pattern="dd/MM/yyyy"
+                                                        >
+                                            </p:calendar>
+                                           
+                                        </h:panelGrid>
+                                        <p:spacer width="10"/>
                                     </p:column>
 
                                     <p:rowExpansion >
@@ -3827,7 +3842,7 @@
                             <p:panel id="panelAvance" rendered="#{proyectoController.selectedNodeCode=='5.1'}" style="border: hidden; padding-left: 20px;">
                                 <h:panelGrid id="pEdicionAvance" columns="1" >
                                     <h:panelGrid columns="3">
-                                        <p:outputLabel value="Seleccione el Componente:" for="selComponenteAvance" style="font-weight: bold"/>  
+                                 -------------------´´´´´´´´´´´¿¿¿¿¿¿¿¿¿¿¿¿¿¿ uuuullllllll ñb7       <p:outputLabel value="Seleccione el Componente:" for="selComponenteAvance" style="font-weight: bold"/>  
                                         <p:selectOneMenu id="selComponenteAvance"
                                                          value="#{proyectoController.objetivoProyectoSelected}"
                                                          converter="omnifaces.SelectItemsConverter"

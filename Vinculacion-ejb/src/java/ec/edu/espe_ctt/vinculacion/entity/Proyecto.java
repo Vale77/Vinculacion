@@ -355,6 +355,18 @@ public class Proyecto implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private ActaAprobacionVicerrectorado actaAprobacionVicerrectorado;
     
+    @Column(name = "SZTVPROYEC_DESCRIPCION_POBL")
+    private String descripcionPoblacion;
+
+    public String getDescripcionPoblacion() {
+        return descripcionPoblacion;
+    }
+
+    public void setDescripcionPoblacion(String descripcionPoblacion) {
+        this.descripcionPoblacion = descripcionPoblacion;
+    }
+     @Size(max = 1000)
+    
     @OneToMany(mappedBy = "proyecto", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ResponsableProyecto> responsableList = new ArrayList<>();
     @OneToMany(mappedBy = "proyecto", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
