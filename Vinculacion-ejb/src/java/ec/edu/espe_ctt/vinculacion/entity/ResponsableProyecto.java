@@ -100,10 +100,20 @@ public class ResponsableProyecto implements Serializable, Comparable<Responsable
     @Column(name = "SRESPROG_VERIFICAR")
     private String verificar;
     //CREACION FECHA DE VERIFICACION MV GET Y SETTER 04/08/2020   
-     @Column(name = "SRESPROG_VERFECHA")
+    @Column(name = "SRESPROG_VERFECHA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaVerificar;
 
+    @Column(name = "SRESPROG_RESPONSABLE")
+    private String responsable;
+    
+    public String getResponsable(){
+        return responsable;
+    }
+    public void setResponsable(String responsable){
+    this.responsable = responsable;
+    }
+    
     public Date getFechaVerificar() {
         return fechaVerificar;
     }

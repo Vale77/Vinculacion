@@ -64,7 +64,7 @@
                                                  converter="omnifaces.SelectItemsConverter"
                                                  style="width:160px"
                                                  >
-                                    <f:selectItem itemLabel="[[-Seleccione un item-]]" noSelectionOption="true"/>
+                                    <f:selectItem itemLabel="[[-Seleccione un item-ahora]]" noSelectionOption="true"/>
                                     <f:selectItem itemLabel="Permanente" itemValue="C"/>
                                     <p:ajax event="change" update=":formPrincipal:panelDatos2" listener="#{proyectoController2.onchangeTipoGasto}" />
                                 </p:selectOneMenu>
@@ -97,19 +97,26 @@
                                                  rendered="#{proyectoController2.presupuestoProyectoSelected.tipo==1 and proyectoController2.presupuestoProyectoSelected.tipoGasto=='I'}"
                                                  >
                                 </p:commandButton>
+                                
+                                <br/>
                                 <p:inputTextarea id="txtBienServicioPresupuestoDetallado" value="#{proyectoController2.presupuestoProyectoSelected.tipo==1?proyectoController2.presupuestoProyectoSelected.nombreCompleto:proyectoController2.presupuestoProyectoSelected.bienServicio}"
-                                                 cols="80" rows="3" maxlength="150"
+                                                 cols="40" rows="2" maxlength="100"
                                                  disabled="#{proyectoController2.presupuestoProyectoSelected.tipo==1}"
                                                  required="#{not empty param['formPrincipal:btnGrabarPresupuestoDetallado']}">
                                 </p:inputTextarea>
                                 <p:message for="txtBienServicioPresupuestoDetallado"></p:message>
                             </h:panelGrid> 
 
-                            <p:outputLabel value="* Descripción:" for="txtDescripcionPresupuestoDetallado" style="font-weight: bold"
-                                           rendered="#{proyectoController2.presupuestoProyectoSelected.tipo==1 and proyectoController2.presupuestoProyectoSelected.tipoGasto=='I'}"></p:outputLabel>
-                            <h:panelGrid columns="2" rendered="#{proyectoController2.presupuestoProyectoSelected.tipo==1  and proyectoController2.presupuestoProyectoSelected.tipoGasto=='I'}">
+                            <br/>
+                            
+                            
+                            <p:outputLabel value="* Descripción:" for="txtDescripcionPresupuestoDetallado" style="font-weight: bold"></p:outputLabel>
+                                   <!--        rendered="#{proyectoController2.presupuestoProyectoSelected.tipo==1 and proyectoController2.presupuestoProyectoSelected.tipoGasto=='I'}"></p:outputLabel>-->
+                            <h:panelGrid columns="2" >
+                                        <!--    rendered="#{proyectoController2.presupuestoProyectoSelected.tipo==1  and proyectoController2.presupuestoProyectoSelected.tipoGasto=='I'}">-->
+                                
                                 <p:inputTextarea id="txtDescripcionPresupuestoDetallado" value="#{proyectoController2.presupuestoProyectoSelected.especificacionesTecnicas}"
-                                                 cols="80" rows="3" maxlength="150"
+                                                 cols="40" rows="2" maxlength="100"
                                                  required="#{not empty param['formPrincipal:btnGrabarPresupuestoDetallado']}">
                                 </p:inputTextarea>
                                 <p:message for="txtDescripcionPresupuestoDetallado"></p:message>

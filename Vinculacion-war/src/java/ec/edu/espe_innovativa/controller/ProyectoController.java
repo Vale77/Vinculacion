@@ -103,8 +103,8 @@ import ec.edu.espe_innovativa.recursos.DataTableColumn;
 import ec.edu.espe_innovativa.util.FacesUtils;
 import ec.edu.espe_innovativa.util.JasperReportUtil;
 import ec.edu.espe_innovativa.util.NumeroALetras;
-import ec.edu.espe_matriz.wsClient.WSEnvioMail;
-import ec.edu.espe_matriz.wsClient.WSEnvioMail_Service;
+//import ec.edu.espe_matriz.wsClient.WSEnvioMail;
+//import ec.edu.espe_matriz.wsClient.WSEnvioMail_Service;
 import java.io.ByteArrayInputStream;
 import static java.io.File.separatorChar;
 import java.io.Serializable;
@@ -2829,7 +2829,8 @@ public class ProyectoController implements Serializable {
             TreeNode node18 = new DefaultTreeNode(new OpcionMenu("1.8", "8. Acta de Consejo de Departamento"), nodePerfil);
             TreeNode node19 = new DefaultTreeNode(new OpcionMenu("1.10", "9. Acta Compromiso Director Proyecto"), nodePerfil);
             TreeNode node20 = new DefaultTreeNode(new OpcionMenu("1.11", "10. Acta Compromiso Carreras"), nodePerfil);
-            TreeNode node21 = new DefaultTreeNode(new OpcionMenu("1.9", "11. Finalizar perfil"), nodePerfil);
+            TreeNode node21 = new DefaultTreeNode(new OpcionMenu("1.9", "12. Finalizar perfil"), nodePerfil);
+            TreeNode node22 = new DefaultTreeNode(new OpcionMenu("1.12", "11. Carta Compromiso Departamentos"), nodePerfil);
             if (estadoProyecto.equals(SeaParametrosDet.ESTADO_CERRADO_PERFIL)) {
                 nodePerfil.setExpanded(true);
                 node21.setSelected(true);
@@ -3591,8 +3592,8 @@ public class ProyectoController implements Serializable {
                             .append("<br><font size=\"1\">Este correo ha sido generado automáticamente, por favor no responder al mismo. Cualquier inquietud comunicarse a los teléfono detallados.</font>")
                             .append("</body>")
                             .append("</html>");
-                    WSEnvioMail wSEnvioMail = new WSEnvioMail_Service().getWSEnvioMailPort();
-                    wSEnvioMail.enviarMail("aa@gmail.com", con.getDireccionCorreo(), con.getAsuntoCorreo(), mensaje.toString(), true, null, null, null, null);      
+//                    WSEnvioMail wSEnvioMail = new WSEnvioMail_Service().getWSEnvioMailPort();
+           //         wSEnvioMail.enviarMail("aa@gmail.com", con.getDireccionCorreo(), con.getAsuntoCorreo(), mensaje.toString(), true, null, null, null, null);      
                 } catch (Exception e) {
                 }
             }
@@ -3669,8 +3670,8 @@ public class ProyectoController implements Serializable {
                             .append("</html>");
 
                     //Descomentar lo siguiente si se quiere enviar mail automatico al director, cuando el proyecto es aprobado por la comision
-                    WSEnvioMail wSEnvioMail = new WSEnvioMail_Service().getWSEnvioMailPort();
-                    wSEnvioMail.enviarMail("aa@gmail.com", con.getDireccionCorreo(), con.getAsuntoCorreo(), mensaje.toString(), true, null, null, null, null);
+//                    WSEnvioMail wSEnvioMail = new WSEnvioMail_Service().getWSEnvioMailPort();
+             //       wSEnvioMail.enviarMail("aa@gmail.com", con.getDireccionCorreo(), con.getAsuntoCorreo(), mensaje.toString(), true, null, null, null, null);
                 } catch (Exception e) {
                 }
             }
@@ -4041,8 +4042,8 @@ public class ProyectoController implements Serializable {
                             } catch (Exception e) {
                             }
                         }
-                        WSEnvioMail wSEnvioMail = new WSEnvioMail_Service().getWSEnvioMailPort();
-                        wSEnvioMail.enviarMail("aa@gmail.com", proyectoSelected.getDireccionCorreo(), proyectoSelected.getAsuntoCorreo(), mensaje.toString(), true, adjunto1, nombreAdunto1, adjunto2, nombreAdunto2);
+//                        WSEnvioMail wSEnvioMail = new WSEnvioMail_Service().getWSEnvioMailPort();
+                     //   wSEnvioMail.enviarMail("aa@gmail.com", proyectoSelected.getDireccionCorreo(), proyectoSelected.getAsuntoCorreo(), mensaje.toString(), true, adjunto1, nombreAdunto1, adjunto2, nombreAdunto2);
                          
                         
                     } catch (Exception e) {
@@ -6350,26 +6351,74 @@ public class ProyectoController implements Serializable {
             }
         }
     }
+    
+     public void registraActaCompromisoParticipacionDepartamento() {
+        try {
+            proyectoFacade.edit(proyectoSelected);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "La información se guardó exitosamente"));
+            cancelarActaCompromisoParticipacionDepartamento();
+        } catch (Exception e) {
+            try {
+                Throwable t = (Throwable) e;
+                while (t.getCause() != null) {
+                    t = t.getCause();
+                }
+                String msgError = "No fue posible grabar la información ingresada";
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", msgError));
+            } catch (Exception e2) {
+            }
+        }
+    }
 
     public void cancelarActaCompromisoParticipacionCarreras() throws Exception {
         modoEdicion = false;
         proyectoSelected = proyectoFacade.find(proyectoSelected.getId());
         prepararArchivoActaCompromisoParticipacionCarreras();
     }
-
+    
+    // Crear cancelar Departamento
+    public void cancelarActaCompromisoParticipacionDepartamento() throws Exception {
+        modoEdicion = false;
+        proyectoSelected = proyectoFacade.find(proyectoSelected.getId());
+        prepararArchivoActaCompromisoParticipacionDepartamento();
+    }
     private void prepararArchivoActaCompromisoParticipacionCarreras() throws Exception {
         ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
         String path = servletContext.getRealPath("") + separatorChar + proyectoSelected.getActaCompromisoCarrerasUrlFinal();
         this.actaCompromisoParticipacionCarreras = new DefaultStreamedContent(new ByteArrayInputStream(Files.readAllBytes(Paths.get(path))), "application/octet-stream", proyectoSelected.getActaCompromisoCarrerasNombre());
     }
+    //Prepara archivo Departamentos
+    private void prepararArchivoActaCompromisoParticipacionDepartamento() throws Exception {
+        ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+        String path = servletContext.getRealPath("") + separatorChar + proyectoSelected.getActaCompromisoDepartamentoUrlFinal();
+        this.actaCompromisoParticipacionDepartamento = new DefaultStreamedContent(new ByteArrayInputStream(Files.readAllBytes(Paths.get(path))), "application/octet-stream", proyectoSelected.getActaCompromisoDepartamentosNombre());
+    }
     private StreamedContent actaCompromisoParticipacionCarreras;
+    private StreamedContent actaCompromisoParticipacionDocentes;
+    private StreamedContent actaCompromisoParticipacionDepartamento;
 
+    public StreamedContent getActaCompromisoParticipacionDepartamento() {
+        return actaCompromisoParticipacionDepartamento;
+    }
+
+    public void setActaCompromisoParticipacionDepartamento(StreamedContent actaCompromisoParticipacionDepartamento) {
+        this.actaCompromisoParticipacionDepartamento = actaCompromisoParticipacionDepartamento;
+    }
+    
     public StreamedContent getActaCompromisoParticipacionCarreras() {
         return actaCompromisoParticipacionCarreras;
+    }
+        
+     public StreamedContent getActaCompromisoParticipacionDocentes() {
+        return actaCompromisoParticipacionDocentes;
     }
 
     public void setActaCompromisoParticipacionCarreras(StreamedContent actaCompromisoParticipacionCarreras) {
         this.actaCompromisoParticipacionCarreras = actaCompromisoParticipacionCarreras;
+    }
+    
+    public void setActaCompromisoParticipacionDocentes(StreamedContent actaCompromisoParticipacionDocentes) {
+        this.actaCompromisoParticipacionDocentes = actaCompromisoParticipacionDocentes;
     }
 
     public void subirActaCompromisoParticipacionCarreras(FileUploadEvent event) {
@@ -6391,6 +6440,48 @@ public class ProyectoController implements Serializable {
         }
     }
 
+    
+    // SUBIR ACTA DEPARTAMENTO
+    
+    public void subirActaCompromisoParticipacionDepartamento(FileUploadEvent event) {
+        try {
+
+            String carpetaAdjuntos = "documentos_adjuntos" + separatorChar + "actaCompromisoDepartamento";
+            ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+            String path = servletContext.getRealPath("") + separatorChar + carpetaAdjuntos + separatorChar + proyectoSelected.getId();
+            if (!Files.isDirectory(Paths.get(path))) {
+                Files.createDirectories(Paths.get(path));
+            }
+            path = path + separatorChar + event.getFile().getFileName();
+            Files.copy(event.getFile().getInputstream(), Paths.get(path), StandardCopyOption.REPLACE_EXISTING);
+            proyectoSelected.setActaCompromisoDepartamentosNombre(event.getFile().getFileName());
+            proyectoSelected.setActaCompromisoDepartamentosUrl("/" + carpetaAdjuntos.replace("\\", "/") + "/" + proyectoSelected.getId() + "/");
+            prepararArchivoActaCompromisoParticipacionDepartamento();
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No fue posible cargar el archivo seleccionado"));
+        }
+    }
+
+    
+    
+    public void subirActaCompromisoParticipacionDocentes(FileUploadEvent event) {
+        try {
+
+            String carpetaAdjuntos = "documentos_adjuntos" + separatorChar + "actaCompromisoDocentes";
+            ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+            String path = servletContext.getRealPath("") + separatorChar + carpetaAdjuntos + separatorChar + proyectoSelected.getId();
+            if (!Files.isDirectory(Paths.get(path))) {
+                Files.createDirectories(Paths.get(path));
+            }
+            path = path + separatorChar + event.getFile().getFileName();
+            Files.copy(event.getFile().getInputstream(), Paths.get(path), StandardCopyOption.REPLACE_EXISTING);
+            proyectoSelected.setActaCompromisoDepartamentosNombre(event.getFile().getFileName());
+            proyectoSelected.setActaCompromisoDepartamentosUrl("/" + carpetaAdjuntos.replace("\\", "/") + "/" + proyectoSelected.getId() + "/");
+            prepararArchivoActaCompromisoParticipacionDepartamento();
+           } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No fue posible cargar el archivo seleccionado"));
+        }
+    }
     private boolean permitirEditarTipoProyecto;
 
     public boolean isPermitirEditarTipoProyecto() {

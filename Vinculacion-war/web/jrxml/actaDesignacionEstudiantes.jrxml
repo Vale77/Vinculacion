@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="actaDesignacionEstudiantes" language="groovy" pageWidth="595" pageHeight="842" columnWidth="475" leftMargin="60" rightMargin="60" topMargin="40" bottomMargin="0" uuid="7802725a-c9b2-4bd5-b72d-0aa65d1a1f4f">
 	<property name="ireport.zoom" value="1.331000000000006"/>
-	<property name="ireport.x" value="25"/>
-	<property name="ireport.y" value="118"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="100"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["E:\\CTT2015\\APP\\Vinculacion\\Vinculacion-war\\web\\jrxml\\"]]></defaultValueExpression>
 	</parameter>
@@ -94,7 +94,7 @@
 				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="html">
 					<font fontName="SansSerif" isItalic="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[($F{directorCarreraListSize}==1?"El Director de la Carrera: ":"Los Directores de las Carreras: ") + $P{carreras} + ", en uso de sus deberes y atribuciones  conferidas en el Art. 65 literal a. k., del Estatuto de la Universidad de las Fuerzas Armadas – ESPE, vigente desde el 26 de junio de 2013."]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($F{directorCarreraListSize}==1?"El Director de la Carrera: ":"Los Directores de las Carreras: ") + $P{carreras} + ", en uso de sus deberes y atribuciones  conferidas en el Art. 73 literal k., del Estatuto de la Universidad de las Fuerzas Armadas – ESPE, reformado el 19 de marzo de 2019."]]></textFieldExpression>
 			</textField>
 			<subreport>
 				<reportElement positionType="Float" x="0" y="241" width="475" height="13" uuid="ae43a30c-ab9a-4cf0-886a-a7397d32c5b7"/>

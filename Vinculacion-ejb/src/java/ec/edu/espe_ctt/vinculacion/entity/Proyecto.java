@@ -138,6 +138,12 @@ public class Proyecto implements Serializable {
     @Size(max = 250)
     @Column(name = "SZTVPROYEC_COM_PART2_URL")
     private String actaCompromisoCarrerasUrl;
+    @Size(max = 100)
+    @Column(name = "SZTVPROYEC_COM_PART3_NOM")
+    private String actaCompromisoDepartamentosNombre;
+    @Size(max = 250)
+    @Column(name = "SZTVPROYEC_COM_PART3_URL")
+    private String actaCompromisoDepartamentosUrl;  
     @Size(max = 250)
     @Column(name = "SZTVPROYEC_CARTA_COM_URL")
     private String cartaCompromisoComunidadUrl;
@@ -2887,7 +2893,24 @@ public class Proyecto implements Serializable {
     public void setActaCompromisoCarrerasUrl(String actaCompromisoCarrerasUrl) {
         this.actaCompromisoCarrerasUrl = actaCompromisoCarrerasUrl;
     }
+    
+    
+    public String getActaCompromisoDepartamentosNombre() {
+        return actaCompromisoDepartamentosNombre;
+    }
 
+    public void setActaCompromisoDepartamentosNombre(String actaCompromisoDepartamentosNombre) {
+        this.actaCompromisoDepartamentosNombre = actaCompromisoDepartamentosNombre;
+    }
+
+    public String getActaCompromisoDepartamentosUrl() {
+        return actaCompromisoDepartamentosUrl;
+    }
+
+    public void setActaCompromisoDepartamentosUrl(String actaCompromisoDepartamentosUrl) {
+        this.actaCompromisoDepartamentosUrl = actaCompromisoDepartamentosUrl;
+    }
+    
     public String getActaCompromisoDirectorProyectoUrlFinal() {
         try {
             return this.actaCompromisoDirectorProyectoUrl + this.actaCompromisoDirectorProyectoNombre;
@@ -2902,7 +2925,23 @@ public class Proyecto implements Serializable {
             return null;
         }
     }
-
+    
+    public String getActaCompromisoDepartamentoUrlFinal() {
+        try {
+            return this.actaCompromisoDepartamentosUrl + this.actaCompromisoDepartamentosNombre;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
+     public String getActaCompromisoDocentesUrlFinal() {
+        try {
+            return this.actaCompromisoDepartamentosUrl+ this.actaCompromisoCarrerasNombre;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
     public Date getFechaFinalizacionPerfil() {
         return fechaFinalizacionPerfil;
     }

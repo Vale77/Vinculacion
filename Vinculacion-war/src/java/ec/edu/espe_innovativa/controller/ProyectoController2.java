@@ -83,9 +83,10 @@ public class ProyectoController2 extends ProyectoController implements Serializa
             TreeNode node171 = new DefaultTreeNode(new OpcionMenu("1.7.1", "7.1. Cronograma Actividades"), node17);
             TreeNode node172 = new DefaultTreeNode(new OpcionMenu("1.7.2", "7.2. Cronograma Hitos"), node17);
             TreeNode node18 = new DefaultTreeNode(new OpcionMenu("1.8", "8. Acta de Consejo de Departamento"), nodePerfil);
-            TreeNode node19 = new DefaultTreeNode(new OpcionMenu("1.10", "9. Acta Compromiso Director Proyecto"), nodePerfil);
-            TreeNode node20 = new DefaultTreeNode(new OpcionMenu("1.11", "10. Acta Compromiso Carreras"), nodePerfil);
-            TreeNode node21 = new DefaultTreeNode(new OpcionMenu("1.9", "11. Finalizar perfil"), nodePerfil);
+            TreeNode node19 = new DefaultTreeNode(new OpcionMenu("1.10", "9. Carta Compromiso Director Proyecto"), nodePerfil);
+            TreeNode node20 = new DefaultTreeNode(new OpcionMenu("1.11", "10. Carta Compromiso Carreras"), nodePerfil);
+           TreeNode node22 = new DefaultTreeNode(new OpcionMenu("1.12", "11. Carta Compromiso Departamentos"), nodePerfil);
+            TreeNode node21 = new DefaultTreeNode(new OpcionMenu("1.9", "12. Finalizar perfil"), nodePerfil);
             if (estadoProyecto.equals(SeaParametrosDet.ESTADO_CERRADO_PERFIL)) {
                 nodePerfil.setExpanded(true);
                 node21.setSelected(true);
@@ -132,8 +133,8 @@ public class ProyectoController2 extends ProyectoController implements Serializa
                 TreeNode node8 = new DefaultTreeNode(new OpcionMenu("4", "Inicio Ejecución"), rootMenu2);
                 TreeNode node31 = new DefaultTreeNode(new OpcionMenu("4.1", "1. Asignación de Docentes"), node8);
                 TreeNode node32 = new DefaultTreeNode(new OpcionMenu("4.2", "2. Asignación de Estudiantes"), node8);
-                TreeNode node34 = new DefaultTreeNode(new OpcionMenu("4.3", "3. Compromiso de Participación"), node8);
-                TreeNode node35 = new DefaultTreeNode(new OpcionMenu("4.4", "4. Carta Compromiso Comunidad"), node8);
+                TreeNode node34 = new DefaultTreeNode(new OpcionMenu("4.3", "3. Carta de Participación"), node8);
+               // TreeNode node35 = new DefaultTreeNode(new OpcionMenu("4.4", "4. Carta Compromiso Comunidad"), node8);
                 TreeNode node3 = new DefaultTreeNode(new OpcionMenu("5", "Ejecución"), rootMenu2);
                 TreeNode node33 = new DefaultTreeNode(new OpcionMenu("5.1", "1. Informes de avance"), node3);
                 TreeNode node311 = new DefaultTreeNode(new OpcionMenu("5.2", "2. Horas dedicación docente"), node3);

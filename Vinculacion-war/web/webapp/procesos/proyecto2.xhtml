@@ -146,7 +146,7 @@
 
 
                                 </h:panelGrid>
-                                <p:fieldset legend="DATOS GENERALESok" style="width:100%">
+                                <p:fieldset legend="DATOS GENERALES" style="width:100%">
                                     <h:panelGrid columns="3" cellpadding="7" id="h1">
                                         <p:commandButton id="btnGrabarP1" value="Grabar" icon="ui-icon-locked" 
                                                          rendered="#{proyectoController2.modoEdicion}"
@@ -495,7 +495,7 @@
                                     </pe:ckEditor>
                                     <p:message for="txtServicios"></p:message>
 
-                                    <p:outputLabel value="Bienes y Servicios:" for="txtBienesServicios" style="font-weight: bold"/>
+                                     <!--<p:outputLabel value="Bienes y Servicios:" for="txtBienesServicios" style="font-weight: bold"/>
                                     <pe:ckEditor id="txtBienesServicios" value="#{proyectoController2.proyectoSelected.bienesServicios}" 
                                                  readonly="#{!proyectoController2.modoEdicion}"
                                                  width="100%"
@@ -503,7 +503,7 @@
                                                  toolbar="[['SelectAll','-', 'Table' , 'HorizontalRule','-' ,'Cut','Copy','Paste','-', 'Bold','Underline','Italic','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' , '-' , 'NumberedList', 'BulletedList', 'Outdent' , 'Indent', '-', 'Styles', 'Format','Font','FontSize','TextColor','BGColor']]"
                                                  >  
                                     </pe:ckEditor>
-                                    <p:message for="txtBienesServicios"></p:message>
+                                    <p:message for="txtBienesServicios"></p:message>-->
 
                                     <p:outputLabel value="Efectos Esperados:" for="txtEfectosEsperados" style="font-weight: bold"/>
                                     <pe:ckEditor id="txtEfectosEsperados" value="#{proyectoController2.proyectoSelected.efectoEsperado}" 
@@ -2128,7 +2128,7 @@
                                     </pe:ckEditor>
 
                                     <h:panelGrid columns="2">
-                                        <p:outputLabel for="impactoAmb" value="* ¿Análisis de impacto ambiental?:" style="font-weight: bold"/>
+                                        <p:outputLabel for="impactoAmb" value="* ¿A qué dominio académico se alinea el proyecto?:" style="font-weight: bold"/>
                                         <p:message for="impactoAmb"></p:message>
                                     </h:panelGrid>
                                     <pe:ckEditor id="impactoAmb" value="#{proyectoController2.proyectoSelected.impactoAmbiental}" 
@@ -2142,7 +2142,7 @@
 
 
                                     <h:panelGrid columns="2">
-                                        <p:outputLabel for="sostenibilidadSocial" value="* Sostenibilidad social: equidad, género, participación ciudadana:" style="font-weight: bold"/>
+                                        <p:outputLabel for="sostenibilidadSocial" value="* Pertinencia de las carreras en el proyecto:" style="font-weight: bold"/>
                                         <p:message for="sostenibilidadSocial"></p:message>
                                     </h:panelGrid>
                                     <pe:ckEditor id="sostenibilidadSocial" value="#{proyectoController2.proyectoSelected.sostenibilidadSocial}" 
@@ -2425,7 +2425,7 @@
 
                             <!--panelActaCompromisoDirector: Acta de Compromiso del Director del Proyecto-->
                             <p:panel id="panelActaCompromisoDirector" rendered="#{proyectoController2.selectedNodeCode=='1.10'}" style="border: hidden; padding-left: 20px;">
-                                <p:fieldset legend="Acta de Compromiso de Participación de Director de Proyecto">
+                                <p:fieldset legend="Carta de Compromiso de Participación de Director de Proyecto">
                                     <h:panelGrid columns="2" style="margin-top: 20px">
                                         <p:commandButton value="Editar" title="Editar" icon="ui-icon-pencil"
                                                          action="#{proyectoController2.seleccionarEdicion}"
@@ -2448,13 +2448,16 @@
                                     </h:panelGrid>
                                     <h:panelGrid columns="2" cellpadding="5" cellspacing="0" style="margin-bottom: 30px">
                                         <p:outputLabel for="hidNomActaCompPartDirector" value="* Documento subido (jpg, jpeg, png, pdf):" style="font-weight: bold"/>
-                                        <p:outputLabel value="NINGUNO" rendered="#{proyectoController2.proyectoSelected.actaCompromisoDirectorProyectoNombre==null}"/>
+                                          <p:outputLabel value="NINGUNO" rendered="#{proyectoController2.proyectoSelected.actaCompromisoDirectorProyectoNombre==null}"/>
                                         <h:panelGrid columns="2" cellpadding="0" cellspacing="0">
                                             <h:panelGrid columns="1" cellpadding="0" cellspacing="0">
                                                 <h:panelGrid id="panelNomActaCompPartDirector" >
                                                     <p:commandLink value="#{proyectoController2.proyectoSelected.actaCompromisoDirectorProyectoNombre}" 
-                                                                   ajax="false"  style="color: blue">
-                                                        <p:fileDownload value="#{proyectoController2.actaCompromisoParticipacionDirectorProyecto}"  />
+                                                                   ajax="false"  style="color: red">
+                                                        <p:fileDownload value="#{proyectoController2.actaCompromisoParticipacionDirectorProyecto}"/>
+                                                        
+                                                        
+                                                    <p:graphicImage url="../../resources/images/pdf.png" width="25"/>
                                                     </p:commandLink>
                                                 </h:panelGrid>
                                                 <p:fileUpload id="fileNomActaCompPartDirector" fileUploadListener="#{proyectoController2.subirActaCompromisoParticipacionDirectorProyecto}" 
@@ -2478,11 +2481,9 @@
 
                             </p:panel>    
 
-
-
                             <!--panelActaCompromisoCarreras: Acta de Compromiso Carreras-->
                             <p:panel id="panelActaCompromisoCarreras" rendered="#{proyectoController2.selectedNodeCode=='1.11'}" style="border: hidden; padding-left: 20px;">
-                                <p:fieldset legend="Acta de Compromiso de Participación de Carreras">
+                                <p:fieldset legend="Carta de Compromiso de Participación de Carreras">
                                     <h:panelGrid columns="2" style="margin-top: 20px">
                                         <p:commandButton value="Editar" title="Editar" icon="ui-icon-pencil"
                                                          action="#{proyectoController2.seleccionarEdicion}"
@@ -2503,17 +2504,22 @@
 
                                         </p:commandButton>
                                     </h:panelGrid>
+                                    
                                     <h:panelGrid columns="2" cellpadding="5" cellspacing="0" style="margin-bottom: 30px">
                                         <p:outputLabel for="hidNomActaCompPartCarreras" value="* Documento subido (jpg, jpeg, png, pdf):" style="font-weight: bold"/>
                                         <p:outputLabel value="NINGUNO" rendered="#{proyectoController2.proyectoSelected.actaCompromisoCarrerasNombre==null}"/>
                                         <h:panelGrid columns="2" cellpadding="0" cellspacing="0">
                                             <h:panelGrid columns="1" cellpadding="0" cellspacing="0">
+                                                
+                                               
                                                 <h:panelGrid id="panelNomActaCompPartCarreras" >
                                                     <p:commandLink value="#{proyectoController2.proyectoSelected.actaCompromisoCarrerasNombre}" 
                                                                    ajax="false"  style="color: blue">
                                                         <p:fileDownload value="#{proyectoController2.actaCompromisoParticipacionCarreras}"  />
+                                                     <p:graphicImage url="../../resources/images/pdf.png" width="25"/>
                                                     </p:commandLink>
                                                 </h:panelGrid>
+                                                
                                                 <p:fileUpload id="fileNomActaCompPartCarreras" fileUploadListener="#{proyectoController2.subirActaCompromisoParticipacionCarreras}" 
                                                               rendered="#{proyectoController2.modoEdicion}"
                                                               mode="advanced"
@@ -2535,7 +2541,66 @@
 
                             </p:panel>                               
 
+ <!--panelActaCompromisoDepartamentos: Acta de Compromiso Departamentos -->
+                          
+ <p:panel id="panelActaCompromisoDepartamentos" rendered="#{proyectoController2.selectedNodeCode=='1.12'}" style="border: hidden; padding-left: 20px;">
+                                <p:fieldset legend="Carta de Compromiso de Participación de Departamento">
+                                    <h:panelGrid columns="2" style="margin-top: 20px">
+                                        <p:commandButton value="Editar" title="Editar" icon="ui-icon-pencil"
+                                                         action="#{proyectoController2.seleccionarEdicion}"
+                                                         rendered="#{!proyectoController2.modoEdicion}"
+                                                         disabled="#{!proyectoController2.permitirEditarPerfilTemp}"
+                                                         update=":formPrincipal:panelActaCompromisoDepartamentos" >
+                                        </p:commandButton>
+                                        <p:commandButton id="btnGrabarActaCompromisoDepartamentos" value="Grabar" title="Graba Información" icon="ui-icon-locked" 
+                                                         rendered="#{proyectoController2.modoEdicion}"
+                                                         update=":formPrincipal:panelActaCompromisoDepartamentos, :formPrincipal:message1" 
+                                                         action ="#{proyectoController2.registraActaCompromisoParticipacionDepartamento()}"
+                                                         onstart="PF('blockUIWidget').block()" oncomplete="PF('blockUIWidget').unblock()">
+                                        </p:commandButton>   
+                                        <p:commandButton value="Cancelar" title="Cancela Información" icon="ui-icon-arrowreturnthick-1-w" 
+                                                         rendered="#{proyectoController2.modoEdicion}"
+                                                         update=":formPrincipal:panelActaCompromisoDepartamentos" 
+                                                         action="#{proyectoController2.cancelarActaCompromisoParticipacionDepartamento()}">
 
+                                        </p:commandButton>
+                                    </h:panelGrid>
+                                    
+                                    <h:panelGrid columns="2" cellpadding="5" cellspacing="0" style="margin-bottom: 30px">
+                                        <p:outputLabel for="hidNomActaCompPartDepartamentos" value="* Documento subido (jpg, jpeg, png, pdf):" style="font-weight: bold"/>
+                                        <p:outputLabel value="NINGUNO" rendered="#{proyectoController2.proyectoSelected.actaCompromisoDepartamentosNombre==null}"/>
+                                        <h:panelGrid columns="2" cellpadding="0" cellspacing="0">
+                                            <h:panelGrid columns="1" cellpadding="0" cellspacing="0">
+                                                
+                                               
+                                                <h:panelGrid id="panelNomActaCompPartDepartamentos" >
+                                                    <p:commandLink value="#{proyectoController2.proyectoSelected.actaCompromisoDepartamentosNombre}" 
+                                                                   ajax="false"  style="color: blue">
+                                                        <p:fileDownload value="#{proyectoController2.actaCompromisoParticipacionDepartamento}"  />
+                                                              
+                                                    </p:commandLink>
+                                                </h:panelGrid>
+                                                
+                                                <p:fileUpload id="fileNomActaCompPartDepartamentos" fileUploadListener="#{proyectoController2.subirActaCompromisoParticipacionDepartamento}" 
+                                                              rendered="#{proyectoController2.modoEdicion}"
+                                                              mode="advanced"
+                                                              label="Seleccionar"
+                                                              allowTypes="/(\.|\/)(jpg|jpeg|png|pdf)$/"
+                                                              invalidFileMessage="Tipo de archivo incorrecto: "
+                                                              invalidSizeMessage="Tamaño del archivo seleccionado excede el límite permitido (10MB): "
+                                                              update=":formPrincipal:panelNomActaCompPartDepartamentos, :formPrincipal:hidNomActaCompPartDepartamentos, :formPrincipal:messages" auto="true" sizeLimit="10240000"/>
+                                                <p:message for="fileNomActaCompPartDepartamentos"></p:message>
+
+                                            </h:panelGrid>
+                                            <h:inputHidden id="hidNomActaCompPartDepartamentos" value="#{proyectoController2.proyectoSelected.actaCompromisoDepartamentosNombre}"
+                                                           required="#{not empty param['formPrincipal:btnGrabarActaCompromisoDepartamentos']}" ></h:inputHidden> 
+                                                            <p:message for="hidNomActaCompPartDepartamentos"></p:message>
+                                        </h:panelGrid>  
+                                    </h:panelGrid>
+                                </p:fieldset>
+
+                            </p:panel>             
+ 
                             <!--panelFinalizarPerfil-->
                             <p:panel id="panelFinalizarPerfil" rendered="#{proyectoController2.selectedNodeCode=='1.9'}" style="border: hidden; margin-left: 20px;">
                                 <h:panelGrid id="panelEdicionFinalizarPerfil" cellspacing="5" columns="1" style="width: 100%; margin-bottom: 10px">
@@ -3928,15 +3993,7 @@
                                      <p:column headerText="Cédula" filterBy="#{estudiantePar2.usuario.usuCc}" filterStyle= "width:50px;" filterMatchMode="contains">
                                         <h:outputText value="#{estudiantePar2.usuario.usuCc}" style="white-space: pre-line"/>
                                     </p:column>
-                                                <p:column headerText="Imprimir certificado" width="50" style="white-space: pre-line; text-align: center">
-                                        <h:commandLink  target="_blank" actionListener="#{proyectoController2.imprimirCertificadoParticipacionPDF(estudiantePar2)}"
-                                                        disabled="#{!proyectoController2.permitirImprimirCertificados}"
-                                                        rendered="#{proyectoController2.configuracionSelected.nroHorasMinimoCertificadoEstudiante !=null and estudiantePar2.totalHorasDedicadas ge proyectoController2.configuracionSelected.nroHorasMinimoCertificadoEstudiante}"
-                                                        title="Exportar a PDF">
-                                            <p:graphicImage url="../../resources/images/pdf.png"/>
-                                        </h:commandLink>  
-
-                                    </p:column>
+                                                
                                     <p:column headerText="Apellidos" filterBy="#{estudiantePar2.usuario.usuApellidos}" filterStyle= "width:55px;" filterMatchMode="contains">
                                         <h:outputText value="#{estudiantePar2.usuario.usuApellidos}" style="white-space: pre-line"/>
                                     </p:column>
@@ -3964,7 +4021,7 @@
                                         </h:outputText>
                                     </p:column>
                                     
-                                    <p:column headerText="Verificar" width="80" style ="text-align: center">
+                                    <p:column headerText="Verificar" width="60" style ="text-align: center">
                                      <p:commandButton title="Verificar el registro" value="#{(estudiantePar2.verificar == 'S')?'Validado':'Sin Validar' }"                                                   
                                                                  update=":formPrincipal:dtEstudianteProyecto2"
                                                                  disabled="#{proyectoController2.permitirEjecucion}"
@@ -3987,8 +4044,9 @@
 
                                     </p:column>-->
                                     <!--FECHA VERIFICACION 04/08/2020 MV-->
-                                    <p:column headerText="Fecha Verificacion" width="50" style="white-space: pre-line; text-align: center">
-                                     <p:outputLabel value="* Fecha (dd/mm/aaaa):" for="txtFechaVerificar" style="font-weight: bold"/>
+                                    <p:column headerText="Fecha Verificacion (dd/mm/aaaa)" width="50" style="white-space: pre-line; text-align: center">
+                                      <br />
+                                        <p:outputLabel value="" for="txtFechaVerificar" style="font-weight: bolder"/>
                                         <h:panelGrid columns="1">
                                             <p:calendar id="txtFechaVerificar" navigator="true" value="#{estudiantePar2.fechaVerificar}" yearRange="2015:2030" size="10" locale="es" pattern="dd/MM/yyyy"
                                                        >
@@ -3998,7 +4056,12 @@
                                         <p:spacer width="10"/>
                                     </p:column>
                                     
-                                    
+                                    <p:column headerText="Responsable" width="60" style="white-space: pre-line; text-align: center">
+                                     <p:outputLabel value="" for="txtNombreResponsable" style="font-weight: bold"/>
+                                       <p:inputTextarea id="txtNombreResponsable" cols="50" rows="1"
+                                                      value="#{estudiantePar2.responsable}"></p:inputTextarea>
+                                                    <p:message for="txtNombreResponsable"></p:message>
+                                    </p:column>
                                     
                                     
                                     
@@ -4661,7 +4724,7 @@
                                         </p:commandButton>
                                     </h:panelGrid>
                                     <h:panelGrid columns="2" cellpadding="5" cellspacing="0" style="margin-bottom: 30px">
-                                        <p:outputLabel for="hidNomCartaCompromisoComunidad" value="* Documento subido (jpg, jpeg, png, pdf):" style="font-weight: bold"/>
+                                        <p:outputLabel for="hidNomCartaCompromisoComunidad" value="* Documento subidoooooppp (jpg, jpeg, png, pdf):" style="font-weight: bold"/>
                                         <p:outputLabel value="NINGUNO" rendered="#{proyectoController2.proyectoSelected.cartaCompromisoComunidadNombre==null}"/>
                                         <h:panelGrid columns="2" cellpadding="0" cellspacing="0">
                                             <h:panelGrid columns="1" cellpadding="0" cellspacing="0">
@@ -5103,10 +5166,10 @@
                                                                      value="#{proyectoController2.anexoProyectoSelected.tipo}" 
                                                                      >
                                                         <f:selectItem itemLabel="[[-Seleccione un item-]]" noSelectionOption="true"/>
-                                                        <f:selectItem itemLabel="Acta de Reunión" itemValue="1"/>
-                                                        <f:selectItem itemLabel="Fotografia o Video" itemValue="2"/>
-                                                        <f:selectItem itemLabel="Registro de Beneficiarios" itemValue="3"/>
-                                                        <f:selectItem itemLabel="Otros" itemValue="4"/>
+                                                        <f:selectItem itemLabel="Fase de Planificación" itemValue="1"/>
+                                                        <f:selectItem itemLabel="Fase Ejecución" itemValue="2"/>
+                                                        <f:selectItem itemLabel="Fase Cierre" itemValue="3"/>
+                                                        <f:selectItem itemLabel="Fase Evaluación" itemValue="4"/>
                                                     </p:selectOneMenu>
                                                     <p:message for="selTipoAnexo"></p:message>
                                                 </h:panelGrid>

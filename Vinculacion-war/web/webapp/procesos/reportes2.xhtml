@@ -30,7 +30,7 @@
                                              value="#{reportes2Controller.tipoReporte}" 
                                              >
                                 <f:selectItem itemLabel="Reporte general" itemValue="0"/> 
-                                <f:selectItem itemLabel="Proyectos por aprobar consejo académico" itemValue="1"/> 
+                               <!-- <f:selectItem itemLabel="Proyectos por aprobar consejo académico" itemValue="1"/> -->
                                 <f:selectItem itemLabel="Proyectos validados" itemValue="2"/> 
                                 <p:ajax event="change" onstart="PF('blockUIWidget').block()" oncomplete="PF('blockUIWidget').unblock()" 
                                         update=":formPrincipal:panelReportesProyectos" listener="#{reportes2Controller.cambiarTipoReporte}"/>
@@ -273,7 +273,7 @@
 
                                                 <p:selectBooleanCheckbox value="#{reportes2Controller.visualizarCodigoProyecto}"></p:selectBooleanCheckbox>
                                                 <h:outputLabel value="Código Proyecto"></h:outputLabel>
-                                                <p:spacer width="10"/>
+                                                <p:spacer width="20"/>
 
                                                 <p:selectBooleanCheckbox value="#{reportes2Controller.visualizarEstado}"></p:selectBooleanCheckbox>
                                                 <h:outputLabel value="Estado"></h:outputLabel>
@@ -404,7 +404,7 @@
                                                  rendered="#{reportes2Controller.filtroReporte==1}"
                                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}  Nro. items por página: {RowsPerPageDropdown}"
                                                  currentPageReportTemplate="Registros del {startRecord}-{endRecord} , total: {totalRecords}"
-                                                 rowsPerPageTemplate="5,10,15,20,30,50,100" >
+                                                 rowsPerPageTemplate="5,10,15,20,30,50,500" >
                                         <p:column headerText="Nro." width="20" style="text-align: center" sortBy="#{progr.id}">
                                             <h:outputText value="#{index + 1}" />
                                         </p:column>
@@ -415,14 +415,20 @@
                                             <p:selectBooleanCheckbox value="#{progr.selected}"></p:selectBooleanCheckbox>
                                         </p:column>
                                     </p:dataTable>
+                                  <!--  <h:commandLink>
+                                        <p:graphicImage url="../../resources/images/excel2.png" width="24"/>
+                                        <p:dataExporter type="xls" target="dtProyectos" fileName="cars" />
 
+                                    </h:commandLink>-->
+                                    
+                                  
                                     <p:dataTable id="dtProyectos" widgetVar="dtProyectos" value="#{reportes2Controller.proyectos}" var="d" 
                                                  paginator="true" rows="10" rowIndexVar="index" resizableColumns="true"
                                                  rendered="#{reportes2Controller.filtroReporte==2}"
                                                  emptyMessage="No se encontraron resultados"
                                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}  Nro. items por página: {RowsPerPageDropdown}"
                                                  currentPageReportTemplate="Registros del {startRecord}-{endRecord} , total: {totalRecords}"
-                                                 rowsPerPageTemplate="5,10,15,20,30,50,100" >
+                                                 rowsPerPageTemplate="5,10,15,20,30,50,500" >
                                         <p:column headerText="Nro." width="20" style="text-align: center" sortBy="#{d.id}">
                                             <h:outputText value="#{index + 1}" />
                                         </p:column>
@@ -434,10 +440,9 @@
                                             <h:outputText  value ="#{d.nombre}"/> 
                                         </p:column>
 
-<!--                                        <p:column headerText="Nombre" style="white-space: pre-line" sortBy="#{d.nombre}" filterBy="#{d.nombre}" filterMatchMode="contains">
+       <!--  <p:column headerText="Nombre" style="white-space: pre-line" sortBy="#{d.nombre}" filterBy="#{d.nombre}" filterMatchMode="contains">
     <h:outputText  value ="#{d.convocatoria.nombre}"/> 
-</p:column>
-                                        -->                                           
+</p:column> -->                                           
 
                                         <p:column rendered="false" headerText="Director" style="white-space: pre-line" width="120"
                                                   sortBy="#{d.director.usuario.usuNombres.concat(' ').concat(d.director.usuario.usuApellidos)}" 
@@ -478,7 +483,7 @@
                                                  emptyMessage="No se encontraron resultados"
                                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}  Nro. items por página: {RowsPerPageDropdown}"
                                                  currentPageReportTemplate="Registros del {startRecord}-{endRecord} , total: {totalRecords}"
-                                                 rowsPerPageTemplate="5,10,15,20,30,50,100" >
+                                                 rowsPerPageTemplate="5,10,15,20,30,50,100,500" >
                                         <p:column headerText="Nro." width="20" style="text-align: center">
                                             <h:outputText value="#{index + 1}" />
                                         </p:column>
@@ -496,7 +501,7 @@
                                                  emptyMessage="No se encontraron resultados"
                                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}  Nro. items por página: {RowsPerPageDropdown}"
                                                  currentPageReportTemplate="Registros del {startRecord}-{endRecord} , total: {totalRecords}"
-                                                 rowsPerPageTemplate="5,10,15,20,30,50,100" >
+                                                 rowsPerPageTemplate="5,10,15,20,30,50,100,500" >
                                         <p:column headerText="Nro." width="20" style="text-align: center">
                                             <h:outputText value="#{index + 1}" />
                                         </p:column>
@@ -517,7 +522,7 @@
                                                  emptyMessage="No se encontraron resultados"
                                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}  Nro. items por página: {RowsPerPageDropdown}"
                                                  currentPageReportTemplate="Registros del {startRecord}-{endRecord} , total: {totalRecords}"
-                                                 rowsPerPageTemplate="5,10,15,20,30,50,100" >
+                                                 rowsPerPageTemplate="5,10,15,20,30,50,100,500" >
                                         <p:column headerText="Nro." width="20" style="text-align: center" sortBy="#{carrera.id}">
                                             <h:outputText value="#{index + 1}" />
                                         </p:column>
@@ -536,7 +541,7 @@
                                                  emptyMessage="No se encontraron resultados"
                                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}  Nro. items por página: {RowsPerPageDropdown}"
                                                  currentPageReportTemplate="Registros del {startRecord}-{endRecord} , total: {totalRecords}"
-                                                 rowsPerPageTemplate="5,10,15,20,30,50,100" >
+                                                 rowsPerPageTemplate="5,10,15,20,30,50,100,500" >
                                         <p:column headerText="Nro." width="20" style="text-align: center" sortBy="#{cobertura.prdId}">
                                             <h:outputText value="#{index + 1}" />
                                         </p:column>
@@ -554,7 +559,7 @@
                                                  emptyMessage="No se encontraron resultados"
                                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}  Nro. items por página: {RowsPerPageDropdown}"
                                                  currentPageReportTemplate="Registros del {startRecord}-{endRecord} , total: {totalRecords}"
-                                                 rowsPerPageTemplate="5,10,15,20,30,50,100" >
+                                                 rowsPerPageTemplate="5,10,15,20,30,50,100,500" >
                                         <p:column headerText="Nro." width="20" style="text-align: center" sortBy="#{provincia.proId}">
                                             <h:outputText value="#{index + 1}" />
                                         </p:column>
@@ -574,7 +579,7 @@
                                                  emptyMessage="No se encontraron resultados"
                                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}  Nro. items por página: {RowsPerPageDropdown}"
                                                  currentPageReportTemplate="Registros del {startRecord}-{endRecord} , total: {totalRecords}"
-                                                 rowsPerPageTemplate="5,10,15,20,30,50,100" >
+                                                 rowsPerPageTemplate="5,10,15,20,30,50,100,500" >
                                         <p:column headerText="Nro." width="20" style="text-align: center" sortBy="#{canton.canId}">
                                             <h:outputText value="#{index + 1}" />
                                         </p:column>
@@ -597,7 +602,7 @@
                                                  emptyMessage="No se encontraron resultados"
                                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}  Nro. items por página: {RowsPerPageDropdown}"
                                                  currentPageReportTemplate="Registros del {startRecord}-{endRecord} , total: {totalRecords}"
-                                                 rowsPerPageTemplate="5,10,15,20,30,50,100" >
+                                                 rowsPerPageTemplate="5,10,15,20,30,50,100,500" >
                                         <p:column headerText="Nro." width="20" style="text-align: center" sortBy="#{parroquia.prqId}">
                                             <h:outputText value="#{index + 1}" />
                                         </p:column>
@@ -622,7 +627,7 @@
                                                  emptyMessage="No se encontraron resultados"
                                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}  Nro. items por página: {RowsPerPageDropdown}"
                                                  currentPageReportTemplate="Registros del {startRecord}-{endRecord} , total: {totalRecords}"
-                                                 rowsPerPageTemplate="5,10,15,20,30,50,100" >
+                                                 rowsPerPageTemplate="5,10,15,20,30,50,100,500" >
                                         <p:column headerText="Nro." width="20" style="text-align: center">
                                             <h:outputText value="#{index + 1}" />
                                         </p:column>
@@ -647,7 +652,7 @@
                                                  emptyMessage="No se encontraron resultados"
                                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}  Nro. items por página: {RowsPerPageDropdown}"
                                                  currentPageReportTemplate="Registros del {startRecord}-{endRecord} , total: {totalRecords}"
-                                                 rowsPerPageTemplate="5,10,15,20,30,50,100" >
+                                                 rowsPerPageTemplate="5,10,15,20,30,50,100,500" >
                                         <p:column headerText="Nro." width="20" style="text-align: center">
                                             <h:outputText value="#{index + 1}" />
                                         </p:column>
@@ -674,7 +679,7 @@
                                                  emptyMessage="No se encontraron resultados"
                                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}  Nro. items por página: {RowsPerPageDropdown}"
                                                  currentPageReportTemplate="Registros del {startRecord}-{endRecord} , total: {totalRecords}"
-                                                 rowsPerPageTemplate="5,10,15,20,30,50,100" >
+                                                 rowsPerPageTemplate="5,10,15,20,30,50,100,500" >
                                         <p:column headerText="Nro." width="20" style="text-align: center">
                                             <h:outputText value="#{index + 1}" />
                                         </p:column>
@@ -689,31 +694,29 @@
                                 </p:fieldset>
 
                                 <h:panelGrid id="panelGenerarReporte" columns="2" rendered="#{reportes2Controller.filtroReporte==null}" style="width: 100%;">
-                                    <p:commandButton value="Generar Reportee" title="Generar Reportee"                         
+                                    <p:commandButton value="Generar Reporte" title="Generar Reporte"                         
 
                                                      update=":formPrincipal:panelReportesProyectos"
                                                      action ="#{reportes2Controller.generarReporteProyectos}"
-                                                     onstart="PF('blockUIWidget').block()" oncomplete="PF('blockUIWidget').unblock()">
-                                    </p:commandButton>
-                                    <h:commandLink target="_blank" title="Exportar a Excelok" style="float: right">
+                                                    onstart="PF('blockUIWidget').block()" oncomplete="PF('blockUIWidget').unblock()">                                    </p:commandButton>
+                                    <h:commandLink target="_blank" title="Exportar a Excel" style="float: right">
                                         <p:graphicImage url="../../resources/images/excel2.png" width="33"/>
                                         <p:dataExporter type="xls" target="dtProyectosReporte" fileName="cars" pageOnly="false" />
                                     </h:commandLink>
                                 </h:panelGrid>
 
 
-
+  
 
                                 <p:dataTable id="dtProyectosReporte" widgetVar="dtProyectosReporte" value="#{reportes2Controller.proyectosReporteList}" var="proy" 
                                              filteredValue="#{reportes2Controller.proyectoReporteFilter}"
-
                                              paginator="true" rows="5" rowIndexVar="index" resizableColumns="true"
                                              scrollable="true" scrollHeight="400" scrollWidth="1300"
                                              rendered="#{reportes2Controller.filtroReporte==null}"
                                              emptyMessage="No se encontraron resultados"
                                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}  Nro. items por página: {RowsPerPageDropdown}"
                                              currentPageReportTemplate="Registros del {startRecord}-{endRecord} , total: {totalRecords}"
-                                             rowsPerPageTemplate="5,10,15,20,30,50,100" >
+                                             rowsPerPageTemplate="5,10,15,20,30,50,100,500" >
                                     <!--<p:ajax event="sort" listener="#{reportes2Controller.detectSortEvent}"></p:ajax>-->
                                     <p:column rendered="false" headerText="Nro." width="20" style="text-align: center">
                                         <h:outputText value="#{index + 1}" />
@@ -766,7 +769,7 @@
                                     <p:column id="colCobertura" rendered="#{reportes2Controller.visualizarCobertura}"  headerText="Cobertura" width="70" style="white-space: pre-line" sortBy="#{proy.cobertura}" >
                                         <h:outputText  value ="#{proy.cobertura}"/> 
                                     </p:column>
-                                    <p:column id="colCampusParticipante" rendered="#{reportes2Controller.visualizarCampusParticipante}" headerText="Campus Participante" width="200" style="white-space: pre-line" sortBy="#{proy.campusParticipante.stvcampDesc}" >
+                                    <p:column id="colCampusParticipante" rendered="#{reportes2Controller.visualizarCampusParticipante}" headerText="Campus Participanteeeeee" width="200" style="white-space: pre-line" sortBy="#{proy.campusParticipante.stvcampDesc}" >
                                         <h:outputText  value ="#{proy.campusParticipante.stvcampDesc}"/> 
                                     </p:column>
                                     <p:column id="colDepartamentoParticipante" rendered="#{reportes2Controller.visualizarDepartamentoParticipante}" headerText="Departamento Participante" width="200" style="white-space: pre-line" sortBy="#{proy.departamentoParticipante.stvsubjDesc}" >
@@ -775,7 +778,7 @@
 
                                     <p:column id="colCarrera" filterBy="#{proy.carrera.stvmajrDesc}" rendered="#{reportes2Controller.visualizarCarrera}" headerText="Carrera" width="200" style="white-space: pre-line" sortBy="#{proy.carrera.stvmajrDesc}" >                                       
                                         <h:outputText  value ="#{proy.carrera.stvmajrDesc}"/>
-                                    </p:column>
+                                    </p:column>(#{proy.docenteParticipante.tipoResponsable.descripcion})docente participante-->
 
                                     <p:column id="colLineaInvestigacion" filterBy="#{proy.lineaInvestigacion.descripcionCompleta}"  rendered="#{reportes2Controller.visualizarLineaInvestigacion}" headerText="Línea de Investigación" width="200" style="white-space: pre-line" sortBy="#{proy.lineaInvestigacion.descripcionCompleta}" >
                                         <h:outputText  value ="#{proy.lineaInvestigacion.descripcionCompleta}"/> 
@@ -789,14 +792,15 @@
                                     <p:column id="colParroquia" rendered="#{reportes2Controller.visualizarParroquia}" headerText="Parroquia" width="100" style="white-space: pre-line" sortBy="#{proy.parroquia.prqNombre}" >
                                         <h:outputText  value ="#{proy.parroquia.prqNombre}"/> 
                                     </p:column>
-                                    <p:column id="colDocenteCedula" rendered="#{reportes2Controller.visualizarDocenteParticipante}" headerText="Cédula docente participante" width="70" style="white-space: pre-line; text-align: center" >
+                                    <p:column id="colDocenteCedula" rendered="#{reportes2Controller.visualizarDocenteParticipante}" headerText="Cédula docente participante" width="70" style="white-space: pre-line; text-align: center" sortBy="#{proy.docenteParticipante.usuario.usuCc}" >
                                         <h:outputText  value ="#{proy.docenteParticipante.usuario.usuCc}"
                                                        rendered="#{proy.docenteParticipante.id!=-1}"/> 
                                     </p:column>
                                     <p:column id="colDocente" rendered="#{reportes2Controller.visualizarDocenteParticipante}" headerText="Nombre docente participante" width="100" style="white-space: pre-line" sortBy="#{proy.docenteParticipante.usuario.nombresCompletos}" >
-                                        <h:outputText  value ="#{proy.docenteParticipante.usuario.nombresCompletos} (#{proy.docenteParticipante.tipoResponsable.descripcion})"
+                                        <h:outputText  value ="#{proy.docenteParticipante.usuario.nombresCompletos} " 
                                                        rendered="#{proy.docenteParticipante.id!=-1}"/> 
                                     </p:column>
+
                                     <p:column id="colDocenteHorasPlanificada" rendered="#{reportes2Controller.visualizarDocenteParticipante}" headerText="Horas planificación docente" width="50" style="white-space: pre-line; text-align: center" >
                                         <h:outputText  value ="#{proy.docenteParticipante.horasPlanificadas}"
                                                        rendered="#{proy.docenteParticipante.id!=-1}"/>                                        
@@ -808,15 +812,15 @@
                                     </p:column>
                                     <p:column id="colDocenteInicioFecha" rendered="#{reportes2Controller.visualizarDocenteParticipante}" headerText="Fecha inicio dedicación docente" width="50" style="white-space: pre-line; text-align: center" >
                                         <h:outputText  value ="#{proy.docenteParticipante.horasDedicadasFechaDesde}"
-                                                       rendered="#{proy.docenteParticipante.id!=-1}">
+                                                       rendered="#{proy.docenteParticipante.id!=-1}"> 
                                             <f:convertDateTime pattern="dd/MM/yyyy"/> 
                                         </h:outputText>
                                     </p:column>
                                     <p:column id="colDocenteFinalFecha" rendered="#{reportes2Controller.visualizarDocenteParticipante}" headerText="Fecha final dedicación docente" width="50" style="white-space: pre-line; text-align: center" >
                                         <h:outputText  value ="#{proy.docenteParticipante.horasDedicadasFechaHasta}"
-                                                       rendered="#{proy.docenteParticipante.id!=-1}">
+                                                       rendered="#{proy.docenteParticipante.id!=-1}"> 
                                             <f:convertDateTime pattern="dd/MM/yyyy"/> 
-                                        </h:outputText>                                    
+                                        </h:outputText>                                  
                                     </p:column>
 
                                     <p:column id="colEstudianteCedula" rendered="#{reportes2Controller.visualizarEstudianteParticipante}" headerText="Cédula estudiante participante" width="70" style="white-space: pre-line; text-align: center">
@@ -1113,7 +1117,7 @@
                                         </h:outputText>
                                     </p:column>
                                 </p:dataTable>                                
-<!--CREACION DE REPORTE DE CERTIFICADOS VALIDADOS MV-->
+                                <!--CREACION DE REPORTE DE CERTIFICADOS VALIDADOS MV-->
                             </h:panelGrid>
                             <h:outputLabel value="Certificados en Linea:" style="font-weight: bold"/>
                             <h:commandLink>
@@ -1121,7 +1125,7 @@
                                 <p:dataExporter type="xls" target="tbl" fileName="cars" />
 
                             </h:commandLink> 
-                            
+
                             <h:commandLink>
                                 <p:graphicImage url="../../resources/images/pdf.png" width="24"/>
                                 <p:dataExporter type="pdf" target="tbl" fileName="cars" pageOnly="true" />
@@ -1139,27 +1143,27 @@
                                     </div>
 
                                 </f:facet>
-                                
+
                                 <p:column  headerText="Id." filterBy="#{repo.estudianteParticipante.usuario.spridenId}" filterStyle= "width:45px;" filterMatchMode="contains">
-                                     <h:outputText value="#{repo.estudianteParticipante.usuario.spridenId}" style="white-space: pre-line"/>
+                                    <h:outputText value="#{repo.estudianteParticipante.usuario.spridenId}" style="white-space: pre-line"/>
                                 </p:column> 
-                                
+
                                 <p:column headerText="Cedula" filterBy="#{repo.estudianteParticipante.usuario.usuCc}" filterStyle= "width:45px;" filterMatchMode="contains" >
-                                        <h:outputText value="#{repo.estudianteParticipante.usuario.usuCc}" style="white-space: pre-line"/>
-                                    </p:column>
+                                    <h:outputText value="#{repo.estudianteParticipante.usuario.usuCc}" style="white-space: pre-line"/>
+                                </p:column>
                                 <p:column headerText="Apellidos" filterBy="#{repo.estudianteParticipante.usuario.usuApellidos}" filterStyle= "width:45px;" filterMatchMode="contains">
                                     <h:outputText value="#{repo.estudianteParticipante.usuario.usuApellidos}" style="white-space: pre-line"/>
                                 </p:column>
 
                                 <p:column headerText="Nombres" filterBy="#{repo.estudianteParticipante.usuario.usuNombres}" filterStyle= "width:45px;" filterMatchMode="contains">
-                                        <h:outputText value="#{repo.estudianteParticipante.usuario.usuNombres}" style="white-space: pre-line"/>
-                                    </p:column>
-                                
-                                <p:column headerText="Email" sortBy="#{repo.estudianteParticipante.usuario.usuEmail}">
-                                        <h:outputText value="#{repo.estudianteParticipante.usuario.usuEmail}" style="white-space: pre-line"/>
-                                        
+                                    <h:outputText value="#{repo.estudianteParticipante.usuario.usuNombres}" style="white-space: pre-line"/>
                                 </p:column>
-                               
+
+                                <p:column headerText="Email" sortBy="#{repo.estudianteParticipante.usuario.usuEmail}">
+                                    <h:outputText value="#{repo.estudianteParticipante.usuario.usuEmail}" style="white-space: pre-line"/>
+
+                                </p:column>
+
                                 <p:column headerText="Carrera" sortBy="#{repo.estudianteParticipante.carrera.stvmajrDesc}">
                                     <h:outputText value="#{repo.estudianteParticipante.carrera.stvmajrDesc}">  
                                     </h:outputText>
@@ -1168,54 +1172,59 @@
                                     <h:outputText value="#{repo.estudianteParticipante.departamento.stvsubjDesc}">  
                                     </h:outputText>
                                 </p:column>
-                                
-                               
+
+
                                 <p:column headerText="Total Horas Planificadas" sortBy="#{repo.estudianteParticipante.horasPlanificadas}" >
-                                        <h:outputText value="#{repo.estudianteParticipante.totalHorasDedicadas}" style="white-space: pre-line"/>
-                                    </p:column>
-                                
+                                    <h:outputText value="#{repo.estudianteParticipante.totalHorasDedicadas}" style="white-space: pre-line"/>
+                                </p:column>
+
                                 <p:column headerText="Total Horas Dedicadas" sortBy="#{repo.estudianteParticipante.totalHorasDedicadas}" filterStyle= "width:70px;" filterMatchMode="contains">
-                                        <h:outputText value="#{repo.estudianteParticipante.totalHorasDedicadas}" style="white-space: pre-line"/>
-                                    </p:column>
-                                
+                                    <h:outputText value="#{repo.estudianteParticipante.totalHorasDedicadas}" style="white-space: pre-line"/>
+                                </p:column>
+
                                 <p:column headerText="Fecha Desde (Inicia Actividad)" sortBy="#{repo.estudianteParticipante.horasDedicadasFechaDesde}">
                                     <h:outputText value="#{repo.estudianteParticipante.horasDedicadasFechaDesde}">
                                         <f:convertDateTime pattern="dd/MM/yyyy"/> 
-                                         </h:outputText>
+                                    </h:outputText>
                                 </p:column>
 
                                 <p:column headerText="Fecha Hasta (Fin Actividad)" sortBy="#{repo.estudianteParticipante.horasDedicadasFechaHasta}">
-                                        <h:outputText value="#{repo.estudianteParticipante.horasDedicadasFechaHasta}">
+                                    <h:outputText value="#{repo.estudianteParticipante.horasDedicadasFechaHasta}">
                                         <f:convertDateTime pattern="dd/MM/yyyy"/> 
-                                        </h:outputText>
+                                    </h:outputText>
                                 </p:column>
-                                 <p:column headerText="Codigo" sortBy="#{repo.codigo}">
+                                <p:column headerText="Codigo" sortBy="#{repo.codigo}">
                                     <h:outputText value="#{repo.codigo}">  
                                     </h:outputText>
                                 </p:column>
-                                
+
                                 <p:column headerText="Nombre Proyecto" sortBy="#{repo.nombre}">
                                     <h:outputText value="#{repo.nombre}">  
                                     </h:outputText>
                                 </p:column>
-                                
+
                                 <p:column headerText="Director" sortBy="#{repo.docenteParticipante.usuario.nombresCompletos}">
                                     <h:outputText value="#{repo.docenteParticipante.usuario.nombresCompletos}">  
                                     </h:outputText>
                                 </p:column>
-                                
-                                 <p:column headerText="Verificado" sortBy="#{repo.estudianteParticipante.verificar}">
+
+                                <p:column headerText="Verificado" sortBy="#{repo.estudianteParticipante.verificar}">
                                     <h:outputText value="#{(repo.estudianteParticipante.verificar == 'S')?'Validado':'Sin Validar' }">  
                                     </h:outputText>
                                 </p:column>
-                                
+
                                 <p:column headerText="Fecha Verificada" sortBy="#{repo.estudianteParticipante.fechaVerificar}">
                                     <h:outputText value="#{repo.estudianteParticipante.fechaVerificar}">  
-                                    <f:convertDateTime pattern="dd/MM/yyyy"/> 
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/> 
                                     </h:outputText>
                                 </p:column>
-                                                                                          
-                                                               
+
+                                <p:column headerText="Responsable" sortBy="#{repo.estudianteParticipante.responsable}">
+                                    <h:outputText value="#{repo.estudianteParticipante.responsable}">  
+                                    </h:outputText>
+                                </p:column>
+
+
                             </p:dataTable>
 
                         </p:panel>

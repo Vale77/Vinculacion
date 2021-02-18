@@ -495,7 +495,7 @@
                                     </pe:ckEditor>
                                     <p:message for="txtServicios"></p:message>
 
-                                    <p:outputLabel value="Bienes y Servicios:" for="txtBienesServicios" style="font-weight: bold"/>
+                                  <p:outputLabel value="Bienes y Servicios:" for="txtBienesServicios" style="font-weight: bold"/>
                                     <pe:ckEditor id="txtBienesServicios" value="#{proyectoController.proyectoSelected.bienesServicios}" 
                                                  readonly="#{!proyectoController.modoEdicion}"
                                                  width="100%"
@@ -504,9 +504,8 @@
                                                  >  
                                     </pe:ckEditor>
                                     <p:message for="txtBienesServicios"></p:message>
-                                </h:panelGrid> 
+                             </h:panelGrid> 
                             </p:panel>
-
 
                             <!--tab9: Diagnóstico y Problema-->
                             <p:panel rendered="#{proyectoController.selectedNodeCode=='1.2.1'}" style="border: hidden; padding-left: 20px;">
@@ -3004,7 +3003,7 @@
                                     </p:dataTable>
 
 
-                                    <h:outputLabel value="Aporte de la Entidad Auspiciante:" style="font-weight: bold"/>
+                                    <h:outputLabel value="Aporte de la Entidad Auspicianteokkkk:" style="font-weight: bold"/>
                                     <p:dataTable id="dtPresupuestoEjecutado3" value="#{proyectoController.proyectoSelected.detallePresupuestoEntidadAuspiciante}" var="presupuestoEntEje"
                                                  rowIndexVar="index"  
                                                  style="width: 99%"
@@ -3748,15 +3747,16 @@
                                             <f:convertNumber locale="es_ES"  pattern="#,##0" />
                                         </h:outputText>
                                     </p:column>
-                                    <p:column headerText="Verificar" width="80" style ="text-align: center">
+                                    <p:column headerText="Verificar" width="60" style ="text-align: center">
                                      <p:commandButton title="Verificar el registro" value="#{(estudiantePar2.verificar == 'S')?'Validado':'Sin Validar' }"                                                   
                                                                  update=":formPrincipal:dtEstudianteProyecto2"
                                                                  disabled="#{proyectoController.permitirEjecucion}"
                                                                  action="#{proyectoController.aprobar(estudiantePar2)}">
                                       <f:setPropertyActionListener value="#{estudiantePar2}" target="#{proyectoController.responsableProyectoSelected}"/>
                                      <p:confirm header="Confirmacion" message="Confirma se a verificado la informacion seleccionada?" icon="ui-icon-alert"  />
-                                      
+                                     
                                       </p:commandButton>
+                                        
                                          </p:column>
                                <!--     <p:column headerText="Imprimir certificado" width="50" style="white-space: pre-line; text-align: center">
                                         <h:commandLink  target="_blank" actionListener="#{proyectoController.imprimirCertificadoParticipacionPDF(estudiantePar2)}"
@@ -3768,17 +3768,24 @@
 
                                     </p:column>-->
                                     <!--FECHA VERIFICACION 04/08/2020 MV-->
-                                    <p:column headerText="Fecha Verificación" width="60" style="white-space: pre-line; text-align: center">
-                                     <p:outputLabel value="* Fecha (dd/mm/aaaa):" for="txtFechaVerificar" style="font-weight: bold"/>
+                                    <p:column headerText="Fecha Verificación (dd/mm/aaaa)" width="60" style="white-space: pre-line; text-align: center">
+                                      <br />
+                                      
+                                        <p:outputLabel value="" for="txtFechaVerificar" style="font-weight: bold"/>
                                         <h:panelGrid columns="1">
-                                            <p:calendar id="txtFechaVerificar" navigator="true" value="#{estudiantePar2.fechaVerificar}" yearRange="2015:2030" size="10" locale="es" pattern="dd/MM/yyyy"
-                                                        >
+                                            <p:calendar id="txtFechaVerificar" navigator="true" value="#{estudiantePar2.fechaVerificar}" yearRange="2015:2030" size="10" locale="es" pattern="dd/MM/yyyy"                           >
                                             </p:calendar>
                                            
                                         </h:panelGrid>
                                         <p:spacer width="10"/>
                                     </p:column>
-
+                                     
+                                           <p:column headerText="Responsable" width="60" style="white-space: pre-line; text-align: center">
+                                     <p:outputLabel value="" for="txtNombreResponsable" style="font-weight: bold"/>
+                                       <p:inputTextarea id="txtNombreResponsable" cols="50" rows="1"
+                                                      value="#{estudiantePar2.responsable}"></p:inputTextarea>
+                                                    <p:message for="txtNombreResponsable"></p:message>
+                                    </p:column>
                                     <p:rowExpansion >
                                         <p:panel style="border:hidden; width:95%; padding-left: 40px">
                                             <h:outputLabel value="Detalle de horas dedicadas:" style="font-weight: bold"/>

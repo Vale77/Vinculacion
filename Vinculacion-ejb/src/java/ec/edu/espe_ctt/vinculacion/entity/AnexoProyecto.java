@@ -185,13 +185,13 @@ public class AnexoProyecto implements Serializable{
     public String getTipoDesc(){
         switch (tipo){
             case 1:
-                return "Acta de Reunión";
+                return "Fase Planificación";
             case 2:
-                return "Fotografía o Video";
+                return "Fase Ejecución";
             case 3:
-                return "Registro de Beneficiarios";
+                return "Fase Cierre";
             case 4:
-                return "Otros";
+                return "Fase Evaluación";
             default:
                 return "";
         }

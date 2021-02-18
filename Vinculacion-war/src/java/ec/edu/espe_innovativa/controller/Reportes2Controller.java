@@ -210,7 +210,6 @@ public class Reportes2Controller implements Serializable {
     public List<ConfiguracionParametrosEvaluacion> getConfiguracionParametrosEvaluacionList() {
         return configuracionParametrosEvaluacionList;
     }
-
     public void setConfiguracionParametrosEvaluacionList(List<ConfiguracionParametrosEvaluacion> configuracionParametrosEvaluacionList) {
         this.configuracionParametrosEvaluacionList = configuracionParametrosEvaluacionList;
     }
@@ -275,7 +274,7 @@ public class Reportes2Controller implements Serializable {
         fechaHasta = null;
         codigoReporte = "1";
     }
-//PARALISTAR  PROYECTOS MV
+//PARA LISTAR  PROYECTOS MV
     public void listarProyectosVerificados() {
         List<Proyecto> proyectos = proyectoFacade.findAll();
         reporteValidado = new ArrayList<>();
@@ -1819,8 +1818,8 @@ public class Reportes2Controller implements Serializable {
         try {
             columnaOrdenada = null;
             proyectosReporteList = new ArrayList<>();
-            //proyectoList = proyectoFacade.find22(101);
-            proyectoList = proyectoFacade.findAll();
+          //proyectoList = proyectoFacade.find22(101);
+           proyectoList = proyectoFacade.findAll();
             Iterator it = proyectoList.iterator();
             while (it.hasNext()) {
                 Proyecto p = (Proyecto) it.next();
@@ -1829,8 +1828,7 @@ public class Reportes2Controller implements Serializable {
                         || p.getEstadoActivo().equals(Proyecto.ESTADO_PROYECTO_INACTIVO)) {
                     it.remove();
                     continue;
-                }
-                //Remover del Iterador Los que no correspondan a las fechas necesitas por el Usuario.
+                }                //Remover del Iterador Los que no correspondan a las fechas necesitas por el Usuario.
                 if (fechaDesde != null && p.getFechaInicio() != null && p.getFechaInicio().before(fechaDesde)) {
                     it.remove();
                     continue;
@@ -1854,7 +1852,7 @@ public class Reportes2Controller implements Serializable {
             }
 
             //Lineas de Investigacion
-            for (Proyecto p : proyectoList) {
+           for (Proyecto p : proyectoList) {
                 List<LineaInvestigacionProyecto> lista = p.getLineaInvestigacionProyectoList();
                 if (lista == null || lista.isEmpty() || !visualizarLineaInvestigacion) {
                     agregarProyecto(p);
@@ -1906,7 +1904,7 @@ public class Reportes2Controller implements Serializable {
                 }
             }
 
-            //Provincias
+          //Provincias
             for (Proyecto p : proyectoList) {
                 List<LocalizacionPrograma> lista = p.getLocalizacionDistinctProvinciaList();
                 if (lista == null || lista.isEmpty() || !visualizarProvincia) {
@@ -2588,7 +2586,7 @@ public class Reportes2Controller implements Serializable {
             }
             if (idBuscar == null) {
                 boolean encontro2 = false;
-                for (ProyectoReporte p : buscarProyectos(proyecto.getId(), null)) {
+               for (ProyectoReporte p : buscarProyectos(proyecto.getId(), null)) {
                     p.setAvanceActividad(avanceActividad);
                     encontro2 = true;
                 }
@@ -2699,7 +2697,7 @@ public class Reportes2Controller implements Serializable {
                         result.add(p);
                     }
                 } else if (tipoBusqueda.equals(TipoBusqueda.PROVINCIA)) {
-                    if (p.getProvincia() == null) {
+                    if (p.getProvincia() != null) {
                         result.add(p);
                     }
                 } else if (tipoBusqueda.equals(TipoBusqueda.CANTON)) {
@@ -2803,8 +2801,7 @@ public class Reportes2Controller implements Serializable {
     public void setVisualizarEvaluacionFinal(boolean visualizarEvaluacionFinal) {
         this.visualizarEvaluacionFinal = visualizarEvaluacionFinal;
     }
-
-    public boolean isVisualizarEstudianteParticipante() {
+     public boolean isVisualizarEstudianteParticipante() {
         return visualizarEstudianteParticipante;
     }
 
@@ -3148,7 +3145,7 @@ public class Reportes2Controller implements Serializable {
                         result++;
                     }
                     break;
-                case PARROQUIA:
+                    case PARROQUIA:
                     if (visualizarCampusParticipante) {
                         result++;
                     }
@@ -3168,7 +3165,7 @@ public class Reportes2Controller implements Serializable {
                         result++;
                     }
                     break;
-                case DOCENTE_PARTICIPANTE:
+                 case DOCENTE_PARTICIPANTE:
                     result++;
                     if (visualizarCampusParticipante) {
                         result++;
@@ -3248,7 +3245,7 @@ public class Reportes2Controller implements Serializable {
                         result++;
                         result++;
                     }
-                    if (visualizarEstudianteParticipante) {
+              if (visualizarEstudianteParticipante) {
                         result++;
                         result++;
                         result++;
@@ -3352,13 +3349,13 @@ public class Reportes2Controller implements Serializable {
         visualizarCobertura = visualizarTodos;
         visualizarCodigoProyecto = visualizarTodos;
         visualizarDepartamento = visualizarTodos;
-        visualizarDepartamentoParticipante = visualizarTodos;
+       visualizarDepartamentoParticipante = visualizarTodos;
         visualizarDirector = visualizarTodos;
         visualizarDocenteParticipante = visualizarTodos;
         visualizarDocumentacion = visualizarTodos;
         visualizarEstado = visualizarTodos;
-        visualizarEstudianteParticipante = visualizarTodos;
-        visualizarEvaluacionFinal = visualizarTodos;
+       visualizarEstudianteParticipante = visualizarTodos;
+       visualizarEvaluacionFinal = visualizarTodos;
         visualizarLineaInvestigacion = visualizarTodos;
         visualizarParroquia = visualizarTodos;
         visualizarPresupuesto = visualizarTodos;
@@ -3366,12 +3363,12 @@ public class Reportes2Controller implements Serializable {
         visualizarProvincia = visualizarTodos;
         visualizarTipoProyecto = visualizarTodos;
     }
-
+//&& visualizarEstudianteParticipante
     public void seleccionarDeseleccionarItem() {
         if (visualizarAvance && visualizarBeneficiarios && visualizarCampus && visualizarCampusParticipante && visualizarCanton
                 && visualizarCarrera && visualizarCobertura && visualizarCodigoProyecto && visualizarDepartamento && visualizarDepartamentoParticipante
                 && visualizarDirector && visualizarDocenteParticipante && visualizarDocumentacion && visualizarEstado
-                && visualizarEstudianteParticipante && visualizarEvaluacionFinal && visualizarLineaInvestigacion
+                  && visualizarEvaluacionFinal && visualizarLineaInvestigacion
                 && visualizarParroquia && visualizarPresupuesto && visualizarPrograma && visualizarProvincia
                 && visualizarTipoProyecto) {
             visualizarTodos = true;

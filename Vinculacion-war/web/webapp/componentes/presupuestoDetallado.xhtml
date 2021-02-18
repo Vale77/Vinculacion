@@ -106,7 +106,7 @@
                         </h:panelGrid> 
 
                         <p:outputLabel value="* Descripción:" for="txtDescripcionPresupuestoDetallado" style="font-weight: bold"
-                                       rendered="#{proyectoController.presupuestoProyectoSelected.tipo==1 and proyectoController.presupuestoProyectoSelected.tipoGasto=='I'}"></p:outputLabel>
+                                     rendered="#{proyectoController.presupuestoProyectoSelected.tipo==1 and proyectoController.presupuestoProyectoSelected.tipoGasto=='I'}"></p:outputLabel>
                         <h:panelGrid columns="2" rendered="#{proyectoController.presupuestoProyectoSelected.tipo==1  and proyectoController.presupuestoProyectoSelected.tipoGasto=='I'}">
                             <p:inputTextarea id="txtDescripcionPresupuestoDetallado" value="#{proyectoController.presupuestoProyectoSelected.especificacionesTecnicas}"
                                              cols="80" rows="3" maxlength="150"

@@ -94,7 +94,7 @@
 				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="html">
 					<font fontName="SansSerif" size="10" isItalic="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[($F{directorDepartamentoListSize}==1?"El Director del Departamento: ":"Los Directores de los Departamentos: ") + $P{departamentos} + ", en uso de sus deberes y atribuciones  conferidas en el Art. 63 literal b. y g., del Estatuto de la Universidad de las Fuerzas Armadas – ESPE, vigente desde el 26 de junio de 2013."]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($F{directorDepartamentoListSize}==1?"El Director del Departamento: ":"Los Directores de los Departamentos: ") + $P{departamentos} + ", en uso de sus deberes y atribuciones  conferidas en el Art. 71 literal b. y g., del Estatuto de la Universidad de las Fuerzas Armadas – ESPE, reformado el 19 de marzo de 2019."]]></textFieldExpression>
 			</textField>
 			<subreport>
 				<reportElement positionType="Float" x="1" y="233" width="454" height="13" uuid="3d9bcade-7b1a-485b-951f-c8431f8bcbb7"/>
